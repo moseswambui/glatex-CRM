@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-0javu=^@xiy=w=t!5vfd&a3)&haq5v9t%s!#_tvysy7&^mz)w+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["glatexsignafrica.herokuapp.com"]
+ALLOWED_HOSTS = [
+    "glatexsignafrica.herokuapp.com",
+    "0.0.0.0",
+    "127.0.0.1",
+    ]
 
 
 # Application definition
