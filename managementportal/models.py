@@ -19,7 +19,7 @@ EMPLOYEE_STATUS=[
 class GlatexAdmin(models.Model):
     First_Name = models.CharField(max_length=30,null=True, blank=True)
     Surname_Name = models.CharField(max_length=30,null=True, blank=True)
-    
+    Admin_Id=models.AutoField(primary_key=True)
     Email_Address = models.EmailField(null=True, blank=True)
     Admin_Phone =models.CharField(max_length=13,blank=True,null=True)
     Admin_image = models.ImageField(blank=True, null=True)
@@ -55,7 +55,7 @@ class GlatexEmployee(models.Model):
 
     First_Name = models.CharField(max_length=30,null=True, blank=True)
     Surname_Name = models.CharField(max_length=30,null=True, blank=True)
-    
+    Employee_Id=models.AutoField(primary_key=True)
     Employee_Email_Address = models.EmailField(null=True, blank=True)
     Employee_Phone=models.CharField(max_length=13,blank=True,null=True)
     Employee_Department=models.CharField(max_length=30,choices=DEPARTMENTS,null=True,blank=True)
