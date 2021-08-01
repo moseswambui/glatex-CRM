@@ -1,0 +1,169 @@
+﻿{% extends 'admin_base.html' %}
+{% load static %}
+{% block content %}
+				<div class="span9">
+					<div class="content">
+
+						<div class="module">
+							<div class="module-head">
+								<h3>Glatex Signs Inventory</h3>
+							</div>
+							<div class="module-body">
+								<p>
+									<strong>Large Format Materials</strong>
+									-
+									<small>Banners/stickers/Window gra ...</small>
+								</p>
+								<table class="table">
+								  <thead>
+									<tr>
+									  
+									  <th>Name</th>
+									  <th>size</th>
+									  <th>Date In</th>
+									  <th>Quantity</th>
+									  <th>Dealer Phone</th>
+									  <th>Manufacturer</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									  {%for i in largeformat%}
+									<tr>
+									  
+									  <td>{{i.Material_Name}}</td>
+									  <td>{{i.Item_size}}</td>
+									  <td>{{i.Item_Date_In}}</td>
+									  <td>{{i.Item_Qunatity}}</td>
+									  <td>{{i.Item_Dealer_Phone}}</td>
+									  <td>{{i.Manufacturer_Name}}</td>
+									</tr>
+									{%endfor%}
+									
+								</table>
+
+								<br />
+								<!-- <hr /> -->
+								<br />
+
+								<p>
+									<strong>Screen Printing</strong>
+									-
+									<small>branding Items</small>
+								</p>
+								<table class="table table-striped">
+								  <thead>
+									<tr>
+									  <th>Name</th>
+									  <th>Color</th>
+									  <th>Date In</th>
+									  <th>Quantity</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <td>Shirt</td>
+									  <td>White</td>
+									  <td>27/7/21</td>
+									  <td>269</td>
+									</tr>
+									<tr>
+									  <td>Caps</td>
+									  <td>Red</td>
+									  <td>27/7/21</td>
+									  <td>32</td>
+									</tr>
+									
+								  </tbody>
+								</table>
+
+								<br />
+								<!-- <hr /> -->
+								<br />
+
+								<p>
+									<strong>Screen Printing</strong>
+									-
+									<small>A4 & A3 </small>
+								</p>
+								<table class="table table-bordered">
+								  <thead>
+									<tr>
+									  <th>Category</th>
+									  <th>Name</th>
+									  <th>Date In</th>
+									  <th>Rims</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <td>A4</td>
+									  <td>Glossy</td>
+									  <td>27/7/21</td>
+									  <td>5</td>
+									</tr>
+									<tr>
+									  <td>A4</td>
+									  <td>Glossy</td>
+									  <td>27/7/21</td>
+									  <td>4</td>
+									</tr>
+									
+								  </tbody>
+								</table>
+
+								<br />
+							
+							</div>
+						</div>
+
+						<div class="module">
+							<div class="module-head">
+								<h3>Accessories Inventory</h3>
+							</div>
+							<div class="module-body table">
+								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
+									<thead>
+										<tr>
+											<th>Name </th>
+											<th>Quantity</th>
+											<th>Dimensions</th>
+											<th>Dealer Phone</th>
+											<th>Date</th>
+										</tr>
+									</thead>
+									{%for i in accessory%}
+									<tbody>
+										<tr class="odd gradeX">
+											<td>{{i.Accessory_Name}}</td>
+											<td>{{i.Accessory_Quantity}}</td>
+											<td>{{i.Dimensions}}</td>
+											<td class="center">{{i.Dealer_Phone}}</td>
+											<td class="center">{{i.Item_Date_In}}</td>
+										</tr>
+
+									</tbody>
+									{%endfor%}
+								</table>
+							</div>
+						</div><!--/.module-->
+
+					<br />
+						
+					</div><!--/.content-->
+				</div><!--/.span9-->
+			</div>
+		</div><!--/.container-->
+	</div><!--/.wrapper-->
+
+
+
+	<script>
+		$(document).ready(function() {
+			$('.datatable-1').dataTable();
+			$('.dataTables_paginate').addClass("btn-group datatable-pagination");
+			$('.dataTables_paginate > a').wrapInner('<span />');
+			$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+			$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+		} );
+	</script>
+{% endblock %}

@@ -1,0 +1,93 @@
+{%extends 'employee_base.html'%}
+{%load static%}
+{%block content%}
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+               
+                
+                <section id="multiple-column-form">
+                    <div class="row match-height">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Employee Task Management Console</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="first-name-column">Task Name</label>
+                                                        <input type="text" id="first-name-column" class="form-control"
+                                                            placeholder="Task Name" name="fname-column">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <fieldset class="form-group">
+                                                        <label for="basicSelect">Task Designation</label>
+                                                        <select class="form-select" id="basicSelect">
+                                                            <option>Company </option>
+                                                            <option>Employee </option>
+                                                            
+
+
+                                                        </select>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="last-name-column">Task Size</label>
+                                                        <input type="text" id="last-name-column" class="form-control"
+                                                            placeholder="Task size" name="lname-column">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="last-name-column">Employee Name</label>
+                                                        <input type="text" id="last-name-column" class="form-control"
+                                                            placeholder="Employee name" name="lname-column">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="last-name-column">Date</label>
+                                                        <input type="date" id="last-name-column" class="form-control"
+                                                            placeholder="date" name="lname-column">
+                                                    </div>
+                                                </div>
+                                             
+                                               
+                                                <div class="form-group col-12">
+                                                    <div class='form-check'>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" id="checkbox5"
+                                                                class='form-check-input' checked>
+                                                            <label for="checkbox5">Remember Me</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit"
+                                                        class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- // Basic multiple Column Form section end -->
+            </div>
+
+           {%endblock%}

@@ -1,0 +1,63 @@
+{% extends 'employee_base.html' %}
+{% load static %}
+{% block content %}
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+               
+               
+
+                <section id="horizontal-input">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Large Format Materials(Banners, stickers, rollups,backdrop etc.)</h4>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p>This is an administrative console and every post submitted will appear in the Customer portal.
+                                                make sure the information entered is vetted and correct.
+                                                <code>&lt;Thank you.&gt;</code>
+                                            </p>
+                                        </div>
+                                        <form class="form" method="POST" action="" > 
+                                            {%csrf_token%}
+                                            <div class="row">
+                                               
+                       
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                      {{form}}
+                                                    </div>
+                                                </div>
+                                               
+                                                
+                                             
+                                                
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit"
+                                                        class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                           
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+              
+            </div>
+{%endblock%}

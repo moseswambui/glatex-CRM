@@ -1,0 +1,85 @@
+﻿{% extends 'admin_base.html' %}
+{% load static %}
+{% block content %}
+
+
+				<div class="span9">
+					<div class="content">
+
+						<div class="module">
+							<div class="module-head">
+								<h3>Post an advert On the customer's Portal</h3>
+							</div>
+							<div class="module-body">
+									<div class="alert alert-success">
+										<button type="button" class="close" data-dismiss="alert">×</button>
+										<strong>Well done!</strong> Now you are listening me :) 
+									</div>
+
+									<br />
+
+									<form class="form-horizontal row-fluid">
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Company Name</label>
+											<div class="controls">
+												<input type="text" id="basicinput" placeholder="Enter company Name" class="span8">
+												<span class="help-inline">Minimum 5 Characters</span>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Company Id</label>
+											<div class="controls">
+												<input type="text" id="basicinput" placeholder="You can't type something here..." class="span8" disabled>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Location</label>
+											<div class="controls">
+												<input data-title="A tooltip for the input" type="text" placeholder="Where is the company Located…" data-original-title="" class="span8 tip">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Image</label>
+											<div class="controls">
+												<input data-title="A tooltip for the input" type="file" placeholder="Select your image" data-original-title="" class="span8 tip">
+											</div>
+										</div>
+
+
+										
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Amount</label>
+											<div class="controls">
+												<div class="input-append">
+													<input type="text" placeholder="5.000" class="span8"><span class="add-on">Ksh</span>
+												</div>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Description</label>
+											<div class="controls">
+												<textarea class="span8" rows="5"></textarea>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<div class="controls">
+												<button type="submit" class="btn">Submit Form</button>
+											</div>
+										</div>
+									</form>
+							</div>
+						</div>
+
+						
+						
+					</div><!--/.content-->
+				</div><!--/.span9-->
+			</div>
+		</div><!--/.container-->
+	</div><!--/.wrapper-->
+
+{% endblock %}

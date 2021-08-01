@@ -1,0 +1,50 @@
+{%extends 'employee_base.html'%}
+{%load static%}
+{%block content%}
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+               
+                
+                <section id="multiple-column-form">
+                    <div class="row match-height">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Accessories Inventory Console</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form" method="POST" action=''>
+                                            {%csrf_token%}
+                                            <div class="row">
+                                               
+                                                
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        {{form}}
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit"
+                                                        class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- // Basic multiple Column Form section end -->
+            </div>
+
+           {%endblock%}

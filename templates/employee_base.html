@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Glatex Employees</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'employeeportal/assets/css/bootstrap.css' %}">
+
+    <link rel="stylesheet" href="{% static 'employeeportal/assets/vendors/iconly/bold.css' %}">
+
+    <link rel="stylesheet" href="{% static 'employeeportal/assets/vendors/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'employeeportal/assets/vendors/bootstrap-icons/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'employeeportal/assets/css/app.css' %}">
+    <link rel="shortcut icon" href="{% static 'employeeportal/assets/images/favicon.svg' %}" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="{% url 'employeedashboard' %}"><img src="{% static 'employeeportal/assets/images/logo/logo.png' %}" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item active ">
+                            <a href="{% url 'employeedashboard' %}" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                          <a href="{% url 'jobstats' %}" class='sidebar-link'>
+                              <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                              <span>Work Stats</span>
+                          </a>
+                      </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-collection-fill"></i>
+                                <span>Profile</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{% url 'employeeprofile' %}">View Profile</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'employeeprofile' %}">Edit Profile</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>Post On Website</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{% url 'largeformat' %}">Large Format </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="">Branding</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'screenprinting' %}">Screen Printing</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'digitalprinting' %}">Digital Printing</a>
+                                </li>
+                            </ul>
+                        </li>
+                         
+                        <li class="sidebar-title">Management Portal</li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-pentagon-fill"></i>
+                                <span>Inventory</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{%url 'largeformat_inventory'%}">Large Format</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{%url 'vinyl_inventory'%}">Vinyl</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{%url 'digitalprinting_inventory'%}">Digital Printing</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{%url 'screenprinting_inventory'%}">Screen Printing</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{%url 'accessories_inventory'%}">Accessories</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-egg-fill"></i>
+                                <span>Reporting</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{%url 'breakages'%}">Breakages </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{%url 'misbehaviours'%}">Misbehaviours</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{%url 'employee-tasks'%}">Daily Tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'registeremployee' %}" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Register Employees</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'register-client' %}" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Register Client</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-title">Accounting</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'sales' %}" class='sidebar-link'>
+                                <i class="bi bi-envelope-fill"></i>
+                                <span>Sales</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'invoices' %}" class='sidebar-link'>
+                                <i class="bi bi-chat-dots-fill"></i>
+                                <span>Invoices</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'expenses' %}" class='sidebar-link'>
+                                <i class="bi bi-basket-fill"></i>
+                                <span>Expenses</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-person-badge-fill"></i>
+                                <span>Authentication</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="auth-login.html">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+        
+        <footer>
+            <div class="footer clearfix mb-0 text-muted">
+                <div class="float-start">
+                    <p>2021 &copy; Glatex Signs Africa</p>
+                </div>
+                
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="{% static 'employeeportal/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'employeeportal/assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'employeeportal/assets/vendors/apexcharts/apexcharts.js' %}"></script>
+<script src="{% static 'employeeportal/assets/js/pages/dashboard.js' %}"></script>
+
+<script src="{% static 'employeeportal/assets/js/main.js' %}"></script>
+</body>
+
+</html>
+
+        
