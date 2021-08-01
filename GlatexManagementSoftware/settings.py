@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,20 +85,26 @@ WSGI_APPLICATION = 'GlatexManagementSoftware.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+""""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'glatexsignsafrica',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'HOST':'localhost',
+        "PORT":'3306',
         "OPTION": {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
             'charset': 'utf8mb4',
             "autocommit": True,
         }
+    }
+}
+"""
+DATABASES ={
+    'default':{
+        'ENGINE':'django.db.backends.postgresql_psycopg'
     }
 }
 
@@ -145,3 +153,5 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_heroku.settings(locals())
