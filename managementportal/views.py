@@ -35,7 +35,7 @@ def Advert(request):
 
 def Clients(request):
     
-    return render(request,"admin_clients.html",context)
+    return render(request,"admin_clients.html")
 
 def AdminInvoices(request):
     invoice = Invoice.objects.all()

@@ -61,7 +61,7 @@ class GlatexEmployee(models.Model):
     Employee_Department=models.CharField(max_length=30,choices=DEPARTMENTS,null=True,blank=True)
     Employee_Salary= models.CharField(max_length=5,null=True, blank=True)
     Employee_Office = models.ForeignKey(GlatexOffice,on_delete=SET_NULL,blank=True, null=True)
-    Employee_Admin =models.ForeignKey(GlatexAdmin, on_delete=SET_NULL,null=True,blank=True)
+    
     Nhif_Number =models.CharField(max_length=10,default="None")
     Employee_Status = models.CharField(max_length=20,choices=EMPLOYEE_STATUS, null=True)
 

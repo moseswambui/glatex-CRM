@@ -111,7 +111,7 @@ class LargeFormatInventoryForm(forms.ModelForm):
 class AddEmployeeProfileForm(forms.ModelForm):
     class Meta:
         model = GlatexEmployee
-        fields =['First_Name','Surname_Name','Employee_Email_Address', 'Employee_Phone','Employee_Department', 'Employee_Salary','Employee_Office','Employee_Admin', 'Nhif_Number', 'Employee_Status']
+        fields =['First_Name','Surname_Name','Employee_Email_Address', 'Employee_Phone','Employee_Department', 'Employee_Salary','Employee_Office', 'Nhif_Number', 'Employee_Status']
 
         widgets ={
             'First_Name':forms.TextInput(attrs={
@@ -142,10 +142,7 @@ class AddEmployeeProfileForm(forms.ModelForm):
                 'class':'form-control',
                 'placeholder':'Office'
             }),
-            'Employee_Admin':forms.Select(attrs={
-                'class':'form-control',
-                'placeholder':'Admin'
-            }),
+            
             'Nhif_Number':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'Nhif No.'
