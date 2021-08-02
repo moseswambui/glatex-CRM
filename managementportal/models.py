@@ -100,6 +100,7 @@ LARGEFORMATMATERIAL=[
     ("WINDOWGRAPHICS",'Window Graphics'),
     ('CLEARSTICKER','Clear Sticker'),
     ('REFLECTIVESTICKER', 'Reflective Sticker'),
+    ('BACKLIT','Backlit')
 ]
 
 class Invoice(models.Model):
@@ -219,17 +220,20 @@ PAPERTYPE=[
     ('TICTAC','TicTac'),
     ('PHOTOPAPER','PhotoPaper rim'),
     ('IVORY','Ivory'),
-    ('OTHERS','Others')
+    ('PLAINPAPER','Plain Paper'),
+    ('PHOTOPAPER','Photo Paper'),
+    ('SUBLIMATION', 'Sublimation'),
+    ('EMBOSED','Embossed'),
 ]
 PAPERSIZE=[
     ('A4',"A4"),
     ('A3','A3'),
 ]
-class DigitalPrinting(models.Model):
-    Paper_Type=models.CharField(max_length=50,choices=PAPERTYPE, null=True, blank=True)
+class DigitalPrintingInv(models.Model):
+    Paper_Name=models.CharField(max_length=50,choices=PAPERTYPE, null=True, blank=True)
     Quantity =models.IntegerField(null=True, blank=True)
     Paper_Cost =models.IntegerField(null=True, blank=True)
-    Paper_Size =models.CharField(max_length=5,choices=PAPERSIZE, null=True,blank=True)
+    Paper_Size = models.CharField(max_length=5,choices=PAPERSIZE, null=True,blank=True)
     Item_Date_In = models.DateField(null=True, blank=True)
     Dealer_Phone = models.CharField(max_length=15, blank=True,null=True)
     Dealer_Name = models.CharField(max_length=15, blank=True,null=True)

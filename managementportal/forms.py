@@ -510,17 +510,22 @@ class PlotterMaterialForm(forms.ModelForm):
         }
 class DigitalPrintingInventoryForm(forms.ModelForm):
     class Meta:
-        model = DigitalPrinting
-        fields =['Paper_Type','Quantity', 'Paper_Cost','Dealer_Phone','Item_Date_In']
+        model = DigitalPrintingInv
+        fields =['Paper_Name','Paper_Size','Quantity', 'Paper_Cost','Dealer_Phone','Item_Date_In']
 
         widgets ={
-            'Paper_Type':forms.Select(attrs={
+            'Paper_Name':forms.Select(attrs={
                 'class':'form-control',
                 'placeholder':'paper type'
             }),
             'Quantity':forms.NumberInput(attrs={
                 'class':'form-control',
                 'placeholder':'Quantity'
+                
+            }),
+            'Paper_Size':forms.Select(attrs={
+                'class':'form-control',
+                'placeholder':'Size'
                 
             }),
             'Paper_Cost':forms.NumberInput(attrs={

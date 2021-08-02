@@ -2,6 +2,7 @@ from typing import Container
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
 from .forms import *
+from .models import *
 
 def GlatexPortal(request):
     return render(request, "glatexportal.html")
@@ -44,9 +45,12 @@ def AdminInvoices(request):
     return render(request,"admin_invoices.html",context)
 
 def Inventory(request):
+    digital = DigitalPrintingInv.objects.all()
     largeformat = LargeFormatPrinting.objects.all()
     accessory =Accessory.objects.all()
-    context = {'largeformat':largeformat,'accessory':accessory}
+    brandingitems =BrandingItem.objects.all()
+    
+    context = {'largeformat':largeformat,'accessory':accessory,'brandingitems':brandingitems,'digital':digital}
     return render(request,"admin_inventory.html",context)
 
 def Meeting(request):

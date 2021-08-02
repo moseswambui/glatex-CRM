@@ -20,7 +20,7 @@ admin.site.register(WebPost)
 admin.site.register(LargeFormatPrinting)
 
 admin.site.register(PlotterMaterial)
-admin.site.register(DigitalPrinting)
+admin.site.register(DigitalPrintingInv)
 admin.site.register(BrandingItem)
 admin.site.register(Accessory)
 admin.site.register(PrintInk)

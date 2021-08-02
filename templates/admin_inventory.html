@@ -33,7 +33,7 @@
 									  <td>{{i.Material_Name}}</td>
 									  <td>{{i.Item_size}}</td>
 									  <td>{{i.Item_Date_In}}</td>
-									  <td>{{i.Item_Qunatity}}</td>
+									  <td>{{i.Item_Quantity}}</td>
 									  <td>{{i.Item_Dealer_Phone}}</td>
 									  <td>{{i.Manufacturer_Name}}</td>
 									</tr>
@@ -59,21 +59,17 @@
 									  <th>Quantity</th>
 									</tr>
 								  </thead>
+								  {% for i in brandingitems %}
 								  <tbody>
 									<tr>
-									  <td>Shirt</td>
-									  <td>White</td>
-									  <td>27/7/21</td>
-									  <td>269</td>
+									  <td>{{i.Branding_Item}}</td>
+									  <td>{{i.Item_Color}}</td>
+									  <td>{{i.Item_Date_In}}</td>
+									  <td>{{i.Item_Quantity}}</td>
 									</tr>
-									<tr>
-									  <td>Caps</td>
-									  <td>Red</td>
-									  <td>27/7/21</td>
-									  <td>32</td>
-									</tr>
-									
+								
 								  </tbody>
+								  {%endfor%}
 								</table>
 
 								<br />
@@ -81,34 +77,31 @@
 								<br />
 
 								<p>
-									<strong>Screen Printing</strong>
+									<strong>Digital Printing</strong>
 									-
 									<small>A4 & A3 </small>
 								</p>
 								<table class="table table-bordered">
 								  <thead>
 									<tr>
-									  <th>Category</th>
 									  <th>Name</th>
+									  <th>Size</th>
 									  <th>Date In</th>
-									  <th>Rims</th>
+									  <th>Quantity</th>
 									</tr>
 								  </thead>
+								  {%for i in digital %}
 								  <tbody>
 									<tr>
-									  <td>A4</td>
-									  <td>Glossy</td>
-									  <td>27/7/21</td>
-									  <td>5</td>
-									</tr>
-									<tr>
-									  <td>A4</td>
-									  <td>Glossy</td>
-									  <td>27/7/21</td>
-									  <td>4</td>
+									  <td>{{i.Paper_Name}}</td>
+									  <td>{{i.Paper_Size}}</td>
+									  <td>{{i.Item_Date_In}}</td>
+									  <td>{{i.Quantity}}</td>
 									</tr>
 									
+									
 								  </tbody>
+								  {%endfor%}
 								</table>
 
 								<br />
