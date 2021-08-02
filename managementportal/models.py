@@ -258,6 +258,7 @@ ACCESSORIES=[
     ('ALUMINIUM','Aluminium'),
     ("BROADBASE STAND",'Broadbase Stand'),
     ('BULB','Bulb'),
+    ('NAMETAGS','Name Tags')
 ]
 class Accessory(models.Model):
     Accessory_Name=models.CharField(max_length=25,choices=ACCESSORIES,blank=True, null=True)
