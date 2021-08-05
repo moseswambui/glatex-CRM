@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
 from .forms import *
 from .models import *
+from django.db.models import Avg,Sum
 
 def GlatexPortal(request):
     return render(request, "glatexportal.html")
@@ -18,13 +19,18 @@ def Employees(request):
     return render(request,"admin_employee.html")
 
 def AdminSales(request):
-    sales = DailySales.objects.all()
-    context ={'sales':sales}
+    sales = DailySales.objects.filter(Sales_Department='Printing')
+    total_largeformat = DailySales.objects.filter(Sales_Department='Printing').aggregate(Sum("Sales_Amount"))
+    
+    sales_screenprinting = DailySales.objects.filter(Sales_Department='T_shirt_Printing')
+    total_screenprinting = DailySales.objects.filter(Sales_Department='T_shirt_Printing').aggregate(Sum("Sales_Amount"))
+    context ={'sales':sales,'total_largeformat':total_largeformat,'sales_screenprinting':sales_screenprinting,'total_screenprinting':total_screenprinting}
     return render(request, 'admin_sales.html',context)
 
 def AdminExpenses(request):
     expense = DailyExpenses.objects.all()
-    context ={'expense':expense}
+    total_expense = DailyExpenses.objects.all().aggregate(Sum('Expense_Cost'))
+    context ={'expense':expense,'total_expense':total_expense}
     return render(request, 'admin_expenses.html',context)
 
 def AdminBreakages(request):

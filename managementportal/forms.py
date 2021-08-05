@@ -309,12 +309,22 @@ class InvoiceDetailForm(forms.ModelForm):
 class SalesForm(forms.ModelForm):
     class Meta:
         model = DailySales
-        fields =['Client','Sales_Amount','Sales_Date', 'Payment_Method']
+        fields =['Client','Sales_Product','Sales_Quantity','Sales_Amount','Sales_Date','Sales_Department', 'Payment_Method']
 
         widgets ={
             'Client':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'Client'
+            }),
+            'Sales_Product':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'product'
+                
+            }),
+            'Sales_Quantity':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Quantity'
+                
             }),
             'Sales_Amount':forms.NumberInput(attrs={
                 'class':'form-control',
@@ -324,6 +334,11 @@ class SalesForm(forms.ModelForm):
             'Sales_Date':forms.DateInput(attrs={
                 'class':'form-control',
                 'placeholder':'date'
+            }),
+            'Sales_Department':forms.Select(attrs={
+                'class':'form-control',
+                'placeholder':'amount'
+                
             }),
             'Payment_Method':forms.Select(attrs={
                 'class':'form-control',
@@ -391,16 +406,16 @@ class DesignTaskForm(forms.ModelForm):
 class DailyExpensesForm(forms.ModelForm):
     class Meta:
         model = DailyExpenses
-        fields =['Employee','Expense_Nature','Expense_Cost', 'Expense_Date']
+        fields =['Employee_Name','Item_Name','Expense_Cost', 'Expense_Date']
 
         widgets ={
-            'Employee':forms.Select(attrs={
+            'Employee_Name':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'employee'
             }),
-            'Expense_Nature':forms.TextInput(attrs={
+            'Item_Name':forms.TextInput(attrs={
                 'class':'form-control',
-                'placeholder':'expense nature'
+                'placeholder':'Item'
                 
             }),
             'Expense_Cost':forms.NumberInput(attrs={
@@ -548,7 +563,7 @@ class DigitalPrintingInventoryForm(forms.ModelForm):
 class BrandingItemsInventoryForm(forms.ModelForm):
     class Meta:
         model = BrandingItem
-        fields =['Branding_Item','Item_Quantity','Item_Color', 'Item_Cost','Dealer_Phone','Item_Date_In']
+        fields =['Branding_Item', "Size",'Item_Quantity','Item_Color', 'Item_Cost','Item_Type','Dealer_Phone','Item_Date_In']
 
         widgets ={
             'Branding_Item':forms.Select(attrs={
@@ -560,6 +575,11 @@ class BrandingItemsInventoryForm(forms.ModelForm):
                 'placeholder':'Quantity'
                 
             }),
+            'Size':forms.Select(attrs={
+                'class':'form-control',
+                'placeholder':'size'
+                
+            }),
             'Item_Color':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'color'
@@ -567,6 +587,11 @@ class BrandingItemsInventoryForm(forms.ModelForm):
             'Item_Cost':forms.NumberInput(attrs={
                 'class':'form-control',
                 'placeholder':'cost'
+            }),
+            'Item_Type':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'type'
+                
             }),
             'Dealer_Phone':forms.TextInput(attrs={
                 'class':'form-control',

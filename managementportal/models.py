@@ -123,8 +123,11 @@ PAYMENTMETHOD = [
 class DailySales(models.Model):
     Client = models.CharField(max_length=45, null=True, blank=True)
     Client_id = models.CharField(max_length=45, null=True, blank=True)
+    Sales_Product = models.CharField(max_length=34,null=True,blank=True)
+    Sales_Quantity = models.CharField(max_length=34,null=True,blank=True)
     Sales_Amount = models.IntegerField(null=True, blank=True)
     Sales_Date =models.DateField(null=True, blank=True)
+    Sales_Department = models.CharField(max_length=34,null=True,blank=True, choices=DEPARTMENTS)
     Payment_Method = models.CharField(max_length=20,blank=True, null=True,choices=PAYMENTMETHOD)
 
 class SalesDetails(models.Model):
@@ -151,7 +154,8 @@ class FabricationTask(models.Model):
 
 class DailyExpenses(models.Model):
     Employee = models.ForeignKey(GlatexEmployee, on_delete=SET_NULL, null=True)
-    Expense_Nature =models.CharField(max_length=50,null=True,blank=True)
+    Employee_Name = models.CharField(max_length=56, null=True , blank=True)
+    Item_Name =models.CharField(max_length=50,null=True,blank=True)
     Expense_Cost = models.IntegerField(null=True, blank=True)
     Expense_Date=models.DateField(null=True, blank=True)
 
@@ -247,9 +251,18 @@ BRANDINGITEMS=[
     ('REFLECTOR','Reflector'),
     ("OTHER",'Other'),
 ]
+SIZES=[
+    ("S",'S'),
+    ("M",'M'),
+    ('L','L'),
+    ("XL",'XL'),
+    ("XXL",'XXL'),
+    ("XXXL",'XXXL'),
+]
 
 class BrandingItem(models.Model):
     Branding_Item = models.CharField(max_length=10,choices=BRANDINGITEMS, null=True,blank=True)
+    Size = models.CharField(max_length=10,choices=SIZES, null=True,blank=True)
     Item_Quantity = models.IntegerField(null=True,blank=True)
     Item_Color = models.CharField(max_length=20,choices=COLORS,null=True,blank=True)
     Item_Cost = models.IntegerField(blank=True,null=True)

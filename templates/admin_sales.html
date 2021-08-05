@@ -8,7 +8,7 @@
 
 						<div class="module message">
 							<div class="module-head">
-								<h3>Sales Management Console</h3>
+								<h3>Large Format Sales Management Console</h3>
 							</div>
 							
 							<div class="module-body table">								
@@ -18,8 +18,9 @@
 										<tr class="heading">
 											<td class="cell-icon"></td>
 											<td class="cell-title">Client Name</td>
-											<td class="cell-status hidden-phone hidden-tablet">Client ID</td>
-											<td class="cell-status hidden-phone hidden-tablet">Total Amount</td>
+											<td class="cell-status hidden-phone hidden-tablet">Product(s)</td>
+											<td class="cell-status hidden-phone hidden-tablet">Quantity</td>
+											<td class="cell-status hidden-phone hidden-tablet">Amount</td>
 											<td class="cell-time align-right">Date</td>
 											<td class="cell-time align-right">Payment Method</td>
 										</tr>
@@ -27,15 +28,65 @@
 										<tr class="task">
 											<td class="cell-icon"><i class="icon-checker high"></i></td>
 											<td class="cell-title"><div>{{i.Client}}</div></td>
-											<td class="cell-status hidden-phone hidden-tablet"><b class="due">{{i.id}}</b></td>
+											<td class="cell-status hidden-phone hidden-tablet"><b class="due">{{i.Sales_Product}}</b></td>
+											<td class="cell-status hidden-phone hidden-tablet">{{i.Sales_Quantity}}</b></td>
 											<td class="cell-status hidden-phone hidden-tablet">{{i.Sales_Amount}}</b></td>
 											<td class="cell-time align-right">{{i.Sales_Date}}</td>
 											<td class="cell-time align-right">{{i.Payment_Method}}</td>
 										</tr>
 										{%endfor%}
-                                       
+										<tr class="task">
+											<td class="cell-icon"><i class="icon-checker high"></i></td>
+											<td class="cell-title"><div>Total:</div></td>
+											<td class="cell-status hidden-phone hidden-tablet"><b class="due">Ksh.{{total_largeformat}}</b></td>
+
+										</tr>
 									</tbody>
 								</table>
+
+								<div class="module message">
+									<div class="module-head">
+										<h3>Screen Printing Sales Management Console</h3>
+									</div>
+									
+									<div class="module-body table">								
+		
+										<table class="table table-message">
+											<tbody>
+												<tr class="heading">
+													<td class="cell-icon"></td>
+													<td class="cell-title">Client Name</td>
+													<td class="cell-status hidden-phone hidden-tablet">Product(s)</td>
+													<td class="cell-status hidden-phone hidden-tablet">Quantity</td>
+													<td class="cell-status hidden-phone hidden-tablet">Amount</td>
+													<td class="cell-time align-right">Date</td>
+													<td class="cell-time align-right">Payment Method</td>
+												</tr>
+												{% for i in sales_screenprinting %}
+												<tr class="task">
+													<td class="cell-icon"><i class="icon-checker high"></i></td>
+													<td class="cell-title"><div>{{i.Client}}</div></td>
+													<td class="cell-status hidden-phone hidden-tablet"><b class="due">{{i.Sales_Product}}</b></td>
+													<td class="cell-status hidden-phone hidden-tablet">{{i.Sales_Quantity}}</b></td>
+													<td class="cell-status hidden-phone hidden-tablet">{{i.Sales_Amount}}</b></td>
+													<td class="cell-time align-right">{{i.Sales_Date}}</td>
+													<td class="cell-time align-right">{{i.Payment_Method}}</td>
+												</tr>
+												{%endfor%}
+												<tr class="task">
+													<td class="cell-icon"><i class="icon-checker high"></i></td>
+													<td class="cell-title"><div>Total:</div></td>
+													<td class="cell-status hidden-phone hidden-tablet"><b class="due">Ksh.{{total_screenprinting}}</b></td>
+		
+												</tr>
+											</tbody>
+										</table>
+		
+		
+									</div>
+									<div class="module-foot">
+									</div>
+								</div>
 
 
 							</div>

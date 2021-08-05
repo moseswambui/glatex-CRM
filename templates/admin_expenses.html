@@ -26,13 +26,20 @@
 										{%for i in expense %}
 										<tr class="task">
 											<td class="cell-icon"><i class="icon-checker high"></i></td>
-											<td class="cell-title"><div>{{i.Employee}}</div></td>
+											<td class="cell-title"><div>{{i.Employee_Name}}</div></td>
 											<td class="cell-status hidden-phone hidden-tablet"><b class="due">{{i.Expense_Cost}}</b></td>
-											<td class="cell-status hidden-phone hidden-tablet">{{i.Expense_Nature}}</b></td>
+											<td class="cell-status hidden-phone hidden-tablet">{{i.Item_Name}}</b></td>
 											<td class="cell-time align-right">{{i.Expense_Date}}</td>
 											
 										</tr>
 										{%endfor%}
+										<tr class="task">
+											<td class="cell-icon"><i class="icon-checker high"></i></td>
+											<td class="cell-title"><div>Total Expenses</div></td>
+											<td class="cell-status hidden-phone hidden-tablet"><b class="due">{{total_expense}}</b></td>
+
+											
+										</tr>
                                        
 									</tbody>
 								</table>
