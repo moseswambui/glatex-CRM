@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'GlatexManagementSoftware.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -107,7 +107,7 @@ DATABASES ={
         'ENGINE':'django.db.backends.postgresql_psycopg2'
     }
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 

@@ -118,10 +118,12 @@ class InvoiceDetails(models.Model):
 
 PAYMENTMETHOD = [
     ('MPESA','M-pesa'),
-    ('CASH','Cash')
+    ('CASH','Cash'),
+    ('CHEQUE','Cheque')
 ]
 class DailySales(models.Model):
     Client = models.CharField(max_length=45, null=True, blank=True)
+    Product_Size=models.CharField(max_length=50,null=True, blank=True)
     Client_id = models.CharField(max_length=45, null=True, blank=True)
     Sales_Product = models.CharField(max_length=34,null=True,blank=True)
     Sales_Quantity = models.CharField(max_length=34,null=True,blank=True)

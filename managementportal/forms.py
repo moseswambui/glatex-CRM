@@ -309,7 +309,7 @@ class InvoiceDetailForm(forms.ModelForm):
 class SalesForm(forms.ModelForm):
     class Meta:
         model = DailySales
-        fields =['Client','Sales_Product','Sales_Quantity','Sales_Amount','Sales_Date','Sales_Department', 'Payment_Method']
+        fields =['Client','Sales_Product',"Product_Size",'Sales_Quantity','Sales_Amount','Sales_Date','Sales_Department', 'Payment_Method']
 
         widgets ={
             'Client':forms.TextInput(attrs={
@@ -321,6 +321,12 @@ class SalesForm(forms.ModelForm):
                 'placeholder':'product'
                 
             }),
+            'Product_Size':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Product Size'
+                
+            }),
+            
             'Sales_Quantity':forms.NumberInput(attrs={
                 'class':'form-control',
                 'placeholder':'Quantity'

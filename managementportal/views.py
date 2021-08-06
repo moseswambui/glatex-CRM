@@ -172,6 +172,11 @@ def Sales(request):
         if form.is_valid():
             form.save()
     context = {'form':form}
+
+    sales = DailySales.objects.all()
+    total = DailySales.objects.all().aggregate(Sum('Sales_Amount'))
+    context = {'form':form,'sales':sales,'total':total}
+
     return render(request,"employee_sales.html",context)
 
 def Invoices(request):

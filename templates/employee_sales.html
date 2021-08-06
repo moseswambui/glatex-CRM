@@ -39,6 +39,40 @@
                                         </form>
                                     </div>
                                 </div>
+
+                                <div class="card-body">
+                                    <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Client Name</th>
+                                                <th>Product</th>
+                                                <th>Product Size</th>
+                                                <th>Quantity</th>
+                                                <th>Payment Method</th>
+                                                <th>Department</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for i in sales %}
+                                            <tr>
+                                                <td>{{i.Client}}</td>
+                                                <td>{{i.Product}}</td>
+                                                <td>{{i.Product_Size}}</td>
+                                                <td>{{i.Product_Quantity}}</td>
+                                                <td>{{i.Payment_Method}}</td>
+                                                <td>{{i.Sales_Department}}</td>
+                                                <td>
+                                                    <span class="badge bg-success">{{i.Sales_Amount}}</span>
+                                                </td>
+                                            </tr>
+                                            {%endfor%}
+                                            <th>Total     : </th>
+                                            <th>{{total}}</th>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
