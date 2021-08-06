@@ -157,7 +157,7 @@ class FabricationTask(models.Model):
 class DailyExpenses(models.Model):
     Employee = models.ForeignKey(GlatexEmployee, on_delete=SET_NULL, null=True)
     Employee_Name = models.CharField(max_length=56, null=True , blank=True)
-    Item_Name =models.CharField(max_length=50,null=True,blank=True)
+    Expense_Description =models.CharField(max_length=50,null=True,blank=True)
     Expense_Cost = models.IntegerField(null=True, blank=True)
     Expense_Date=models.DateField(null=True, blank=True)
 

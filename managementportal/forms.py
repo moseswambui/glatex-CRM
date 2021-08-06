@@ -412,26 +412,23 @@ class DesignTaskForm(forms.ModelForm):
 class DailyExpensesForm(forms.ModelForm):
     class Meta:
         model = DailyExpenses
-        fields =['Employee_Name','Item_Name','Expense_Cost', 'Expense_Date']
+        fields =['Employee_Name','Expense_Description','Expense_Cost', 'Expense_Date']
 
         widgets ={
             'Employee_Name':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'employee'
             }),
-            'Item_Name':forms.TextInput(attrs={
+            'Expense_Description':forms.TextInput(attrs={
                 'class':'form-control',
-                'placeholder':'Item'
+                'placeholder':'How the expense was incured'
                 
             }),
             'Expense_Cost':forms.NumberInput(attrs={
                 'class':'form-control',
                 'placeholder':'Cost'
             }),
-            'Design_Size':forms.TextInput(attrs={
-                'class':'form-control',
-                'placeholder':'size'
-            }),
+            
             'Expense_Date':forms.DateInput(attrs={
                 'class':'form-control',
                 'placeholder':'date'

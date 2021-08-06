@@ -194,7 +194,9 @@ def Expenses(request):
         form =DailyExpensesForm(request.POST)
         if form.is_valid():
             form.save()
-    context = {'form':form}
+    expenses = DailyExpenses.objects.all()
+    total_expenses = DailyExpenses.objects.all().aggregate(Sum('Expense_Cost'))
+    context = {'form':form,'expenses':expenses,'total_expenses':total_expenses}
     return render(request,"employee_expenses.html",context)
 
 def ClientRegister(request):

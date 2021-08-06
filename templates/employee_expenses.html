@@ -40,6 +40,36 @@
                                         </form>
                                     </div>
                                 </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Employee Name</th>
+                                                <th>Expense Usage</th>
+                                                <th>Amount</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for i in expenses %}
+                                            <tr>
+                                                <td>{{i.Employee_Name}}</td>
+                                                <td>{{iExpense_Description}}</td>
+                                                <td>{{i.Expense_Cost}}</td>
+                                                
+                                                <td>
+                                                    <span class="badge bg-success">{{i.Expense_Date}}</span>
+                                                </td>
+                                            </tr>
+                                            {%endfor%}
+                                            <th>Total     : </th>
+                                            <td>
+                                                <span class="badge bg-danger">{{total_expenses}}</span>
+                                            </td>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
