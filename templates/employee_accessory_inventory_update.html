@@ -44,43 +44,9 @@
                                 <div class="card-body">
                                     <table class="table table-striped" id="table1">
                                         <thead>
-                                            <tr>
-                                                <th>Accessory Name</th>
-                                                <th>Quantity</th>
-                                                <th>Date In</th>
-                                                <th>Dealer</th>
-                                                <th>Cost Per</th>
-                                                <th>Action</th>
-                                                
-                                            </tr>
+                                          
                                         </thead>
-                                        <tbody>
-                                            {%for i in accessories %}
-                                            <tr>
-                                                <td>{{i.Accessory_Name}}</td>
-                                                <td>{{i.Accessory_Quantity}}</td>
-                                                <td>{{i.Item_Date_In}}</td>
-                                                <td>{{i.Dealer_Phone}}</td>
-                                                
-                                                
-                                                <td>
-                                                    
-                                                    <span class="badge bg-success">{{i.Accessory_Cost}}</span>
-
-                                                </td>
-                                                <td>
-                                                    
-                                                    <a href="{%url 'accessories_update' i.id %}">
-                                                        <span class="badge bg-danger">Update Inventory</span>
-                                                    </a>
-                                                        
-                                                    
-                                                </td>
-                                            </tr>
-                                            
-                                            {%endfor%}
-                                            
-                                        </tbody>
+                                       
                                     </table>
                                 </div>
                             </div>

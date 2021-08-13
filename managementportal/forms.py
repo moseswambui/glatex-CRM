@@ -640,6 +640,34 @@ class AccessoryInventoryForm(forms.ModelForm):
             
         }
 
+class SalesInventoryForm(forms.ModelForm):
+    class Meta:
+        model = SalesAccessoryInventory
+        fields =['Client_Name','Product','Quantity', 'Cost']
+
+        widgets ={
+            'Client_Name':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Name'
+            }),
+            'Product':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Product'
+                
+            }),
+            
+            'Quantity':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Quantity'
+            }),
+            'Cost':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'cost'
+            }),
+            
+            
+            
+        }
 
 
 

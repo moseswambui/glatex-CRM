@@ -291,6 +291,13 @@ INKPRINTERS =[
     ('DIGITALPRINTER','Digital Printer')
 
 ]
+class SalesAccessoryInventory(models.Model):
+    Client_Name = models.CharField(max_length=67,null=True, blank=True)
+    Product = models.CharField(max_length=20,null=True, blank=True)
+    Quantity = models.IntegerField(null=True, blank=True)
+    Cost = models.IntegerField(null=True, blank=True)
+    saledate = models.DateField(null=True, blank=True, auto_now_add=True)
+    
 class PrintInk(models.Model):
     Ink_Name =models.CharField(max_length=25,null=True, blank=True)
     Ink_Size = models.CharField(max_length=3, null=True, blank=True)

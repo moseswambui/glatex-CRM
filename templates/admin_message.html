@@ -6,26 +6,25 @@
                             <div class="module message">
                                 <div class="module-head">
                                     <h3>
-                                        Member Messages</h3>
+                                        Inventory Sales</h3>
                                 </div>
                                 <div class="module-option clearfix">
                                     <div class="pull-left">
                                         <div class="btn-group">
                                             <button class="btn">
-                                                Inbox</button>
+                                                Inventory sales</button>
                                             <button class="btn dropdown-toggle" data-toggle="dropdown">
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#">Inbox(11)</a></li>
-                                                <li><a href="#">Sent</a></li>
+                                                
 >
                                                 <li><a href="#">Settings</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-primary">Compose</a>
+                                        <a href="#" class="btn btn-primary">fullfill</a>
                                     </div>
                                 </div>
                                 <div class="module-body table">
@@ -38,17 +37,23 @@
                                                 <td class="cell-icon">
                                                 </td>
                                                 <td class="cell-author hidden-phone hidden-tablet">
-                                                    Sender
+                                                    client name
                                                 </td>
                                                 <td class="cell-title">
-                                                    Subject
+                                                    product
                                                 </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
+                                                
+                                                <td class="cell-time align-right">
+                                                    quantity
                                                 </td>
                                                 <td class="cell-time align-right">
-                                                    Date
+                                                    cost
+                                                </td>
+                                                <td class="cell-time align-right">
+                                                    date
                                                 </td>
                                             </tr>
+                                            {%for i in saleinventory%}
                                             <tr class="unread">
                                                 <td class="cell-check">
                                                     <input type="checkbox" class="inbox-checkbox">
@@ -57,19 +62,23 @@
                                                     <i class="icon-star"></i>
                                                 </td>
                                                 <td class="cell-author hidden-phone hidden-tablet">
-                                                    Moses Wambui
+                                                    {{i.Client_Name}}
                                                 </td>
                                                 <td class="cell-title">
-                                                    I need money to buy a foot measure
+                                                    {{i.Product}}
                                                 </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="icon-paper-clip"></i>
+                                                
+                                                <td class="cell-time align-right">
+                                                    {{i.Quantity}}
                                                 </td>
                                                 <td class="cell-time align-right">
-                                                    18:24
+                                                    {{i.Cost}}
+                                                </td>
+                                                <td class="cell-time align-right">
+                                                    {{i.saledate}}
                                                 </td>
                                             </tr>
-                                           
+                                           {%endfor%}
                                         </tbody>
                                     </table>
                                 </div>

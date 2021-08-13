@@ -52,44 +52,6 @@
                                     
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <table class="table table-striped" id="table1">
-                                        <thead>
-                                            <tr>
-                                                <th>Material Name</th>
-                                                <th>size</th>
-                                                <th>Quantity</th>
-                                                <th>Cost</th>
-                                                <th>Date</th>
-                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {%for i in largeformat %}
-                                            <tr>
-                                                <td>{{i.Material_Name}}</td>
-                                                <td>{{i.Item_size}}</td>
-                                                <td>{{i.Item_Quantity}}</td>
-                                                <td>{{i.Item_Cost}}</td>
-                                                
-                                                <td>
-                                                    <span class="badge bg-success">{{i.Item_Date_In}}</span>
-                                                </td>
-                                                <td>
-                                                    
-                                                    <a href="{%url 'largeformat_update' i.id %}">
-                                                        <span class="badge bg-danger">Update Inventory</span>
-                                                    </a>
-                                                        
-                                                    
-                                                </td>
-                                            </tr>
-                                           
-                                            {%endfor%}
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
                         </div>
                     </div>

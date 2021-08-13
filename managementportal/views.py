@@ -1,6 +1,6 @@
 from typing import Container
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import *
 from .models import *
 from django.db.models import Avg,Sum
@@ -63,7 +63,9 @@ def Meeting(request):
     return render(request,"admin_meeting.html")
 
 def Messages(request):
-    return render(request,"admin_message.html")
+    saleinventory = SalesAccessoryInventory.objects.all()
+    context = {'saleinventory':saleinventory}
+    return render(request,"admin_message.html",context)
 
 def EmployeeDashboard(request):
     return render(request,"employee_index.html")
@@ -78,7 +80,14 @@ def DigitalPrinting(request):
     return render(request,"employee_digitalprinting.html",context)
 
 def JobStats(request):
-    return render(request,"employee_jobstats.html")
+    sales =  DailySales.objects.all().aggregate(Sum('Sales_Amount'))
+    expenses = DailyExpenses.objects.all().aggregate(Sum('Expense_Cost'))
+    exp = expenses.values()
+    sal=sales.values()
+    
+    
+    context ={'sales':sales,'expenses':expenses}
+    return render(request,"employee_jobstats.html",context)
 
 def LargeFormat(request):
     form=WebPostsForm()
@@ -117,8 +126,22 @@ def LargeFormatInventory(request):
         form =LargeFormatInventoryForm(request.POST)
         if form.is_valid():
             form.save()
-    context = {'form':form}
+
+    largeformat = LargeFormatPrinting.objects.all()
+    context = {'form':form,'largeformat':largeformat}
     return render(request,"employee_largeformat_inventory.html",context)
+
+def LargeFormatUpdate(request,pk):
+    largeformat=LargeFormatPrinting.objects.get(id=pk)
+    form=LargeFormatInventoryForm(instance=largeformat)
+    if request.method=='POST':
+        form=LargeFormatInventoryForm(request.POST, instance=largeformat)
+        if form.is_valid():
+            form.save()
+            return redirect('sales_inventory')
+
+    context={'form':form}
+    return render(request, 'employee_largeformat_inventory_update.html',context)
 
 def VinylInventory(request):
     form=PlotterMaterialForm()
@@ -153,8 +176,22 @@ def AccessoryInventory(request):
         form =AccessoryInventoryForm(request.POST)
         if form.is_valid():
             form.save()
-    context = {'form':form}
+
+    accessories = Accessory.objects.all()
+    context = {'form':form,'accessories':accessories}
     return render(request,"employee_accessory_inventory.html",context)
+
+def AccessoryInventoryUpdate(request,pk):
+    accessory=Accessory.objects.get(id=pk)
+    form=AccessoryInventoryForm(instance=accessory)
+    if request.method=='POST':
+        form=AccessoryInventoryForm(request.POST, instance=accessory)
+        if form.is_valid():
+            form.save()
+            return redirect('sales_inventory')
+
+    context={'form':form}
+    return render(request, 'employee_accessory_inventory_update.html',context)
 
 def EmployeeTask(request):
     return render(request,"employee_tasks.html")
@@ -229,3 +266,16 @@ def RegisterUser(request):
             form.save()
     context = {'form':form}
     return render(request, 'employee_registration.html',context)
+
+def SalesInventory(request):
+    form=SalesInventoryForm()
+    if request.method =='POST':
+        form =SalesInventoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('employeedashboard')
+            
+    saleinv = SalesAccessoryInventory.objects.all()
+    context = {'form':form,'saleinv':saleinv}
+    
+    return render(request,'employee_sales_inventory.html',context)

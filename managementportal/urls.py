@@ -29,7 +29,7 @@ urlpatterns = [
     path("adminbreakages/",views.AdminBreakages, name="adminbreakages"),
     path("inventory/",views.Inventory, name="inventory"),
     path("meeting/",views.Meeting, name="meetings"),
-    path("messages/",views.Messages, name="messages"),
+    path("salesinventory/",views.Messages, name="messages"),
     path("addadmin/",views.RegisterAdmin, name="addadmin"),
     path("addoffice/",views.RegisterOffice, name="addoffice"),
 
@@ -40,11 +40,18 @@ urlpatterns = [
     path("profile/",views.EmployeeProfile, name="employeeprofile"),
     path("screenprinting/",views.ScreenPrinting, name="screenprinting"),
     path("registeremployee/",views.RegisterEmployee, name="registeremployee"),
+
     path("large-format-inventory/",views.LargeFormatInventory, name="largeformat_inventory"),
+    path("largeformat_update/<str:pk>",views.LargeFormatUpdate, name="largeformat_update"),
+
     path("vinyl-inventory/",views.VinylInventory, name="vinyl_inventory"),
     path("digital-printing-inventory/",views.DigitalPrintingInventory, name="digitalprinting_inventory"),
     path("screen-printing-inventory/",views.ScreenPrintingInventory, name="screenprinting_inventory"),
+
     path("accessories-inventory/",views.AccessoryInventory, name="accessories_inventory"),
+    path("sales-inventory/",views.SalesInventory, name="sales_inventory"),
+    path("accessories-update/<str:pk>/",views.AccessoryInventoryUpdate, name="accessories_update"),
+
     path("Employee-tasks/",views.EmployeeTask, name="employee-tasks"),
     path("employee-misbehaviours/",views.EmployeeMisbehaviour, name="misbehaviours"),
     path("Employee-breakages/",views.EmployeeBreakages, name="breakages"),

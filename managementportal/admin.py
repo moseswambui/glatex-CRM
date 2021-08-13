@@ -30,6 +30,7 @@ admin.site.register(PromotionalItem)
 admin.site.register(Ad)
 admin.site.register(PendingJob)
 admin.site.register(ParcelDelivery)
+admin.site.register(SalesAccessoryInventory)
 
 
 

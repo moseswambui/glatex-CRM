@@ -15,7 +15,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Accessories Inventory Console</h4>
+                                    <h4 class="card-title">Sales Management Console</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
@@ -23,66 +23,54 @@
                                             {%csrf_token%}
                                             <div class="row">
                                                
-                                                
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        {{form}}
+                                                      {{form}}
                                                     </div>
-                                                </div>
-                                               
+                                              
+                                             
                                                 <div class="col-12 d-flex justify-content-end">
                                                     <button type="submit"
                                                         class="btn btn-primary me-1 mb-1">Submit</button>
-                                                    <button type="reset"
-                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                    
                                                 </div>
                                             </div>
                                         </form>
-
                                     </div>
                                 </div>
+
                                 <div class="card-body">
                                     <table class="table table-striped" id="table1">
                                         <thead>
                                             <tr>
-                                                <th>Accessory Name</th>
-                                                <th>Quantity</th>
-                                                <th>Date In</th>
-                                                <th>Dealer</th>
-                                                <th>Cost Per</th>
-                                                <th>Action</th>
+                                                <th>Client Name</th>
+                                                <th>Product</th>
                                                 
+                                                <th>Quantity</th>
+                                                <th>cost</th>
+                                                
+                                                <th>date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {%for i in accessories %}
+                                            {%for i in saleinv %}
                                             <tr>
-                                                <td>{{i.Accessory_Name}}</td>
-                                                <td>{{i.Accessory_Quantity}}</td>
-                                                <td>{{i.Item_Date_In}}</td>
-                                                <td>{{i.Dealer_Phone}}</td>
+                                                <td>{{i.Client_Name}}</td>
+                                                <td>{{Product}}</td>
                                                 
+                                                <td>{{i.Quantity}}</td>
+                                                <td>{{i.Cost}}</td>
                                                 
                                                 <td>
-                                                    
-                                                    <span class="badge bg-success">{{i.Accessory_Cost}}</span>
-
-                                                </td>
-                                                <td>
-                                                    
-                                                    <a href="{%url 'accessories_update' i.id %}">
-                                                        <span class="badge bg-danger">Update Inventory</span>
-                                                    </a>
-                                                        
-                                                    
+                                                    <span class="badge bg-success">{{i.saledate}}</span>
                                                 </td>
                                             </tr>
-                                            
                                             {%endfor%}
                                             
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
