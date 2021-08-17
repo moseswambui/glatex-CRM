@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     path("",views.GlatexPortal, name="glatex"),
+    path('logout',views.LogoutEmployee,name='logout'),
     path("admindashboard",views.Index, name="index"),
     path("employees/",views.Employees, name="employees"),
     path("advert/",views.Advert, name="advert"),
@@ -55,11 +56,25 @@ urlpatterns = [
     path("Employee-tasks/",views.EmployeeTask, name="employee-tasks"),
     path("employee-misbehaviours/",views.EmployeeMisbehaviour, name="misbehaviours"),
     path("Employee-breakages/",views.EmployeeBreakages, name="breakages"),
+
     path("sales/",views.Sales, name="sales"),
+    path("salesdigital/",views.SalesDigital, name="salesdigital"),
+
+    path("screenprintingsales/",views.ScreenPrintingSales, name="screenprintingsales"),
+
     path("invoices/",views.Invoices, name="invoices"),
+    path("screenprintinginvoices/",views.ScreenPrintingInvoices, name="screeninvoices"),
+
     path("expenses/",views.Expenses, name="expenses"),
+    path("screenprintingexpenses/",views.ScreenPrintingExpenses, name="screenprintingexpenses"),
+
     path("register-client/",views.ClientRegister, name="register-client"),
     path("register-user/",views.RegisterUser, name="register-user"),
+
+    path("moviesales/",views.Moviesales, name="moviesales"),
+    path("movieexpenses/",views.MovieExpenses, name="movieexpenses"),
+
+
 
     
 

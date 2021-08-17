@@ -1,15 +1,26 @@
 {% extends 'employee_base.html'%}
 {% load static %}
 {%block content%}
+{% if user.is_authenticated %}
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-
+            {%if messages%}
+            {%for message in messages%}
+            <div class="card-body">
+                <div class="alert alert-success alert-dismissible show fade">
+                    Your logged in as {{user.username}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+            {%endfor%}
+            {%endif%}
             <div class="page-heading">
-                <h3>Profile Detailing</h3>
+                <h3>{{user.first_name}} {{user.last_name}}</h3>
             </div>
             <div class="page-content">
                 <section class="row">
@@ -90,17 +101,18 @@
                             <div class="col-12 col-xl-8">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Individual Tasks</h4>
+                                        <h4>Personal Details</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table class="table table-hover table-lg">
                                                 <thead>
                                                     <tr>
-                                                        <th>Size(Cm)</th>
-                                                        <th>Task Name</th>
-                                                        <th>Particular</th>
-                                                        <th>Date</th>
+                                                        <th>Email Address</th>
+                                                        <th>ID number</th>
+                                                        
+                                                        <th>Status</th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -108,17 +120,16 @@
                                                         <td class="col-3">
                                                             <div class="d-flex align-items-center">
                                                                 
-                                                                <p class="font-bold ms-3 mb-0">120* 23</p>
+                                                                <p class="font-bold ms-3 mb-0">{{user.email}}</p>
                                                             </div>
                                                         </td>
+                                                        
+                                                       
                                                         <td class="col-auto">
-                                                            <p class=" mb-0">Njeri Wa Uji</p>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                          <p class=" mb-0">Banner</p>
-                                                      </td>
-                                                      <td class="col-auto">
-                                                        <p class=" mb-0">12/2/21</p>
+                                                            <p class=" mb-0">None</p>
+                                                          </td>
+                                                      <td>
+                                                        <span class="badge bg-success">Active</span>
                                                     </td>
                                                     </tr>
                                                    
@@ -129,6 +140,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                     <div class="col-12 col-lg-3">
@@ -155,8 +167,8 @@
                                         <img src="{% static 'employeeportal/assets/images/faces/user.jpg' %}">
                                     </div>
                                     <div class="name ms-4">
-                                        <h5 class="mb-1">Employee</h5>
-                                        <h6 class="text-muted mb-0">@mose</h6>
+                                        <h5 class="mb-1">None</h5>
+                                        <h6 class="text-muted mb-0">None</h6>
                                     </div>
                                 </div>
                                 <div class="recent-message d-flex px-4 py-3">
@@ -164,8 +176,8 @@
                                         <img src="{% static 'employeeportal/assets/images/faces/user.jpg' %}">
                                     </div>
                                     <div class="name ms-4">
-                                        <h5 class="mb-1">Employee</h5>
-                                        <h6 class="text-muted mb-0">@yvonne</h6>
+                                        <h5 class="mb-1">None</h5>
+                                        <h6 class="text-muted mb-0">None</h6>
                                     </div>
                                 </div>
                                 
@@ -178,4 +190,6 @@
                     </div>
                 </section>
             </div>
+
+{%endif%}
 {% endblock %}

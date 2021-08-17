@@ -15,7 +15,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Sales Management Console</h4>
+                                    <h4 class="card-title">Large Format Sales Management Console</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
@@ -41,29 +41,30 @@
                                 </div>
 
                                 <div class="card-body">
+                                    <h4 class="card-title">Large Format</h4>
                                     <table class="table table-striped" id="table1">
                                         <thead>
                                             <tr>
-                                                <th>Client Name</th>
+                                                <th>Client</th>
                                                 <th>Product</th>
                                                 <th>Product Size</th>
-                                                <th>Quantity</th>
+                                                
                                                 <th>Payment Method</th>
-                                                <th>Department</th>
                                                 <th>Amount</th>
+                                                <th>BALANCE </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {%for i in sales %}
                                             <tr>
                                                 <td>{{i.Client}}</td>
-                                                <td>{{i.Product}}</td>
+                                                <td>{{i.Sales_Product}}</td>
                                                 <td>{{i.Product_Size}}</td>
-                                                <td>{{i.Product_Quantity}}</td>
+                                                
                                                 <td>{{i.Payment_Method}}</td>
-                                                <td>{{i.Sales_Department}}</td>
+                                                <td>{{i.Sales_Amount}}</td>
                                                 <td>
-                                                    <span class="badge bg-success">{{i.Sales_Amount}}</span>
+                                                    <span class="badge bg-success">{{i.Balance}}</span>
                                                 </td>
                                             </tr>
                                             {%endfor%}

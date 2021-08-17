@@ -15,21 +15,20 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Expenses Management Console</h4>
+                                    <h4 class="card-title">Digital Printing Sales Management Console</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form" method="POST" action="" >
+                                        <form class="form" method="POST" action=''>
                                             {%csrf_token%}
                                             <div class="row">
+                                               
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        {{form}}
+                                                      {{form}}
                                                     </div>
-                                                </div>
-                                                
+                                              
                                              
-                                               
                                                 <div class="col-12 d-flex justify-content-end">
                                                     <button type="submit"
                                                         class="btn btn-primary me-1 mb-1">Submit</button>
@@ -40,36 +39,46 @@
                                         </form>
                                     </div>
                                 </div>
+
                                 <div class="card-body">
+                                    <h4 class="card-title">Large Format</h4>
                                     <table class="table table-striped" id="table1">
                                         <thead>
                                             <tr>
-                                                <th>Employee Name</th>
-                                                <th>Expense Usage</th>
-                                                <th>Amount</th>
+                                                <th>Client</th>
+                                                <th>Product Name</th>
+                                                <th>Product Size</th>
+                                                <th>Quantity</th>
+                                                <th>Payment Method</th>
                                                 <th>Date</th>
-                                                
+                                                <th>Amount</th>
+                                                <th>BALANCE</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {%for i in expenses %}
+                                            {%for i in digital_sales %}
                                             <tr>
-                                                <td>{{i.Employee_Name}}</td>
-                                                <td>{{i.Expense_Description}}</td>
-                                                <td>{{i.Expense_Cost}}</td>
+                                                <td>{{i.Client}}</td>
+                                                <td>{{i.Sales_Product}}</td>
+                                                <td>{{i.Product_Size}}</td>
+                                                <td>{{i.Sales_Quantity}}</td>
+                                                <td>{{i.Payment_Method}}</td>
                                                 
+                                                <td>{{i.Sales_Date}}</td>
+                                                <td>{{i.Sales_Amount}}</td>
                                                 <td>
-                                                    <span class="badge bg-success">{{i.Expense_Date}}</span>
+                                                    <span class="badge bg-success">{{i.Balance}}</span>
                                                 </td>
                                             </tr>
                                             {%endfor%}
                                             <th>Total     : </th>
                                             <td>
-                                                <span class="badge bg-danger">{{total_expenses}}</span>
+                                                <span class="badge bg-danger">{{total_digital}}</span>
                                             </td>
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>

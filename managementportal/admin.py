@@ -31,6 +31,11 @@ admin.site.register(Ad)
 admin.site.register(PendingJob)
 admin.site.register(ParcelDelivery)
 admin.site.register(SalesAccessoryInventory)
+admin.site.register(Screenprintinginvoice)
+admin.site.register(ScreenprintingSales)
+admin.site.register(MovieSales)
+admin.site.register(Movieexpenses)
+admin.site.register(ScreenprintingExpenses)
 
 
 

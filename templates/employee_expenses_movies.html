@@ -15,7 +15,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Expenses Management Console</h4>
+                                    <h4 class="card-title">Movie Expenses Management Console</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
@@ -44,28 +44,28 @@
                                     <table class="table table-striped" id="table1">
                                         <thead>
                                             <tr>
-                                                <th>Employee Name</th>
-                                                <th>Expense Usage</th>
+                                                <th>Expense Item</th>
+                                                <th>Expense Date</th>
                                                 <th>Amount</th>
-                                                <th>Date</th>
+                                                
                                                 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {%for i in expenses %}
+                                            {%for i in movieexpense %}
                                             <tr>
-                                                <td>{{i.Employee_Name}}</td>
-                                                <td>{{i.Expense_Description}}</td>
-                                                <td>{{i.Expense_Cost}}</td>
+                                                <td>{{i.Expense_Item}}</td>
+                                                <td>{{i.Expense_Date}}</td>
+                                                
                                                 
                                                 <td>
-                                                    <span class="badge bg-success">{{i.Expense_Date}}</span>
+                                                    <span class="badge bg-success">{{i.Expense_Cost}}</span>
                                                 </td>
                                             </tr>
                                             {%endfor%}
                                             <th>Total     : </th>
                                             <td>
-                                                <span class="badge bg-danger">{{total_expenses}}</span>
+                                                <span class="badge bg-danger">{{total_expense}}</span>
                                             </td>
                                         </tbody>
                                     </table>

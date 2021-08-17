@@ -15,21 +15,20 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Expenses Management Console</h4>
+                                    <h4 class="card-title">Movie Sales Management Console</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form" method="POST" action="" >
+                                        <form class="form" method="POST" action=''>
                                             {%csrf_token%}
                                             <div class="row">
+                                               
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        {{form}}
+                                                      {{form}}
                                                     </div>
-                                                </div>
-                                                
+                                              
                                              
-                                               
                                                 <div class="col-12 d-flex justify-content-end">
                                                     <button type="submit"
                                                         class="btn btn-primary me-1 mb-1">Submit</button>
@@ -40,36 +39,34 @@
                                         </form>
                                     </div>
                                 </div>
+
                                 <div class="card-body">
                                     <table class="table table-striped" id="table1">
                                         <thead>
                                             <tr>
-                                                <th>Employee Name</th>
-                                                <th>Expense Usage</th>
                                                 <th>Amount</th>
                                                 <th>Date</th>
                                                 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {%for i in expenses %}
+                                            {%for i in moviesales %}
                                             <tr>
-                                                <td>{{i.Employee_Name}}</td>
-                                                <td>{{i.Expense_Description}}</td>
-                                                <td>{{i.Expense_Cost}}</td>
+                                                <td>{{i.Amount}}</td>
                                                 
                                                 <td>
-                                                    <span class="badge bg-success">{{i.Expense_Date}}</span>
+                                                    <span class="badge bg-success">{{i.Amount}}</span>
                                                 </td>
                                             </tr>
                                             {%endfor%}
                                             <th>Total     : </th>
                                             <td>
-                                                <span class="badge bg-danger">{{total_expenses}}</span>
+                                                <span class="badge bg-danger">{{total_sales}}</span>
                                             </td>
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>

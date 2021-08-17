@@ -309,13 +309,14 @@ class InvoiceDetailForm(forms.ModelForm):
 class SalesForm(forms.ModelForm):
     class Meta:
         model = DailySales
-        fields =['Client','Sales_Product',"Product_Size",'Sales_Quantity','Sales_Amount','Sales_Date','Sales_Department', 'Payment_Method']
+        fields =['Client', 'Sales_Product','Product_Size','Sales_Amount', 'Balance','Sales_Date','Payment_Method']
 
         widgets ={
             'Client':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'Client'
             }),
+            
             'Sales_Product':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'product'
@@ -337,15 +338,16 @@ class SalesForm(forms.ModelForm):
                 'placeholder':'amount'
                 
             }),
+            'Balance':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Balance'
+                
+            }),
             'Sales_Date':forms.DateInput(attrs={
                 'class':'form-control',
                 'placeholder':'date'
             }),
-            'Sales_Department':forms.Select(attrs={
-                'class':'form-control',
-                'placeholder':'amount'
-                
-            }),
+            
             'Payment_Method':forms.Select(attrs={
                 'class':'form-control',
                 'placeholder':'payment Method'
@@ -353,6 +355,57 @@ class SalesForm(forms.ModelForm):
             
             
         }
+
+class SalesDigitalForm(forms.ModelForm):
+    class Meta:
+        model = DailySalesDigital
+        fields =['Client', 'Sales_Product','Product_Size','Sales_Quantity', 'Sales_Amount', 'Balance','Sales_Date','Payment_Method']
+
+        widgets ={
+            'Client':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Client'
+            }),
+            
+            'Sales_Product':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'product'
+                
+            }),
+            'Product_Size':forms.Select(attrs={
+                'class':'form-control',
+                'placeholder':'Product Size'
+                
+            }),
+            
+            'Sales_Quantity':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Quantity'
+                
+            }),
+            'Sales_Amount':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'amount'
+                
+            }),
+            'Balance':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Balance'
+                
+            }),
+            'Sales_Date':forms.DateInput(attrs={
+                'class':'form-control',
+                'placeholder':'date'
+            }),
+            
+            'Payment_Method':forms.Select(attrs={
+                'class':'form-control',
+                'placeholder':'payment Method'
+            }),
+            
+            
+        }
+
 
 class SalesDetailsForm(forms.ModelForm):
     class Meta:
@@ -669,6 +722,102 @@ class SalesInventoryForm(forms.ModelForm):
             
         }
 
+class ScreenprintingSalesForm(forms.ModelForm):
+    class Meta:
+        model = ScreenprintingSales
+        fields =['Client','Items','Quantity','Amount_Paid','Balance','Payment_Method']
+        widgets ={
+            'Client':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Client'
+            }),
+            'Items':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Item name'
+            }),
+            'Quantity':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Quantity'
+            }),
+            'Amount_Paid':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'amount paid'
+            }),
+            'Balance':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Balance'
+            }),
+            'Payment_Method':forms.Select(attrs={
+                'class':'form-control',
+                'placeholder':'Payment method'
+            }),
+        }
+
+class ScreenprintingInvoiceForm(forms.ModelForm):
+    class Meta:
+        model = Screenprintinginvoice
+        fields=['Client_Name','Product','Invoice_Total']
+        widgets ={
+            'Client_Name':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Client'
+            }),
+            'Product':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Product'
+            }),
+            'Invoice_Total':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'invoice Total'
+            }),
+        }
+
+class ScreenprintingExpensesForm(forms.ModelForm):
+    class Meta:
+        model = ScreenprintingExpenses
+        fields =['Expense_Item','Quantity','Expense_Cost']
+        widgets ={
+            'Expense_Item':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Item Spent on'
+            }),
+            'Quantity':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Quantity'
+            }),
+            
+            'Expense_Cost':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'cost'
+            }),
+            
+        }
+
+class MovieSalesForm(forms.ModelForm):
+    class Meta:
+        model=MovieSales
+        fields = ['Amount']
+        widgets ={
+            'Amount':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Amount in a Day'
+            }),
+        }
+
+class MovieExpenseForm(forms.ModelForm):
+    class Meta:
+        model=Movieexpenses
+        fields = ['Expense_Item', 'Expense_Cost']
+        widgets ={
+            'Expense_Item':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Expense'
+            }),
+            'Expense_Cost':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Amount Spent'
+            }),
+        }
 
 
 

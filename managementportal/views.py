@@ -1,12 +1,35 @@
+from collections import UserList
 from typing import Container
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render,redirect
 from .forms import *
 from .models import *
+from django.contrib import messages
+from django.shortcuts import redirect,render
 from django.db.models import Avg,Sum
+from django.contrib.auth import authenticate,login, logout
+from .decorators import *
 
+@UnoutheticatedUser
 def GlatexPortal(request):
+    if request.method == 'POST':
+        username=request.POST.get("username")
+        password=request.POST.get('password')
+        user=authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request,user)
+            return redirect('employeedashboard')
+
+        else:
+            messages.success(request,'Error logging in: Please try again')
+            return render(request, "glatexportal.html") 
+      
     return render(request, "glatexportal.html")
+
+def LogoutEmployee(request):
+    logout(request)
+    messages.success(request,('Logged out Successfully'))
+    return redirect('glatex')
 
 def Index(request):
     employees = GlatexEmployee.objects.all()
@@ -20,10 +43,10 @@ def Employees(request):
 
 def AdminSales(request):
     sales = DailySales.objects.filter(Sales_Department='Printing')
-    total_largeformat = DailySales.objects.filter(Sales_Department='Printing').aggregate(Sum("Sales_Amount"))
+    total_largeformat = DailySales.objects.all()
     
-    sales_screenprinting = DailySales.objects.filter(Sales_Department='T_shirt_Printing')
-    total_screenprinting = DailySales.objects.filter(Sales_Department='T_shirt_Printing').aggregate(Sum("Sales_Amount"))
+    sales_screenprinting = DailySales.objects.all()
+    total_screenprinting = DailySales.objects.all().aggregate(Sum("Sales_Amount"))
     context ={'sales':sales,'total_largeformat':total_largeformat,'sales_screenprinting':sales_screenprinting,'total_screenprinting':total_screenprinting}
     return render(request, 'admin_sales.html',context)
 
@@ -66,8 +89,9 @@ def Messages(request):
     saleinventory = SalesAccessoryInventory.objects.all()
     context = {'saleinventory':saleinventory}
     return render(request,"admin_message.html",context)
-
+@AllowedUsers(allowed_roles='Reception')
 def EmployeeDashboard(request):
+    messages.success(request, 'logged in successfully')
     return render(request,"employee_index.html")
 
 def DigitalPrinting(request):
@@ -117,7 +141,9 @@ def RegisterEmployee(request):
         form =AddEmployeeProfileForm(request.POST)
         if form.is_valid():
             form.save()
-    context = {'form':form}
+
+    employees = User.objects.all()
+    context = {'form':form,'employees':employees}
     return render(request,"employee_register.html",context)
 
 def LargeFormatInventory(request):
@@ -209,13 +235,24 @@ def Sales(request):
         if form.is_valid():
             form.save()
     context = {'form':form}
-
+    digital_sales = DailySales.objects.all()
     sales = DailySales.objects.all()
+    print(sales)
     total = DailySales.objects.all().aggregate(Sum('Sales_Amount'))
     context = {'form':form,'sales':sales,'total':total}
 
     return render(request,"employee_sales.html",context)
 
+def SalesDigital(request):
+    form=SalesDigitalForm()
+    if request.method == 'POST':
+        form = SalesDigitalForm(request.POST)
+        if form.is_valid():
+            form.save()
+    digital_sales = DailySalesDigital.objects.all()
+    total_digital= DailySalesDigital.objects.all().aggregate(Sum('Sales_Amount'))
+    context = {'form':form,'digital_sales':digital_sales,'total_digital':total_digital}
+    return render(request, 'employee_sales_digital.html',context)
 def Invoices(request):
     form=InvoiceForm()
     if request.method =='POST':
@@ -264,7 +301,8 @@ def RegisterUser(request):
         form = CrreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-    context = {'form':form}
+    employees= User.objects.all()
+    context = {'form':form,'employees':employees}
     return render(request, 'employee_registration.html',context)
 
 def SalesInventory(request):
@@ -279,3 +317,61 @@ def SalesInventory(request):
     context = {'form':form,'saleinv':saleinv}
     
     return render(request,'employee_sales_inventory.html',context)
+
+def ScreenPrintingSales(request):
+    form=ScreenprintingSalesForm()
+    if request.method =='POST':
+        form =ScreenprintingSalesForm(request.POST)
+        if form.is_valid():
+            form.save()
+    screensales = ScreenprintingSales.objects.all() 
+    total_sales = ScreenprintingSales.objects.all().aggregate(Sum('Amount_Paid'))
+  
+    context ={'form':form,'screensales':screensales,'total_sales':total_sales}
+    return render(request, 'employee_sales_screenprinting.html',context)
+
+def ScreenPrintingExpenses(request):
+    form=ScreenprintingExpensesForm()
+    if request.method =='POST':
+        form =ScreenprintingExpensesForm(request.POST)
+        if form.is_valid():
+            form.save()
+    screenexpenses = ScreenprintingExpenses.objects.all() 
+    total_expense = ScreenprintingExpenses.objects.all().aggregate(Sum('Expense_Cost'))
+     
+    context ={'form':form,'screenexpenses':screenexpenses,'total_expense':total_expense}
+    return render(request, 'employee_expenses_screenprinting.html',context)
+
+def ScreenPrintingInvoices(request):
+    form=ScreenprintingInvoiceForm()
+    if request.method =='POST':
+        form =ScreenprintingInvoiceForm(request.POST)
+        if form.is_valid():
+            form.save()
+    screeninvoice =Screenprintinginvoice.objects.all()
+    invoice_total = Screenprintinginvoice.objects.all().aggregate(Sum('Invoice_Total'))
+
+    context ={'form':form,'screeninvoices':screeninvoice,'invoice_total':invoice_total}
+    return render(request, 'employee_invoices_screenprinting.html',context)
+
+def MovieExpenses(request):
+    form = MovieExpenseForm()
+    if request.method == 'POST':
+        form = MovieExpenseForm(request.POST)
+        if form.is_valid():
+            form.save()
+    movieexpense = Movieexpenses.objects.all()
+    total_expense = Movieexpenses.objects.all().aggregate(Sum('Expense_Cost'))
+    context ={'form':form,'movieexpense':movieexpense,'total_expense':total_expense}
+    return render(request, 'employee_expenses_movies.html',context)
+
+def Moviesales(request):
+    form=MovieSalesForm()
+    if request.method =='POST':
+        form = MovieSalesForm(request.POST)
+        if form.is_valid():
+            form.save()
+    moviesales = MovieSales.objects.all()
+    total_sales = MovieSales.objects.all().aggregate(Sum('Amount'))
+    context = {'form':form,'moviesales':moviesales,'total_sales':total_sales}
+    return render(request,'employee_sales_movie.html',context)

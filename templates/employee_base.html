@@ -35,7 +35,7 @@
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
+                        <li class="sidebar-title">Welcome:  {{user.username}}</li>
 
                         <li class="sidebar-item active ">
                             <a href="{% url 'employeedashboard' %}" class='sidebar-link'>
@@ -88,7 +88,36 @@
                             </ul>
                         </li>
                          
-                        <li class="sidebar-title">Management Portal</li>
+                        {%for group in user.groups.all%}
+                        {%if group.name == 'Reception'%}
+                        <li class="sidebar-title">Printing Department</li>
+                        <li class="sidebar-title">Accounting</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'sales' %}" class='sidebar-link'>
+                                <i class="bi bi-envelope-fill"></i>
+                                <span>Large Format Sales</span>
+                            </a>
+                            <a href="{% url 'salesdigital' %}" class='sidebar-link'>
+                                <i class="bi bi-envelope-fill"></i>
+                                <span>Digital Printing Sales</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'invoices' %}" class='sidebar-link'>
+                                <i class="bi bi-chat-dots-fill"></i>
+                                <span>Invoices</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'expenses' %}" class='sidebar-link'>
+                                <i class="bi bi-basket-fill"></i>
+                                <span>Expenses</span>
+                            </a>
+                        </li>
+
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
@@ -113,7 +142,57 @@
                                 </li>
                             </ul>
                         </li>
+                        {%endif%}
+                        {%endfor%}
 
+                        {%for group in user.groups.all%}
+                        {%if group.name == 'Screen Printing'%}
+                        <li class="sidebar-title">Screen Printing</li>
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'screenprintingsales' %}" class='sidebar-link'>
+                                <i class="bi bi-envelope-fill"></i>
+                                <span>Sales</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'screeninvoices' %}" class='sidebar-link'>
+                                <i class="bi bi-chat-dots-fill"></i>
+                                <span>Invoices</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'screenprintingexpenses' %}" class='sidebar-link'>
+                                <i class="bi bi-basket-fill"></i>
+                                <span>Expenses</span>
+                            </a>
+                        </li>
+                        {%endif%}
+                        {%endfor%}
+
+                        {%for group in user.groups.all%}
+                        {%if group.name == 'Movie'%}
+                        <li class="sidebar-title">Movie Shop Accounting</li>
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'moviesales' %}" class='sidebar-link'>
+                                <i class="bi bi-envelope-fill"></i>
+                                <span>Sales</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'movieexpenses' %}" class='sidebar-link'>
+                                <i class="bi bi-basket-fill"></i>
+                                <span>Expenses</span>
+                            </a>
+                        </li>
+                        {%endif%}
+                        {%endfor%}
+
+                        {%for group in user.groups.all%}
+                        {%if group.name == 'Management'%}
+                        <li class="sidebar-title">General Management</li>
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-egg-fill"></i>
@@ -143,30 +222,9 @@
                                 <span>Register Client</span>
                             </a>
                         </li>
-
-                        <li class="sidebar-title">Accounting</li>
-
-                        <li class="sidebar-item  ">
-                            <a href="{% url 'sales' %}" class='sidebar-link'>
-                                <i class="bi bi-envelope-fill"></i>
-                                <span>Sales</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item  ">
-                            <a href="{% url 'invoices' %}" class='sidebar-link'>
-                                <i class="bi bi-chat-dots-fill"></i>
-                                <span>Invoices</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item  ">
-                            <a href="{% url 'expenses' %}" class='sidebar-link'>
-                                <i class="bi bi-basket-fill"></i>
-                                <span>Expenses</span>
-                            </a>
-                        </li>
-
+                        {%endif%}
+                        {%endfor%}
+                       
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-person-badge-fill"></i>
@@ -174,7 +232,7 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="auth-login.html">Logout</a>
+                                    <a href="{% url 'logout'%}">Logout</a>
                                 </li>
                             </ul>
                         </li>

@@ -1,7 +1,9 @@
 from django.db import models
 from django.db.models.deletion import SET_NULL
+from django.db.models.enums import Choices
 from django.db.models.fields import NullBooleanField
 from django.db.models.fields.related import ManyToManyField, OneToOneField
+from django.forms.models import modelformset_factory
 from django.utils import tree
 
 
@@ -110,6 +112,13 @@ class Invoice(models.Model):
     Invoice_Date = models.DateField(null=True, blank=True)
     invoice_number = models.CharField(max_length=10,blank=True, null=True)
 
+class Screenprintinginvoice(models.Model):
+    Client_Name = models.CharField(max_length=45, null=True, blank=True)
+    Product = models.CharField(max_length=20,null=True, blank=True)
+    Invoice_Total = models.IntegerField(null=True, blank=True)
+    Invoice_Date = models.DateField(auto_now_add=True, null=True, blank=True)
+    invoice_number = models.CharField(max_length=10,blank=True, null=True)
+
 class InvoiceDetails(models.Model):
     Particular_Name = models.CharField(max_length=20,null=True, blank=True)
     Particular_Size= models.CharField(max_length=10,null=True, blank=True)
@@ -121,21 +130,57 @@ PAYMENTMETHOD = [
     ('CASH','Cash'),
     ('CHEQUE','Cheque')
 ]
+SALESCATEGORY = [
+    ('A3','A3'),
+    ('A4', 'A4')
+]
 class DailySales(models.Model):
     Client = models.CharField(max_length=45, null=True, blank=True)
-    Product_Size=models.CharField(max_length=50,null=True, blank=True)
+    Balance = models.IntegerField(null=True, blank=True)
+    Product_Size=models.CharField(max_length=50,null=True, blank=True,choices=SALESCATEGORY)
     Client_id = models.CharField(max_length=45, null=True, blank=True)
     Sales_Product = models.CharField(max_length=34,null=True,blank=True)
     Sales_Quantity = models.CharField(max_length=34,null=True,blank=True)
     Sales_Amount = models.IntegerField(null=True, blank=True)
-    Sales_Date =models.DateField(null=True, blank=True)
-    Sales_Department = models.CharField(max_length=34,null=True,blank=True, choices=DEPARTMENTS)
+    Balance = models.IntegerField(null=True,blank=True)
+    Sales_Date =models.DateField( null=True, blank=True)
+    Payment_Method = models.CharField(max_length=20,blank=True, null=True,choices=PAYMENTMETHOD)
+
+class DailySalesDigital(models.Model):
+    Client = models.CharField(max_length=45, null=True, blank=True)
+    Balance = models.IntegerField(null=True, blank=True)
+    Product_Size=models.CharField(max_length=50,null=True, blank=True,choices=SALESCATEGORY)
+    Client_id = models.CharField(max_length=45, null=True, blank=True)
+    Sales_Product = models.CharField(max_length=34,null=True,blank=True)
+    Sales_Quantity = models.CharField(max_length=34,null=True,blank=True)
+    Sales_Amount = models.IntegerField(null=True, blank=True)
+    Balance = models.IntegerField(null=True,blank=True)
+    Sales_Date =models.DateField( null=True, blank=True)
     Payment_Method = models.CharField(max_length=20,blank=True, null=True,choices=PAYMENTMETHOD)
 
 class SalesDetails(models.Model):
     Item_Name = models.CharField(max_length=56,null=True, blank=True)
     Item_Size =models.CharField(max_length=10,null=True, blank=True)
     sale = models.ForeignKey(DailySales,on_delete=models.CASCADE, null=True,blank=True)
+
+class ScreenprintingSales(models.Model):
+    Client = models.CharField(max_length=45, null=True, blank=True)
+    Items = models.CharField(max_length=45, null=True, blank=True)
+    Quantity = models.IntegerField(null=True, blank=True)
+    Amount_Paid = models.IntegerField( null=True, blank=True)
+    Balance = models.IntegerField(null=True, blank=True)
+    SalesDate = models.DateField(auto_now_add=True, null=True, blank=True)
+    Payment_Method = models.CharField(max_length=20,blank=True, null=True,choices=PAYMENTMETHOD)
+
+class MovieSales(models.Model):
+    Amount = models.IntegerField( null=True, blank=True)
+    SalesDate = models.DateField(auto_now_add=True, null=True, blank=True)
+    
+class Movieexpenses(models.Model):
+    Expense_Item =models.CharField(max_length=50,null=True,blank=True)
+    Expense_Cost = models.IntegerField(null=True, blank=True)
+    Expense_Date=models.DateField(auto_now_add=True, null=True, blank=True)
+
 
 class DesignTasks(models.Model):
     Employees = models.ForeignKey(GlatexEmployee, on_delete=SET_NULL, null=True,blank=True)
@@ -160,6 +205,12 @@ class DailyExpenses(models.Model):
     Expense_Description =models.CharField(max_length=50,null=True,blank=True)
     Expense_Cost = models.IntegerField(null=True, blank=True)
     Expense_Date=models.DateField(null=True, blank=True)
+
+class ScreenprintingExpenses(models.Model):
+    Expense_Item =models.CharField(max_length=50,null=True,blank=True)
+    Quantity = models.IntegerField(null=True, blank=True)
+    Expense_Cost = models.IntegerField(null=True, blank=True)
+    Expense_Date=models.DateField(auto_now_add=True, null=True, blank=True)
 
 MISBEHAVIOURS = [
     ('LATENETESS', 'Lateness'),

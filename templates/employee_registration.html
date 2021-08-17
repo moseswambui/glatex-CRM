@@ -16,7 +16,7 @@
 								
 
 									<form class="form-horizontal row-fluid" method="POST", action="">
-										{% csrf_token %}
+										{%csrf_token%}
 										
 
 										<div class="control-group">
@@ -35,6 +35,61 @@
 										</div>
 									</form>
 							</div>
+							<div class="module">
+                                <div class="module-head">
+                                    <h3>
+                                        Snapshot of Employees</h3>
+                                </div>
+                                <div class="module-body table">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display"
+                                        width="100%">
+                                        
+                                        <tbody>
+                                           
+                                            <tr class="even gradeC">
+                                                <td>
+                                                    First Name
+                                                </td>
+                                                <td>
+                                                    Surname
+                                                </td>
+                                                <td>
+                                                    email
+                                                </td>
+                                                <td class="center">
+                                                    password
+                                                </td>
+                                                
+                                            </tr>
+                                           
+                                            
+                                        </tbody>
+                                        {%for i in employees%}
+                                        <tfoot>
+                                            <tr>
+                                                <th>
+                                                    {{i.first_name}} 
+                                                </th>
+                                                <th>
+                                                    {{i.last_name}}
+                                                </th>
+                                                <th>
+                                                    {{i.email}}
+                                                </th>
+                                                
+                                                <th>
+                                                   xxxxxxxxxxxxx
+                                                </th>
+                                            </tr>
+                                        </tfoot>
+                                        {%endfor%}
+                                    </table>
+                                </div>
+                            </div>
+                            <!--/.module-->
+                        </div>
+                        <!--/.content-->
+                    </div>
 						</div>
 
 						

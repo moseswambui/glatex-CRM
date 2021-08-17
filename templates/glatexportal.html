@@ -49,6 +49,7 @@
                                 <div class="card-content">
                                     <div class="card-body">
                                         <form class="form form-horizontal">
+                                            
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-md-4">
@@ -96,17 +97,18 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form form-horizontal">
+                                        <form class="form form-horizontal" method="POST",action="{% url 'glatex'%}"> 
+                                            {%csrf_token%}
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <label>UserName</label>
+                                                        <label>Email Address</label>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="form-group has-icon-left">
                                                             <div class="position-relative">
                                                                 <input type="text" class="form-control"
-                                                                    placeholder="userName" id="first-name-icon">
+                                                                    placeholder="username" id="first-name-icon" name="username" >
                                                                 <div class="form-control-icon">
                                                                     <i class="bi bi-person"></i>
                                                                 </div>
@@ -123,7 +125,7 @@
                                                         <div class="form-group has-icon-left">
                                                             <div class="position-relative">
                                                                 <input type="password" class="form-control"
-                                                                    placeholder="Password">
+                                                                    placeholder="Password" name="password" >
                                                                 <div class="form-control-icon">
                                                                     <i class="bi bi-lock"></i>
                                                                 </div>
@@ -150,6 +152,17 @@
                                         </form>
                                     </div>
                                 </div>
+                                {%if messages%}
+                                {%for message in messages%}
+                                <div class="card-body">
+                                    <div class="alert alert-danger alert-dismissible show fade">
+                                        Failed to login.try again
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                                {%endif%}
                             </div>
                         </div>
                     </div>
