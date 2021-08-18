@@ -1,6 +1,7 @@
 from collections import UserList
 from typing import Container
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import Group
 from django.shortcuts import render,redirect
 from .forms import *
 from .models import *
@@ -9,6 +10,7 @@ from django.shortcuts import redirect,render
 from django.db.models import Avg,Sum
 from django.contrib.auth import authenticate,login, logout
 from .decorators import *
+from django.contrib.auth.models import Group
 
 @UnoutheticatedUser
 def GlatexPortal(request):
@@ -91,8 +93,13 @@ def Messages(request):
     return render(request,"admin_message.html",context)
 @AllowedUsers(allowed_roles='Reception')
 def EmployeeDashboard(request):
+    my_groups=Group.objects.filter(user=request.user)
+    for i in my_groups:
+        print(i)
+    print(my_groups[0])
+    context={'my_groups':my_groups}
     messages.success(request, 'logged in successfully')
-    return render(request,"employee_index.html")
+    return render(request,"employee_index.html",context)
 
 def DigitalPrinting(request):
     form=WebPostsForm()

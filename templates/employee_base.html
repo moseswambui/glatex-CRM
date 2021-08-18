@@ -117,8 +117,12 @@
                                 <span>Expenses</span>
                             </a>
                         </li>
+        
+                        {%endif%}
+                        {%endfor%}
 
-
+                        {%for group in user.groups.all%}
+                        {%if group.name == 'Printing'%}
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-pentagon-fill"></i>
