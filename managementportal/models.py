@@ -185,18 +185,28 @@ class Movieexpenses(models.Model):
 class DesignTasks(models.Model):
     Employees = models.ForeignKey(GlatexEmployee, on_delete=SET_NULL, null=True,blank=True)
     Task_Name = models.CharField(max_length=25, null=True, blank=True)
+    Client_Name =models.CharField(max_length=50, null=True, blank=True)
+    Task_Size =models.CharField(max_length=50, null=True, blank=True)
+    Print_Material =models.CharField(max_length=50, null=True, blank=True)
+    
     Task_Amount = models.IntegerField(null=True, blank=True)
     Payment_Status =models.CharField(max_length=20,blank=True, null=True)
     Print_Status =models.CharField(max_length=25, null=True)
     Design_Size =models.CharField(max_length=25, null=True)
     Task_Date = models.DateField(null=True)
+    Design_Date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
 class FabricationTask(models.Model):
     Employees = models.ManyToManyField(GlatexEmployee,blank=True)
     Task_Name = models.CharField(max_length=25, null=True, blank=True)
+    Client_Name = models.CharField(max_length=25, null=True, blank=True)
+    Location =models.CharField(max_length=50, null=True, blank=True)
+    Print_Material =models.CharField(max_length=50, null=True, blank=True)
+    Work_Description =models.CharField(max_length=50, null=True, blank=True)
     Task_Amount = models.IntegerField(null=True, blank=True)
     Payment_Status =models.CharField(max_length=20,blank=True, null=True)
     Task_Location = models.CharField(max_length=30,null=True)
+    Fabrication_Date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     Task_Date = models.DateField(null=True)
 
 class DailyExpenses(models.Model):

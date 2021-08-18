@@ -2,6 +2,8 @@ from collections import UserList
 from typing import Container
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
+from django.db.models.expressions import F
+from django.forms.forms import Form
 from django.shortcuts import render,redirect
 from .forms import *
 from .models import *
@@ -381,3 +383,25 @@ def Moviesales(request):
     total_sales = MovieSales.objects.all().aggregate(Sum('Amount'))
     context = {'form':form,'moviesales':moviesales,'total_sales':total_sales}
     return render(request,'employee_sales_movie.html',context)
+
+def DesignTask(request):
+    form=DesignTaskForm()
+    if request.method=='POST':
+        form=DesignTaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    designtask=DesignTasks.objects.all()
+    context={'form':form,'designtask':designtask}
+    return render(request, 'employee_designtask.html',context)
+
+def Fabricationtask(request):
+    form=FabricationTaskForm()
+    if request.method=='POST':
+        form=FabricationTaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    fabtask = FabricationTask.objects.all()
+    context={'form':form,'fabtask':fabtask}
+    return render(request, 'employee_fabricationtask.html',context)

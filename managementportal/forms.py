@@ -819,6 +819,58 @@ class MovieExpenseForm(forms.ModelForm):
             }),
         }
 
+class DesignTaskForm(forms.ModelForm):
+    class Meta:
+        model=DesignTasks
+        fields=['Client_Name','Task_Name', 'Task_Size','Print_Material']
 
+        widgets={
+            'Client_Name':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Client Name'
+            }),
+            'Task_Name':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Task Name'
+            }),
+            'Task_Size':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Task Size'
+            }),
+            'Print_Material':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Print Material'
+            }),
+
+        }
+
+class FabricationTaskForm(forms.ModelForm):
+    class Meta:
+        model=FabricationTask
+        fields =['Client_Name','Task_Name','Print_Material', 'Work_Description', 'Location']
+        widgets={
+            'Client_Name':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Client Name'
+            }),
+            'Task_Name':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Task Name'
+            }),
+            'Print_Material':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Print_Material:eg banner,sticker ...'
+            }),
+            'Work_Description':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Work Description:eg , framed banner, backlit, carbranding etc'
+            }),
+            'Location':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Location '
+            }),
+            
+            
+        }
 
 

@@ -74,6 +74,10 @@ urlpatterns = [
     path("moviesales/",views.Moviesales, name="moviesales"),
     path("movieexpenses/",views.MovieExpenses, name="movieexpenses"),
 
+    path("designtask/",views.DesignTask, name="designtask"),
+    path("fabricationtask/",views.Fabricationtask, name="fabricationtask"),
+    
+
 
 
     

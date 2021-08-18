@@ -89,6 +89,28 @@
                         </li>
                          
                         {%for group in user.groups.all%}
+                        {%if group.name == 'Design'%}
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'designtask' %}" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Add Design Task</span>
+                            </a>
+                        </li>
+                        {%endif%}
+                        {%endfor%}
+                        
+                        {%for group in user.groups.all%}
+                        {%if group.name == 'Fabrication'%}
+                        <li class="sidebar-item  ">
+                            <a href="{% url 'fabricationtask' %}" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Add Fabrication Task</span>
+                            </a>
+                        </li>
+                        {%endif%}
+                        {%endfor%}
+
+                        {%for group in user.groups.all%}
                         {%if group.name == 'Reception'%}
                         <li class="sidebar-title">Printing Department</li>
                         <li class="sidebar-title">Accounting</li>
