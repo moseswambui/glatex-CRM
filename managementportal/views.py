@@ -91,12 +91,11 @@ def Messages(request):
     saleinventory = SalesAccessoryInventory.objects.all()
     context = {'saleinventory':saleinventory}
     return render(request,"admin_message.html",context)
-@AllowedUsers(allowed_roles='Reception')
+
 def EmployeeDashboard(request):
     my_groups=Group.objects.filter(user=request.user)
-    for i in my_groups:
-        print(i)
-    print(my_groups[0])
+    
+    
     context={'my_groups':my_groups}
     messages.success(request, 'logged in successfully')
     return render(request,"employee_index.html",context)

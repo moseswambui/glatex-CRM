@@ -13,14 +13,4 @@ def UnoutheticatedUser(view_func):
 
     return WrapperFunc
 
-def AllowedUsers(allowed_roles=[]):
-    def Decorator(view_func):
-        def WrapperFunc(request,*args,**kwargs):
-            print('working:',allowed_roles)
 
-
-            return view_func(request, *args, **kwargs)
-
-        return WrapperFunc
-
-    return Decorator
