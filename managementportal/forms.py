@@ -111,21 +111,34 @@ class LargeFormatInventoryForm(forms.ModelForm):
 class AddEmployeeProfileForm(forms.ModelForm):
     class Meta:
         model = GlatexEmployee
-        fields =['First_Name','Surname_Name','Employee_Email_Address', 'Employee_Phone','Employee_Department', 'Employee_Salary','Employee_Office', 'Nhif_Number', 'Employee_Status']
+        fields =['Employee','Employee_Id_Number','Employee_Birth','Employee_image' ,'Employee_Phone','Employee_Department', 'Employee_Salary','Employee_Office', 'Nhif_Status', 'Employee_Status']
 
         widgets ={
-            'First_Name':forms.TextInput(attrs={
+            'Employee':forms.Select(attrs={
                 'class':'form-control',
-                'placeholder':'First Name'
+                'placeholder':'employee'
             }),
-            'Surname_Name':forms.TextInput(attrs={
+            'Employee_Id_Number':forms.TextInput(attrs={
                 'class':'form-control',
+                'placeholder':'ID number'
                 
             }),
-            'Employee_Email_Address':forms.EmailInput(attrs={
+            'Emloyee_Phone':forms.TextInput(attrs={
                 'class':'form-control',
-                'placeholder':'Email'
+                'placeholder':'Phone Number'
+                
             }),
+            'Employee_Birth':forms.DateInput(attrs={
+                'class':'form-control',
+                'placeholder':'Date of birth'
+                
+            }),
+            'Employee_image':forms.FileInput(attrs={
+                'class':'form-control',
+                'placeholder':'image'
+                
+            }),
+            
             'Employee_Phone':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'Phone'
@@ -143,9 +156,9 @@ class AddEmployeeProfileForm(forms.ModelForm):
                 'placeholder':'Office'
             }),
             
-            'Nhif_Number':forms.TextInput(attrs={
+            'Nhif_Status':forms.Select(attrs={
                 'class':'form-control',
-                'placeholder':'Nhif No.'
+                'placeholder':'Nhif Status.'
             }),
             'Employee_Status':forms.Select(attrs={
                 'class':'form-control',
@@ -309,12 +322,16 @@ class InvoiceDetailForm(forms.ModelForm):
 class SalesForm(forms.ModelForm):
     class Meta:
         model = DailySales
-        fields =['Client', 'Sales_Product','Product_Size','Sales_Amount', 'Balance','Sales_Date','Payment_Method']
+        fields =['Client','Client_Phone', 'Sales_Product','Product_Size','Sales_Amount', 'Balance','Sales_Date','Payment_Method']
 
         widgets ={
             'Client':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'Client'
+            }),
+            'Client_Phone':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Client Phone'
             }),
             
             'Sales_Product':forms.TextInput(attrs={
@@ -359,12 +376,16 @@ class SalesForm(forms.ModelForm):
 class SalesDigitalForm(forms.ModelForm):
     class Meta:
         model = DailySalesDigital
-        fields =['Client', 'Sales_Product','Product_Size','Sales_Quantity', 'Sales_Amount', 'Balance','Sales_Date','Payment_Method']
+        fields =['Client','Client_Phone', 'Sales_Product','Product_Size','Sales_Quantity', 'Amount_Per_Product','Sales_Amount', 'Sales_Date','Payment_Method']
 
         widgets ={
             'Client':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'Client'
+            }),
+            'Client_Phone':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Phone Number'
             }),
             
             'Sales_Product':forms.TextInput(attrs={
@@ -383,14 +404,14 @@ class SalesDigitalForm(forms.ModelForm):
                 'placeholder':'Quantity'
                 
             }),
-            'Sales_Amount':forms.NumberInput(attrs={
+            'Amount_Per_Product':forms.NumberInput(attrs={
                 'class':'form-control',
-                'placeholder':'amount'
+                'placeholder':'amount per product'
                 
             }),
-            'Balance':forms.NumberInput(attrs={
+            'Sales_Amount':forms.NumberInput(attrs={
                 'class':'form-control',
-                'placeholder':'Balance'
+                'placeholder':'Total amount'
                 
             }),
             'Sales_Date':forms.DateInput(attrs={
@@ -725,11 +746,15 @@ class SalesInventoryForm(forms.ModelForm):
 class ScreenprintingSalesForm(forms.ModelForm):
     class Meta:
         model = ScreenprintingSales
-        fields =['Client','Items','Quantity','Amount_Paid','Balance','Payment_Method']
+        fields =['Client','Client_Phone','Items','Quantity','Price_Per_Item','Amount_Paid','Balance','Payment_Method']
         widgets ={
             'Client':forms.TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'Client'
+            }),
+            'Client_Phone':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Client Phone'
             }),
             'Items':forms.TextInput(attrs={
                 'class':'form-control',
@@ -738,6 +763,10 @@ class ScreenprintingSalesForm(forms.ModelForm):
             'Quantity':forms.NumberInput(attrs={
                 'class':'form-control',
                 'placeholder':'Quantity'
+            }),
+            'Price_Per_Item':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Price per item'
             }),
             'Amount_Paid':forms.TextInput(attrs={
                 'class':'form-control',

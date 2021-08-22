@@ -46,28 +46,31 @@
                                         <thead>
                                             <tr>
                                                 <th>Client</th>
+                                                <th>Phone Number</th>
                                                 <th>Product Name</th>
                                                 <th>Product Size</th>
                                                 <th>Quantity</th>
+                                                <th>Price per item</th>
+                                                <th> Total Amount</th>
                                                 <th>Payment Method</th>
                                                 <th>Date</th>
-                                                <th>Amount</th>
-                                                <th>BALANCE</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {%for i in digital_sales %}
                                             <tr>
                                                 <td>{{i.Client}}</td>
+                                                <td>{{i.Client_Phone}}</td>
                                                 <td>{{i.Sales_Product}}</td>
                                                 <td>{{i.Product_Size}}</td>
                                                 <td>{{i.Sales_Quantity}}</td>
-                                                <td>{{i.Payment_Method}}</td>
-                                                
-                                                <td>{{i.Sales_Date}}</td>
+                                                <td>{{i.Amount_Per_Product}}</td>
                                                 <td>{{i.Sales_Amount}}</td>
+                                                <td>{{i.Payment_Method}}</td>
+                                               
                                                 <td>
-                                                    <span class="badge bg-success">{{i.Balance}}</span>
+                                                    <span class="badge bg-success">{{i.Sales_Date}}</span>
                                                 </td>
                                             </tr>
                                             {%endfor%}

@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'GlatexManagementSoftware.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'glatex',
+        'NAME': 'glatexdatabase',
         'USER': 'root',
         'PASSWORD': '',
         'HOST':'localhost',

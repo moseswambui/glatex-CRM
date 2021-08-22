@@ -5,6 +5,7 @@ from django.db.models.fields import NullBooleanField
 from django.db.models.fields.related import ManyToManyField, OneToOneField
 from django.forms.models import modelformset_factory
 from django.utils import tree
+from django.contrib.auth.models import User
 
 
 DEPARTMENTS = [
@@ -17,6 +18,11 @@ DEPARTMENTS = [
 EMPLOYEE_STATUS=[
     ("ACTIVE","Active"),
     ("DISCONTINUED","Discontinued"),
+]
+
+NHIF_STATUS=[
+    ("ACTIVE","Active"),
+    ("INACTIVE","INACTIVE"),
 ]
 class GlatexAdmin(models.Model):
     First_Name = models.CharField(max_length=30,null=True, blank=True)
@@ -42,9 +48,10 @@ class GlatexOffice(models.Model):
         return self.Office_Location
 
 class GlatexManager(models.Model):
-    First_Name = models.CharField(max_length=30,null=True, blank=True)
-    Surname_Name = models.CharField(max_length=30,null=True, blank=True)
+    
+    
     Manager_Id=models.CharField(primary_key=True,max_length=12)
+    Employee_Id_Number=models.CharField(max_length=50,null=True, blank=True)
     Manager_Email_Address = models.EmailField(null=True, blank=True)
     Manager_Phone =models.CharField(max_length=13,blank=True,null=True)
     Manager_Salary=models.CharField(max_length=5, blank=True, null=True)
@@ -54,21 +61,20 @@ class GlatexManager(models.Model):
 
 
 class GlatexEmployee(models.Model):
-
-    First_Name = models.CharField(max_length=30,null=True, blank=True)
-    Surname_Name = models.CharField(max_length=30,null=True, blank=True)
-    
+   
+    Employee = models.OneToOneField(User,blank=True, null=True, on_delete=models.CASCADE)
+   
+    Employee_Id_Number=models.CharField(max_length=50,null=True, blank=True)
+    Employee_Birth = models.DateField(null=True, blank=True)
     Employee_Email_Address = models.EmailField(null=True, blank=True)
     Employee_Phone=models.CharField(max_length=13,blank=True,null=True)
     Employee_Department=models.CharField(max_length=30,choices=DEPARTMENTS,null=True,blank=True)
     Employee_Salary= models.CharField(max_length=5,null=True, blank=True)
     Employee_Office = models.ForeignKey(GlatexOffice,on_delete=SET_NULL,blank=True, null=True)
-    
-    Nhif_Number =models.CharField(max_length=10,default="None")
+    Employee_image = models.ImageField(upload_to='employeephotos',blank=True, null=True)
+    Nhif_Status =models.CharField(max_length=10,null=True, blank=True,choices=NHIF_STATUS)
     Employee_Status = models.CharField(max_length=20,choices=EMPLOYEE_STATUS, null=True)
-
-    def __str__(self):
-        return self.First_Name
+    
 
 class GlatexMeeting(models.Model):
     Office_Id = models.ForeignKey(GlatexOffice,on_delete=SET_NULL,null=True,blank=True)
@@ -136,28 +142,34 @@ SALESCATEGORY = [
 ]
 class DailySales(models.Model):
     Client = models.CharField(max_length=45, null=True, blank=True)
+    Client_Phone = models.CharField(max_length=45, null=True, blank=True)
     Balance = models.IntegerField(null=True, blank=True)
-    Product_Size=models.CharField(max_length=50,null=True, blank=True,choices=SALESCATEGORY)
-    Client_id = models.CharField(max_length=45, null=True, blank=True)
+    Product_Size=models.CharField(max_length=50,null=True, blank=True)
     Sales_Product = models.CharField(max_length=34,null=True,blank=True)
     Sales_Quantity = models.CharField(max_length=34,null=True,blank=True)
+    Sales_Amount_Paid = models.IntegerField(null=True, blank=True)
     Sales_Amount = models.IntegerField(null=True, blank=True)
+    Price_Per_Product = models.IntegerField(null=True, blank=True)
     Balance = models.IntegerField(null=True,blank=True)
     Sales_Date =models.DateField( null=True, blank=True)
     Payment_Method = models.CharField(max_length=20,blank=True, null=True,choices=PAYMENTMETHOD)
 
 class DailySalesDigital(models.Model):
     Client = models.CharField(max_length=45, null=True, blank=True)
+    Client_Phone = models.CharField(max_length=45, null=True, blank=True)
     Balance = models.IntegerField(null=True, blank=True)
     Product_Size=models.CharField(max_length=50,null=True, blank=True,choices=SALESCATEGORY)
     Client_id = models.CharField(max_length=45, null=True, blank=True)
     Sales_Product = models.CharField(max_length=34,null=True,blank=True)
     Sales_Quantity = models.CharField(max_length=34,null=True,blank=True)
+    Amount_Per_Product = models.CharField(max_length=34,null=True,blank=True)
     Sales_Amount = models.IntegerField(null=True, blank=True)
     Balance = models.IntegerField(null=True,blank=True)
     Sales_Date =models.DateField( null=True, blank=True)
     Payment_Method = models.CharField(max_length=20,blank=True, null=True,choices=PAYMENTMETHOD)
 
+    def total_amount(self):
+        return self.Sales_Quantity * self.Amount_Per_Product
 class SalesDetails(models.Model):
     Item_Name = models.CharField(max_length=56,null=True, blank=True)
     Item_Size =models.CharField(max_length=10,null=True, blank=True)
@@ -165,8 +177,10 @@ class SalesDetails(models.Model):
 
 class ScreenprintingSales(models.Model):
     Client = models.CharField(max_length=45, null=True, blank=True)
+    Client_Phone = models.CharField(max_length=45, null=True, blank=True)
     Items = models.CharField(max_length=45, null=True, blank=True)
     Quantity = models.IntegerField(null=True, blank=True)
+    Price_Per_Item = models.IntegerField(null=True, blank=True)
     Amount_Paid = models.IntegerField( null=True, blank=True)
     Balance = models.IntegerField(null=True, blank=True)
     SalesDate = models.DateField(auto_now_add=True, null=True, blank=True)
@@ -213,6 +227,7 @@ class DailyExpenses(models.Model):
     Employee = models.ForeignKey(GlatexEmployee, on_delete=SET_NULL, null=True)
     Employee_Name = models.CharField(max_length=56, null=True , blank=True)
     Expense_Description =models.CharField(max_length=50,null=True,blank=True)
+    Item_Quantity =models.IntegerField(null=True, blank=True)
     Expense_Cost = models.IntegerField(null=True, blank=True)
     Expense_Date=models.DateField(null=True, blank=True)
 

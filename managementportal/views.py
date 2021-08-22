@@ -96,9 +96,12 @@ def Messages(request):
 
 def EmployeeDashboard(request):
     my_groups=Group.objects.filter(user=request.user)
+    user_profile=request.user.glatexemployee
+    
+    print(user_profile.Employee_Birth)
     
     
-    context={'my_groups':my_groups}
+    context={'my_groups':my_groups,'user_profile':user_profile}
     messages.success(request, 'logged in successfully')
     return render(request,"employee_index.html",context)
 
