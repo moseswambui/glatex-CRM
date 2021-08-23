@@ -98,10 +98,11 @@ def EmployeeDashboard(request):
     my_groups=Group.objects.filter(user=request.user)
     user_profile=request.user.glatexemployee
     
-    print(user_profile.Employee_Birth)
+    print(user_profile.Employee_image)
+    pic = user_profile.Employee_image
     
     
-    context={'my_groups':my_groups,'user_profile':user_profile}
+    context={'my_groups':my_groups,'user_profile':user_profile,'pic':pic}
     messages.success(request, 'logged in successfully')
     return render(request,"employee_index.html",context)
 
