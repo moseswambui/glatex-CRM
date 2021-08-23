@@ -41,7 +41,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <h4 class="card-title">Large Format</h4>
+                                    <h4 class="card-title">Digital Sales CASH PAYMENTS</h4>
                                     <table class="table table-striped" id="table1">
                                         <thead>
                                             <tr>
@@ -61,7 +61,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {%for i in digital_sales %}
+                                            {%for i in cash_sales %}
                                             <tr>
                                                 <td>{{i.Client}}</td>
                                                 
@@ -95,8 +95,157 @@
                                             {%endfor%}
                                             <th>Total     : </th>
                                             <td>
-                                                <span class="badge bg-danger">{{total_digital}}</span>
+                                                <span class="badge bg-danger">{{cash_total}}</span>
                                             </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">Digital Sales MPESA PAYMENTS</h4>
+                                    <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Client</th>
+                                                
+                                                <th>Product Name</th>
+                                                <th>Product Size</th>
+                                                <th>Quantity</th>
+                                                <th>Price per item</th>
+                                                <th> Total Amount</th>
+                                                <th>Payment Method</th>
+                                                <th>Date</th>
+                                                <th>Deletion</th>
+                                                <th>Update</th>
+                                                
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for i in mpesa_sales %}
+                                            <tr>
+                                                <td>{{i.Client}}</td>
+                                                
+                                                <td>{{i.Sales_Product}}</td>
+                                                <td>{{i.Product_Size}}</td>
+                                                <td>{{i.Sales_Quantity}}</td>
+                                                <td>{{i.Amount_Per_Product}}</td>
+                                                <td>{{i.Sales_Amount}}</td>
+                                                <td>{{i.Payment_Method}}</td>
+                                               
+                                                <td>
+                                                    <span class="badge bg-success">{{i.Sales_Date}}</span>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'sales_digitaldelete' i.id %}">
+                                                        <span class="badge bg-danger">Delete Sale</span>
+                                                    </a>
+                                                        
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'sales_digitalupdate' i.id %}">
+                                                        <span class="badge bg-danger">Update Sale</span>
+                                                    </a>
+                                                        
+                                                    
+                                                </td>
+                                            </tr>
+                                            {%endfor%}
+                                            <th>Total     : </th>
+                                            <td>
+                                                <span class="badge bg-danger">{{mpesa_total}}</span>
+                                            </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">Digital Sales CHEQUE PAYMENTS</h4>
+                                    <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Client</th>
+                                                
+                                                <th>Product Name</th>
+                                                <th>Product Size</th>
+                                                <th>Quantity</th>
+                                                <th>Price per item</th>
+                                                <th> Total Amount</th>
+                                                <th>Payment Method</th>
+                                                <th>Date</th>
+                                                <th>Deletion</th>
+                                                <th>Update</th>
+                                                
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for i in cheque_sales %}
+                                            <tr>
+                                                <td>{{i.Client}}</td>
+                                                
+                                                <td>{{i.Sales_Product}}</td>
+                                                <td>{{i.Product_Size}}</td>
+                                                <td>{{i.Sales_Quantity}}</td>
+                                                <td>{{i.Amount_Per_Product}}</td>
+                                                <td>{{i.Sales_Amount}}</td>
+                                                <td>{{i.Payment_Method}}</td>
+                                               
+                                                <td>
+                                                    <span class="badge bg-success">{{i.Sales_Date}}</span>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'sales_digitaldelete' i.id %}">
+                                                        <span class="badge bg-danger">Delete Sale</span>
+                                                    </a>
+                                                        
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'sales_digitalupdate' i.id %}">
+                                                        <span class="badge bg-danger">Update Sale</span>
+                                                    </a>
+                                                        
+                                                    
+                                                </td>
+                                            </tr>
+                                            {%endfor%}
+                                            <th>Total     : </th>
+                                            <td>
+                                                <span class="badge bg-danger">{{cheque_total}}</span>
+                                            </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"><strong> Grand Calculation</strong></h4>
+                                    <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Cash Total</th>
+                                                <th>Mpesa Total</th>
+                                                <th>Cheque Total </th>
+                                                <th>Grand Total </th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <tr>
+                                                <td>{{cash_total}}</td>
+                                                <td>{{mpesa_total}}</td>
+                                                <td>{{cheque_total}}</td>
+                                                <td>
+                                                    <span class="badge bg-success">{{total_digital}}</span>
+                                                </td>
+                                               
+                                               
+                                            </tr>
+                                           
+                                           
                                         </tbody>
                                     </table>
                                 </div>

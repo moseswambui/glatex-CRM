@@ -12,7 +12,7 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>DataTable Work stats</h3>
+                            <h3>Simplified Accounts DataTable Work stats</h3>
                             <p class="text-subtitle text-muted">For user to check their work list</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
@@ -27,27 +27,70 @@
                 </div>
                 <section class="section">
                     <div class="card">
-                        
+                        <h4 class="card-title"><strong> Glatex Large format Accounts AnalyticsThis week</strong></h4>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>Day</th>
-                                        <th>Sales</th>
+                                        <th>Large format Sales</th>
+                                        <th>Digital Printing Sales</th>
+                                        <th style="color: red;">Grand Total</th>
                                         <th>Expenses</th>
-                                        <th>Date</th>
                                         <th>Profit</th>
+                                        <th>% profit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     <tr>
-                                        <td>Thursday</td>
-                                        <td>{{sales}}</td>
-                                        <td>{{expenses}}</td>
-                                        <td>11/8/21</td>
+                                        <td>KSH. {{sales_amount}}</td>
+                                        <td>KSH. {{digital_amount}}</td>
                                         <td>
-                                            <span class="badge bg-success">45775</span>
+                                            <span class="badge bg-success">KSH. {{grand_total}}</span>
+                                        </td>
+                                        <td>Ksh. {{expense_amount}}</td>
+                                        <td>
+                                            <span class="badge bg-success">KSH. {{profit}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-success">{{percent_profit}} %</span>
+                                        </td>
+                                    </tr>
+                                   
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
+                <section class="section">
+                    <div class="card">
+                        <h4 class="card-title"><strong> Screen Printing Accounts analytis This week</strong></h4>
+                        <div class="card-body">
+                            <table class="table table-striped" id="table1">
+                                <thead>
+                                    <tr>
+                                        <th>Daily Sales</th>
+                                        <th>Daily Expenses</th>
+                                        <th style="color: red;">Profit</th>
+                                        <th> Percent Profit</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        
+                                        <td>
+                                            <span class="badge bg-success">KSH.</span>
+                                        </td>
+                                        <td>Ksh. </td>
+                                        <td>
+                                            <span class="badge bg-success">KSH.</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-success"> %</span>
                                         </td>
                                     </tr>
                                    

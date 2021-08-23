@@ -132,9 +132,9 @@ class InvoiceDetails(models.Model):
     Particular_Invoice = models.ForeignKey(Invoice,on_delete=SET_NULL, blank=True,null=True)
 
 PAYMENTMETHOD = [
-    ('MPESA','M-pesa'),
-    ('CASH','Cash'),
-    ('CHEQUE','Cheque')
+    ('Mpesa','Mpesa'),
+    ('Cash','Cash'),
+    ('Cheque','Cheque')
 ]
 SALESCATEGORY = [
     ('A3','A3'),

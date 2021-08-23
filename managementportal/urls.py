@@ -72,6 +72,11 @@ urlpatterns = [
     path("screenprintinginvoices/",views.ScreenPrintingInvoices, name="screeninvoices"),
 
     path("expenses/",views.Expenses, name="expenses"),
+    path("expenses_update/<str:pk>/",views.ExpensesUpdate, name="expenses_update"),
+    path("expenses_delete/<str:pk>/",views.ExpensesDelete, name="expenses_delete"),
+    
+
+
     path("screenprintingexpenses/",views.ScreenPrintingExpenses, name="screenprintingexpenses"),
 
     path("register-client/",views.ClientRegister, name="register-client"),

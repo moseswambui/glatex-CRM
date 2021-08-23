@@ -41,7 +41,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <h4 class="card-title">Large Format</h4>
+                                    <h4 style="color: red;" class="card-title"><strong>CASH PAYMENTS</strong> </h4>
                                     <table class="table table-striped" id="table1">
                                         <thead>
                                             <tr>
@@ -57,7 +57,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {%for i in sales %}
+                                            {%for i in cash_sales %}
                                             <tr>
                                                 <td>{{i.Client}}</td>
                                                 <td>{{i.Sales_Product}}</td>
@@ -88,8 +88,145 @@
                                             {%endfor%}
                                             <th>Total     : </th>
                                             <td>
-                                                <span class="badge bg-danger">{{total}}</span>
+                                                <span class="badge bg-danger">{{cash_total}}</span>
                                             </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="card-body">
+                                    <h4 style="color: blue;" class="card-title"><strong>MPESA PAYMENTS</strong> </h4>
+                                    <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Client</th>
+                                                <th>Product</th>
+                                                <th>Product Size</th>
+                                                
+                                                <th>Payment Method</th>
+                                                <th>Amount</th>
+                                                <th>BALANCE </th>
+                                                <th>Deletion </th>
+                                                <th>Update </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for i in mpesa_sales %}
+                                            <tr>
+                                                <td>{{i.Client}}</td>
+                                                <td>{{i.Sales_Product}}</td>
+                                                <td>{{i.Product_Size}}</td>
+                                                
+                                                <td>{{i.Payment_Method}}</td>
+                                                <td>{{i.Sales_Amount}}</td>
+                                                <td>
+                                                    <span class="badge bg-success">{{i.Balance}}</span>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'sales_delete' i.id %}">
+                                                        <span class="badge bg-danger">Delete Sale</span>
+                                                    </a>
+                                                        
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'sales_update' i.id %}">
+                                                        <span class="badge bg-danger">Update Sale</span>
+                                                    </a>
+                                                        
+                                                    
+                                                </td>
+                                            </tr>
+                                            {%endfor%}
+                                            <th>Total     : </th>
+                                            <td>
+                                                <span class="badge bg-danger">{{mpesa_total}}</span>
+                                            </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"><strong> CHEQUE PAYMENTS</strong></h4>
+                                    <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Client</th>
+                                                <th>Product</th>
+                                                <th>Product Size</th>
+                                                
+                                                <th>Payment Method</th>
+                                                <th>Amount</th>
+                                                <th>BALANCE </th>
+                                                <th>Deletion </th>
+                                                <th>Update </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for i in cheque_sales %}
+                                            <tr>
+                                                <td>{{i.Client}}</td>
+                                                <td>{{i.Sales_Product}}</td>
+                                                <td>{{i.Product_Size}}</td>
+                                                
+                                                <td>{{i.Payment_Method}}</td>
+                                                <td>{{i.Sales_Amount}}</td>
+                                                <td>
+                                                    <span class="badge bg-success">{{i.Balance}}</span>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'sales_delete' i.id %}">
+                                                        <span class="badge bg-danger">Delete Sale</span>
+                                                    </a>
+                                                        
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'sales_update' i.id %}">
+                                                        <span class="badge bg-danger">Update Sale</span>
+                                                    </a>
+                                                        
+                                                    
+                                                </td>
+                                            </tr>
+                                            {%endfor%}
+                                            <th>Total     : </th>
+                                            <td>
+                                                <span class="badge bg-danger">{{cheque_total}}</span>
+                                            </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="card-body">
+                                    <h4 class="card-title"><strong> Grand Calculation</strong></h4>
+                                    <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Cash Total</th>
+                                                <th>Mpesa Total</th>
+                                                <th>Cheque Total </th>
+                                                <th>Grand Total </th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <tr>
+                                                <td>{{cash_total}}</td>
+                                                <td>{{mpesa_total}}</td>
+                                                <td>{{cheque_total}}</td>
+                                                <td>
+                                                    <span class="badge bg-success">{{total}}</span>
+                                                </td>
+                                               
+                                               
+                                            </tr>
+                                           
+                                           
                                         </tbody>
                                     </table>
                                 </div>

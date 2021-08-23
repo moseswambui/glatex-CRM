@@ -48,6 +48,8 @@
                                                 <th>Expense Usage</th>
                                                 <th>Amount</th>
                                                 <th>Date</th>
+                                                <th>Delete</th>
+                                                <th>Update</th>
                                                 
                                             </tr>
                                         </thead>
@@ -60,6 +62,22 @@
                                                 
                                                 <td>
                                                     <span class="badge bg-success">{{i.Expense_Date}}</span>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'expenses_delete' i.id %}">
+                                                        <span class="badge bg-danger">Delete expense</span>
+                                                    </a>
+                                                        
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'expenses_update' i.id %}">
+                                                        <span class="badge bg-danger">Update expense</span>
+                                                    </a>
+                                                        
+                                                    
                                                 </td>
                                             </tr>
                                             {%endfor%}

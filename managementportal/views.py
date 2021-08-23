@@ -117,12 +117,17 @@ def DigitalPrinting(request):
 
 def JobStats(request):
     sales =  DailySales.objects.all().aggregate(Sum('Sales_Amount'))
+    sales_amount=sales.get('Sales_Amount__sum')
+
+    digital_sales=DailySalesDigital.objects.all().aggregate(Sum('Sales_Amount'))
+    digital_amount = digital_sales.get("Sales_Amount__sum")
+
     expenses = DailyExpenses.objects.all().aggregate(Sum('Expense_Cost'))
-    exp = expenses.values()
-    sal=sales.values()
-    
-    
-    context ={'sales':sales,'expenses':expenses}
+    expense_amount = expenses.get('Expense_Cost__sum')
+    grand_total = digital_amount +  sales_amount
+    profit = grand_total - expense_amount
+    percent_profit = (expense_amount/grand_total *100)
+    context ={'sales_amount':sales_amount,'expense_amount':expense_amount,'digital_amount':digital_amount,'grand_total':grand_total,'profit':profit,'percent_profit':percent_profit}
     return render(request,"employee_jobstats.html",context)
 
 def LargeFormat(request):
@@ -277,6 +282,25 @@ def SalesDigitalUpdate(request,pk):
 
     return render(request,'employee_sales_digital_update.html',context)
     
+def ExpensesUpdate(request,pk):
+    expense=DailyExpenses.objects.get(id=pk)
+    form = DailyExpensesForm(instance=expense)
+    if request.method == 'POST':
+        form =DailyExpensesForm(request.POST,instance=expense)
+        if form.is_valid():
+            form.save()
+            return redirect('expenses')
+    context = {'form':form}
+    return render(request, 'employee_expense_update.html',context)
+
+def ExpensesDelete(request,pk):
+    expense=DailyExpenses.objects.get(id=pk)
+    if request.method=='POST':
+        expense.delete()
+        return redirect("expenses")
+    context={"expense":expense}
+    return render(request, 'employee_expense_delete.html',context) 
+
 def EmployeeTask(request):
     return render(request,"employee_tasks.html")
 
@@ -292,13 +316,20 @@ def Sales(request):
         form =SalesForm(request.POST)
         if form.is_valid():
             form.save()
-    context = {'form':form}
     digital_sales = DailySales.objects.all()
     sales = DailySales.objects.all()
-    print(sales)
-    total = DailySales.objects.all().aggregate(Sum('Sales_Amount'))
-    context = {'form':form,'sales':sales,'total':total}
+    
+    mpesa_sales = DailySales.objects.filter(Payment_Method= "Mpesa")
+    mpesa_total = DailySales.objects.filter(Payment_Method= "Mpesa").aggregate(Sum('Sales_Amount'))
 
+    cash_sales =DailySales.objects.filter(Payment_Method= "Cash")
+    cash_total =DailySales.objects.filter(Payment_Method= "Cash").aggregate(Sum('Sales_Amount'))
+
+    cheque_sales =DailySales.objects.filter(Payment_Method= "Cheque")
+    cheque_total =DailySales.objects.filter(Payment_Method= "Cheque").aggregate(Sum('Sales_Amount'))
+
+    total = DailySales.objects.all().aggregate(Sum('Sales_Amount'))
+    context = {'form':form,'mpesa_sales':mpesa_sales, 'cash_sales':cash_sales, 'cheque_sales':cheque_sales,'total':total,'mpesa_total':mpesa_total,'cash_total':cash_total,'cheque_total':cheque_total}
     return render(request,"employee_sales.html",context)
 
 def SalesDigital(request):
@@ -309,7 +340,19 @@ def SalesDigital(request):
             form.save()
     digital_sales = DailySalesDigital.objects.all()
     total_digital= DailySalesDigital.objects.all().aggregate(Sum('Sales_Amount'))
-    context = {'form':form,'digital_sales':digital_sales,'total_digital':total_digital}
+
+    mpesa_sales = DailySalesDigital.objects.filter(Payment_Method= "Mpesa")
+    mpesa_total = DailySalesDigital.objects.filter(Payment_Method= "Mpesa").aggregate(Sum('Sales_Amount'))
+
+    cash_sales =DailySalesDigital.objects.filter(Payment_Method= "Cash")
+    cash_total =DailySalesDigital.objects.filter(Payment_Method= "Cash").aggregate(Sum('Sales_Amount'))
+
+    cheque_sales =DailySalesDigital.objects.filter(Payment_Method= "Cheque")
+    cheque_total =DailySalesDigital.objects.filter(Payment_Method= "Cheque").aggregate(Sum('Sales_Amount'))
+
+    total = DailySales.objects.all().aggregate(Sum('Sales_Amount'))
+
+    context = {'form':form,'digital_sales':digital_sales,'cash_sales':cash_sales,'mpesa_sales':mpesa_sales, 'cheque_sales':cheque_sales,'total_digital':total_digital,'mpesa_total':mpesa_total,'cash_total':cash_total,'cheque_total':cheque_total}
     return render(request, 'employee_sales_digital.html',context)
 def Invoices(request):
     form=InvoiceForm()
