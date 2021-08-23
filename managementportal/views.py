@@ -231,6 +231,52 @@ def AccessoryInventoryUpdate(request,pk):
     context={'form':form}
     return render(request, 'employee_accessory_inventory_update.html',context)
 
+def SalesUpdate(request, pk):
+    sale=DailySales.objects.get(id=pk)
+    form=SalesForm(instance=sale)
+    if request.method == 'POST':
+        form=SalesForm(request.POST,instance=sale)
+        if form.is_valid():
+            form.save()
+            return redirect('sales')
+
+    context={'form':form}
+    return render(request, 'employee_sales_update.html',context)
+
+def SalesDelete(request,pk):
+    sale=DailySales.objects.get(id=pk)
+    form=SalesForm(instance=sale)
+    if request.method=='POST':
+        sale.delete()
+        
+        
+        return redirect('sales')
+
+    context={'sale':sale}
+    return render(request,'employee_sales_delete.html',context)
+
+def SalesDigitalDelete(request,pk):
+    digital_sale=DailySalesDigital.objects.get(id=pk)
+    if request.method=='POST':
+        digital_sale.delete()
+        return redirect('salesdigital')
+
+    context={'digital_sale':digital_sale}
+    return render(request,'employee_sales_digital_delete.html',context)
+
+def SalesDigitalUpdate(request,pk):
+    digital_sale=DailySalesDigital.objects.get(id=pk)
+    form=SalesDigitalForm(instance=digital_sale)
+    if request.method=='POST':
+        form=SalesDigitalForm(request.POST,instance=digital_sale)
+        if form.is_valid():
+            form.save()
+            return redirect('salesdigital')
+
+    context={'form':form}
+
+    return render(request,'employee_sales_digital_update.html',context)
+    
 def EmployeeTask(request):
     return render(request,"employee_tasks.html")
 

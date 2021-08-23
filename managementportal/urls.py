@@ -59,6 +59,12 @@ urlpatterns = [
 
     path("sales/",views.Sales, name="sales"),
     path("salesdigital/",views.SalesDigital, name="salesdigital"),
+    path("sales-update/<str:pk>/",views.SalesUpdate, name="sales_update"),
+    path("sales-delete/<str:pk>/",views.SalesDelete, name="sales_delete"),
+    path("sales-digitalupdate/<str:pk>/",views.SalesDigitalUpdate, name="sales_digitalupdate"),
+    path("sales-ddigitaldelete/<str:pk>/",views.SalesDigitalDelete, name="sales_digitaldelete"),
+    
+    
 
     path("screenprintingsales/",views.ScreenPrintingSales, name="screenprintingsales"),
 
