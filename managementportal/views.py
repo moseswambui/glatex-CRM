@@ -125,9 +125,9 @@ def JobStats(request):
     expenses = DailyExpenses.objects.all().aggregate(Sum('Expense_Cost'))
     expense_amount = expenses.get('Expense_Cost__sum')
 
-    grand_total = int(digital_amount +  sales_amount)
+    grand_total = int(digital_amount) +  int(sales_amount)
     
-    profit = int(grand_total - expense_amount)
+    profit = int(grand_total) - int(expense_amount)
     percent_profit = (expense_amount/grand_total *100)
     context ={'sales_amount':sales_amount,'expense_amount':expense_amount,'digital_amount':digital_amount,'grand_total':grand_total,'profit':profit,'percent_profit':percent_profit}
     return render(request,"employee_jobstats.html",context)
