@@ -154,6 +154,10 @@ class DailySales(models.Model):
     Sales_Date =models.DateField( null=True, blank=True)
     Payment_Method = models.CharField(max_length=20,blank=True, null=True,choices=PAYMENTMETHOD)
 
+    def __str__(self):
+        return self.Payment_Method
+
+
 class DailySalesDigital(models.Model):
     Client = models.CharField(max_length=45, null=True, blank=True)
     Client_Phone = models.CharField(max_length=45, null=True, blank=True)
