@@ -116,8 +116,19 @@ def DigitalPrinting(request):
     return render(request,"employee_digitalprinting.html",context)
 
 def JobStats(request):
-    sales =  DailySales.objects.all().aggregate(Sum('Sales_Amount'))
-    sales_amount=sales.get('Sales_Amount__sum')
+    
+    mpesa_total = DailySales.objects.filter(Payment_Method= "Mpesa").aggregate(Sum('Sales_Amount'))
+    mpesa=mpesa_total.get("Sales_Amount__sum")
+    
+    cash_total =DailySales.objects.filter(Payment_Method= "Cash").aggregate(Sum('Sales_Amount'))
+    cash=cash_total.get("Sales_Amount__sum")
+    
+    cheque_total =DailySales.objects.filter(Payment_Method= "Cheque").aggregate(Sum('Sales_Amount'))
+    cheque=cheque_total.get("Sales_Amount__sum")
+
+    large_formattotal = cash+mpesa
+    print(large_formattotal)
+    
 
     digital_sales=DailySalesDigital.objects.all().aggregate(Sum('Sales_Amount'))
     digital_amount = digital_sales.get("Sales_Amount__sum")
@@ -125,11 +136,11 @@ def JobStats(request):
     expenses = DailyExpenses.objects.all().aggregate(Sum('Expense_Cost'))
     expense_amount = expenses.get('Expense_Cost__sum')
 
-    grand_total = (int(digital_amount) +  int(sales_amount))
+    grand_total = (int(digital_amount) +  int())
     
     profit = int(grand_total) - int(expense_amount)
     percent_profit = (expense_amount/grand_total *100)
-    context ={'sales_amount':sales_amount,'expense_amount':expense_amount,'digital_amount':digital_amount,'grand_total':grand_total,'profit':profit,'percent_profit':percent_profit}
+    context ={ 'large_formattotal':large_formattotal,'expense_amount':expense_amount,'digital_amount':digital_amount,'grand_total':grand_total,'profit':profit,'percent_profit':percent_profit}
     return render(request,"employee_jobstats.html",context)
 
 def LargeFormat(request):
@@ -323,14 +334,18 @@ def Sales(request):
     
     mpesa_sales = DailySales.objects.filter(Payment_Method= "Mpesa")
     mpesa_total = DailySales.objects.filter(Payment_Method= "Mpesa").aggregate(Sum('Sales_Amount'))
+    mpesa=mpesa_total.get("Sales_Amount__sum")
 
     cash_sales =DailySales.objects.filter(Payment_Method= "Cash")
     cash_total =DailySales.objects.filter(Payment_Method= "Cash").aggregate(Sum('Sales_Amount'))
+    cash=cash_total.get("Sales_Amount__sum")
 
     cheque_sales =DailySales.objects.filter(Payment_Method= "Cheque")
     cheque_total =DailySales.objects.filter(Payment_Method= "Cheque").aggregate(Sum('Sales_Amount'))
+    cheque=cheque_total.get("Sales_Amount__sum")
+    total=mpesa+cash
 
-    total = DailySales.objects.all().aggregate(Sum('Sales_Amount'))
+    
     context = {'form':form,'mpesa_sales':mpesa_sales, 'cash_sales':cash_sales, 'cheque_sales':cheque_sales,'total':total,'mpesa_total':mpesa_total,'cash_total':cash_total,'cheque_total':cheque_total}
     return render(request,"employee_sales.html",context)
 
