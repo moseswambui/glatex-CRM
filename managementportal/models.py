@@ -155,7 +155,7 @@ class DailySales(models.Model):
     Payment_Method = models.CharField(max_length=20,blank=True, null=True,choices=PAYMENTMETHOD)
 
     def __str__(self):
-        return self.Payment_Method
+        return self.Sales_Amount
 
 
 class DailySalesDigital(models.Model):
