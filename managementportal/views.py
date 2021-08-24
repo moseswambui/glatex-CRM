@@ -136,7 +136,7 @@ def JobStats(request):
     expenses = DailyExpenses.objects.all().aggregate(Sum('Expense_Cost'))
     expense_amount = expenses.get('Expense_Cost__sum')
 
-    grand_total = (int(digital_amount) +  int(large_formattotal))
+    grand_total = int(digital_amount+ large_formattotal)
     
     profit = int(grand_total) - int(expense_amount)
     percent_profit = (expense_amount/grand_total *100)
