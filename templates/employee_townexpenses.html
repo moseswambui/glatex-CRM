@@ -1,0 +1,111 @@
+{%extends 'employee_base.html'%}
+{%load static%}
+{%block content%}
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+               
+                
+            <section id="section">
+               
+                    
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Clothing Items Expenses</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form class="form " method="POST" action="">
+                                                {%csrf_token%}
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        {{form}}
+                                                    
+                                                        
+                                                    
+                                                        <div class="col-12 d-flex justify-content-end">
+                                                            <button type="submit"
+                                                                class="btn btn-primary me-1 mb-1">Submit</button>
+                                                            <button type="reset"
+                                                                class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                   
+
+                    <div class="card-body">
+                        <table class="table table-striped" id="table1">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Category</th>
+                                    <th>Item size</th>
+                                    <th>Item_Color</th>
+                                    <th>Shop Bought</th>
+                                    <th>Item Quantity</th>
+                                    <th>Cost Per Item</th>
+                                    <th>Total</th>
+                                    <th>Requester</th>
+                                    <th>Purchase Date</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%for i in clothingexpenses %}
+                                <tr>
+                                    <td>{{i.Item_Category}}</td>
+                                    <td>{{i.Item_Type}}</td>
+                                    <td>{{i.Item_Size}}</td>
+                                    <td>{{i.Item_Color}}</td>
+                                    <td>{{i.Shop_Bought}}</td>
+                                    <td>{{i.Item_Quantity}}</td>
+                                    
+                                    <td>
+                                        <span class="badge bg-success">{{i.Cost_Per_Item}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-success">{{i.Total_Cost}}</span>
+                                    </td>
+                                    <td>
+                                       
+                                            <span class="badge bg-danger">{{i.Requester_Name}}</span>
+                                        
+                                            
+                                        
+                                    </td>
+                                    <td>
+                                     
+                                            <span class="badge bg-danger">{{i.Purchase_Date}}</span>
+                                       
+                                            
+                                        
+                                    </td>
+                                </tr>
+                                {%endfor%}
+                                <th>Total     : </th>
+                                <td>
+                                    <span class="badge bg-danger">{{total_cost}}</span>
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                
+            </section>
+                <!-- // Basic multiple Column Form section end -->
+            </div>
+
+           {%endblock%}

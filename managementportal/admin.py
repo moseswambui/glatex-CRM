@@ -36,6 +36,7 @@ admin.site.register(ScreenprintingSales)
 admin.site.register(MovieSales)
 admin.site.register(Movieexpenses)
 admin.site.register(ScreenprintingExpenses)
+admin.site.register(Town_ClothingExpenses)
 
 
 

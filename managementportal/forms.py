@@ -902,4 +902,53 @@ class FabricationTaskForm(forms.ModelForm):
             
         }
 
+class TownClothingExpensesForm(forms.ModelForm):
+    class Meta:
+        model=Town_ClothingExpenses
+        fields = ['Employee_Name','Requester_Name','Item_Category','Item_Type','Item_Color','Item_Size','Item_Quantity','Cost_Per_Item','Total_Cost','Shop_Bought','Preliminary_Expenses']
+        widgets ={
+            'Item_Category':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Tshirt/Hoods/Caps'
+            }),
+            'Employee_Name':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Your Name'
+            }),
+            'Item_Type':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Polo/RoundNeck/glossy/A4 ..etc'
+            }),
+            'Item_Size':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'What is the size?Large/2m/XXL ..etc'
+            }),
+            'Item_Quantity':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'How Many Did you BuY'
+            }),
+            'Cost_Per_Item':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'What Is The Cost of One Item '
+            }),
+            'Shop_Bought':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':' Where Did You Buy'
+            }),
+            'Preliminary_Expenses':forms.NumberInput(attrs={
+                'class':'form-control',
+                'placeholder':'Did you spent any of your money?how much '
+            }),
+            'Item_Color':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':' color of the Item'
+            }),
+            'Requester_Name':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Who requested for item'
+            }),
+            
+        }
+
+
 

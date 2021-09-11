@@ -152,8 +152,7 @@ def LargeFormat(request):
     context = {'form':form}
     return render(request,"employee_largeformat.html",context)
 
-def EmployeeProfile(request):
-    return render(request,"employee_profile.html")
+
 
 
 def ScreenPrinting(request):
@@ -515,3 +514,15 @@ def Fabricationtask(request):
     fabtask = FabricationTask.objects.all()
     context={'form':form,'fabtask':fabtask}
     return render(request, 'employee_fabricationtask.html',context)
+
+def TownExpenses(request):
+    form = TownClothingExpensesForm()
+    if request.method =='POST':
+        form = TownClothingExpensesForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    clothingexpenses = Town_ClothingExpenses.objects.all()
+    total_cost = Town_ClothingExpenses.objects.all().aggregate(Sum('Total_Cost'))
+    context={'form':form,'clothingexpenses':clothingexpenses,'total_cost':total_cost}
+    return render(request,"employee_townexpenses.html",context)

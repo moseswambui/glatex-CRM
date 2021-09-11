@@ -38,7 +38,7 @@ urlpatterns = [
     path("digitalprinting/",views.DigitalPrinting, name="digitalprinting"),
     path("jobstats/",views.JobStats, name="jobstats"),
     path("largeformat/",views.LargeFormat, name="largeformat"),
-    path("profile/",views.EmployeeProfile, name="employeeprofile"),
+    path("townexpenses/",views.TownExpenses, name="townexpenses"),
     path("screenprinting/",views.ScreenPrinting, name="screenprinting"),
     path("registeremployee/",views.RegisterEmployee, name="registeremployee"),
 

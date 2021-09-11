@@ -432,6 +432,23 @@ class ParcelDelivery(models.Model):
     number_plate = models.CharField(max_length=10,null=True, blank=True)
     driver_cell = models.CharField(max_length=20,null=True, blank=True)
 
+class Town_ClothingExpenses(models.Model):
+    Employee_Name = models.CharField(max_length=50, null=True,blank=True)
+    Requester_Name =models.CharField(max_length=50 , null= True, blank=True)
+    Item_Category = models.CharField(max_length=50, null=True,blank=True)
+    Item_Type = models.CharField(max_length=20, null=True,blank=True)
+    Item_Size = models.CharField(max_length=20, null=True,blank=True)
+    Item_Quantity = models.IntegerField( null=True,blank=True)
+    Cost_Per_Item = models.IntegerField( null=True,blank=True)
+    Shop_Bought = models.CharField(max_length=50, null=True,blank=True)
+    Purchase_Date=models.DateField(auto_now=True,null=True,blank=True)
+    Preliminary_Expenses= models.IntegerField( null=True,blank=True)
+    Item_Color = models.CharField(max_length=50, null=True,blank=True)
+    Total_Cost = models.IntegerField( null=True,blank=True)
+
+    
+    
+
 
 
 
