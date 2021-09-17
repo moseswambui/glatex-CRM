@@ -266,6 +266,7 @@ class WebPost(models.Model):
 LARGEFORMATMATERIAL=[
     ('BANNER', 'Banner'),
     ('STICKER', 'Sticker'),
+    ('BACKLIT', 'Backlit'),
     ("WINDOWGRAPHICS",'Window Graphics'),
     ('CLEARSTICKER','Clear Sticker'),
     ('REFLECTIVESTICKER', 'Reflective Sticker'),
