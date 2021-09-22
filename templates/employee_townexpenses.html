@@ -48,15 +48,16 @@
                    
 
                     <div class="card-body">
+                        <h4 style="color: red;" class="card-title"><strong>Today : {{localtime}}</strong> </h4>
                         <table class="table table-striped" id="table1">
                             <thead>
                                 <tr>
-                                    <th>Item Name</th>
+                                    <th>Name</th>
                                     <th>Category</th>
-                                    <th>Item size</th>
-                                    <th>Item_Color</th>
-                                    <th>Shop Bought</th>
-                                    <th>Item Quantity</th>
+                                    <th>size</th>
+                                    <th>Color</th>
+                                    <th>Shop</th>
+                                    <th>Quantity</th>
                                     <th>Cost Per Item</th>
                                     <th>Total</th>
                                     <th>Requester</th>
@@ -65,7 +66,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {%for i in clothingexpenses %}
+                                {%for i in today_clothes %}
                                 <tr>
                                     <td>{{i.Item_Category}}</td>
                                     <td>{{i.Item_Type}}</td>
@@ -98,7 +99,7 @@
                                 {%endfor%}
                                 <th>Total     : </th>
                                 <td>
-                                    <span class="badge bg-danger">{{total_cost}}</span>
+                                    <span class="badge bg-danger">{{today_total}}</span>
                                 </td>
                             </tbody>
                         </table>

@@ -13,6 +13,8 @@ from django.db.models import Avg,Sum
 from django.contrib.auth import authenticate,login, logout
 from .decorators import *
 from django.contrib.auth.models import Group
+import time
+import datetime
 
 @UnoutheticatedUser
 def GlatexPortal(request):
@@ -226,6 +228,7 @@ def ScreenPrintingInventory(request):
     return render(request,"employee_screenprinting_inventory.html",context)
 
 def AccessoryInventory(request):
+    localtime=time.asctime(time.localtime(time.time()))
     form=AccessoryInventoryForm()
     if request.method =='POST':
         form =AccessoryInventoryForm(request.POST)
@@ -233,7 +236,7 @@ def AccessoryInventory(request):
             form.save()
 
     accessories = Accessory.objects.all()
-    context = {'form':form,'accessories':accessories}
+    context = {'form':form,'accessories':accessories,'localtime':localtime}
     return render(request,"employee_accessory_inventory.html",context)
 
 def AccessoryInventoryUpdate(request,pk):
@@ -323,6 +326,9 @@ def EmployeeBreakages(request):
     return render(request,"employee_breakages.html")
 
 def Sales(request):
+    localtime= time.asctime(time.localtime(time.time()))
+    print(localtime)
+    monday_date= "2021-09-20"
     form=SalesForm()
     if request.method =='POST':
         form =SalesForm(request.POST)
@@ -345,7 +351,7 @@ def Sales(request):
     total=mpesa+cash
 
     
-    context = {'form':form,'mpesa_sales':mpesa_sales, 'cash_sales':cash_sales, 'cheque_sales':cheque_sales,'total':total,'mpesa_total':mpesa_total,'cash_total':cash_total,'cheque_total':cheque_total}
+    context = {'form':form,'mpesa_sales':mpesa_sales, 'cash_sales':cash_sales, 'cheque_sales':cheque_sales,'total':total,'mpesa_total':mpesa_total,'cash_total':cash_total,'cheque_total':cheque_total,'localtime':localtime}
     return render(request,"employee_sales.html",context)
 
 def SalesDigital(request):
@@ -516,6 +522,10 @@ def Fabricationtask(request):
     return render(request, 'employee_fabricationtask.html',context)
 
 def TownExpenses(request):
+    localtime= time.asctime(time.localtime(time.time()))
+    monday_date= "2021-09-20"
+    today = datetime.date.today()
+    print(today)
     form = TownClothingExpensesForm()
     if request.method =='POST':
         form = TownClothingExpensesForm(request.POST)
@@ -523,6 +533,10 @@ def TownExpenses(request):
             form.save()
 
     clothingexpenses = Town_ClothingExpenses.objects.all()
+    today_clothes = Town_ClothingExpenses.objects.filter(Purchase_Date=today)
+    
+    today_total =Town_ClothingExpenses.objects.filter(Purchase_Date=today).aggregate(Sum('Total_Cost'))
     total_cost = Town_ClothingExpenses.objects.all().aggregate(Sum('Total_Cost'))
-    context={'form':form,'clothingexpenses':clothingexpenses,'total_cost':total_cost}
+    print(today_total)
+    context={'form':form,'clothingexpenses':clothingexpenses,'total_cost':total_cost,"localtime":localtime,"today_clothes":today_clothes,"today_total":today_total}
     return render(request,"employee_townexpenses.html",context)

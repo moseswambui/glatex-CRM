@@ -685,16 +685,32 @@ class BrandingItemsInventoryForm(forms.ModelForm):
 class AccessoryInventoryForm(forms.ModelForm):
     class Meta:
         model = Accessory
-        fields =['Accessory_Name','Accessory_Quantity', 'Accessory_Cost','Dealer_Phone','Item_Date_In']
+        fields =['Accessory_Name','Accessory_Type', 'Accessory_Color','Accessory_Quantity', 'Accessory_Size','Accessory_Cost','Dealer_Phone','Item_Date_In']
 
         widgets ={
             'Accessory_Name':forms.Select(attrs={
                 'class':'form-control',
                 'placeholder':'Name'
             }),
+            'Accessory_Type':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Type eg large format ink,fluoroscent bulb etc'
+                
+            }),
+            'Accessory_Color':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Type eg large format ink,fluoroscent bulb etc'
+                
+            }),
+            
             'Accessory_Quantity':forms.NumberInput(attrs={
                 'class':'form-control',
                 'placeholder':'Quantity'
+                
+            }),
+            'Accessory_Size':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'eg. I litre, 3ft, 20cm'
                 
             }),
             

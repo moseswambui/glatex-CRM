@@ -35,38 +35,39 @@
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
-                        <li class="sidebar-title">Welcome:  {{user.username}}</li>
+                        <li class="sidebar-title" style="color: #ff0000;">WELCOME:  {{user.username}}</li>
 
                         <li class="sidebar-item active ">
                             <a href="{% url 'employeedashboard' %}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
+                                <span>DASHBOARD</span>
                             </a>
                         </li>
-
+                        <!--  
                         <li class="sidebar-item  ">
                           <a href="{% url 'jobstats' %}" class='sidebar-link'>
                               <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                               <span>Sales Stats</span>
                           </a>
                       </li>
+                      -->
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
-                                <span>Company Expenses</span>
+                                <span style="color: #1e90ff;">TOWN EXPENSES</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{% url 'townexpenses' %}">Town Expenses</a>
+                                    <a style="color: #1e90ff;" href="{% url 'townexpenses' %}">ITEMS BOUGHT</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="">Personal Expensess</a>
+                                    <a style="color: #1e90ff;" href="">PARCEL TRANSIT</a>
                                 </li>
                                 
                             </ul>
                         </li>
-
+                    <!-- 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-grid-1x2-fill"></i>
@@ -87,13 +88,13 @@
                                 </li>
                             </ul>
                         </li>
-                         
+                         -->
                         {%for group in user.groups.all%}
                         {%if group.name == 'Design'%}
                         <li class="sidebar-item  ">
                             <a href="{% url 'designtask' %}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                <span>Add Design Task</span>
+                                <span style="color: #1e90ff;">DESIGN TASK</span>
                             </a>
                         </li>
                         {%endif%}
@@ -104,7 +105,7 @@
                         <li class="sidebar-item  ">
                             <a href="{% url 'fabricationtask' %}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                <span>Add Fabrication Task</span>
+                                <span style="color: #1e90ff;">FABRICATION TASK</span>
                             </a>
                         </li>
                         {%endif%}
@@ -112,31 +113,31 @@
 
                         {%for group in user.groups.all%}
                         {%if group.name == 'Reception'%}
-                        <li class="sidebar-title">Printing Department</li>
-                        <li class="sidebar-title">Accounting</li>
+                        <li class="sidebar-title" style="color: #ff0000;">ACCOUNTING</li>
+                        
 
                         <li class="sidebar-item  ">
                             <a href="{% url 'sales' %}" class='sidebar-link'>
                                 <i class="bi bi-envelope-fill"></i>
-                                <span>Large Format Sales</span>
+                                <span style="color: #1e90ff;">Large Format Sales</span>
                             </a>
                             <a href="{% url 'salesdigital' %}" class='sidebar-link'>
                                 <i class="bi bi-envelope-fill"></i>
-                                <span>Digital Printing Sales</span>
+                                <span style="color: #1e90ff;"> Digital Printing Sales</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item  ">
                             <a href="{% url 'invoices' %}" class='sidebar-link'>
                                 <i class="bi bi-chat-dots-fill"></i>
-                                <span>Invoices</span>
+                                <span style="color: #1e90ff;">Invoices</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item  ">
                             <a href="{% url 'expenses' %}" class='sidebar-link'>
                                 <i class="bi bi-basket-fill"></i>
-                                <span>Expenses</span>
+                                <span style="color: #1e90ff;">Expenses</span>
                             </a>
                         </li>
         
@@ -148,23 +149,23 @@
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-pentagon-fill"></i>
-                                <span>Inventory</span>
+                                <span style="color: #1e90ff;">Inventory</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{%url 'largeformat_inventory'%}">Large Format</a>
+                                    <a style="color: #1e90ff;" href="{%url 'largeformat_inventory'%}">Large Format</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{%url 'vinyl_inventory'%}">Vinyl</a>
+                                    <a style="color: #1e90ff;" href="{%url 'vinyl_inventory'%}">Vinyl</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{%url 'digitalprinting_inventory'%}">Digital Printing</a>
+                                    <a style="color: #1e90ff;" href="{%url 'digitalprinting_inventory'%}">Digital Printing</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{%url 'screenprinting_inventory'%}">Screen Printing</a>
+                                    <a style="color: #1e90ff;" href="{%url 'screenprinting_inventory'%}">Screen Printing</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{%url 'accessories_inventory'%}">Accessories</a>
+                                    <a style="color: #1e90ff;" href="{%url 'accessories_inventory'%}">Accessories</a>
                                 </li>
                             </ul>
                         </li>
@@ -172,7 +173,7 @@
                         <li class="sidebar-item  ">
                             <a href="{% url 'sales_inventory' %}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                <span>Inventory Sales</span>
+                                <span style="color: #1e90ff;">Inventory Sales</span>
                             </a>
                         </li>
                         {%endif%}
@@ -180,6 +181,7 @@
 
                         {%for group in user.groups.all%}
                         {%if group.name == 'Screen Printing'%}
+                        <!-- 
                         <li class="sidebar-title">Screen Printing</li>
                         <li class="sidebar-item  ">
                             <a href="{% url 'screenprintingsales' %}" class='sidebar-link'>
@@ -201,11 +203,13 @@
                                 <span>Expenses</span>
                             </a>
                         </li>
+                    -->
                         {%endif%}
                         {%endfor%}
 
                         {%for group in user.groups.all%}
                         {%if group.name == 'Movie'%}
+                        <!--
                         <li class="sidebar-title">Movie Shop Accounting</li>
                         <li class="sidebar-item  ">
                             <a href="{% url 'moviesales' %}" class='sidebar-link'>
@@ -220,12 +224,13 @@
                                 <span>Expenses</span>
                             </a>
                         </li>
+                    -->
                         {%endif%}
                         {%endfor%}
 
                         {%for group in user.groups.all%}
                         {%if group.name == 'Management'%}
-                        <li class="sidebar-title">General Management</li>
+                        <li style="color: #1e90ff;" class="sidebar-title">General Management</li>
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-egg-fill"></i>
@@ -233,26 +238,26 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{%url 'breakages'%}">Breakages </a>
+                                    <a style="color: #1e90ff;" href="{%url 'breakages'%}">Breakages </a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{%url 'misbehaviours'%}">Misbehaviours</a>
+                                    <a style="color: #1e90ff;" href="{%url 'misbehaviours'%}">Misbehaviours</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{%url 'employee-tasks'%}">Daily Tasks</a>
+                                    <a style="color: #1e90ff;" href="{%url 'employee-tasks'%}">Daily Tasks</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="sidebar-item  ">
                             <a href="{% url 'registeremployee' %}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                <span>Register Employees</span>
+                                <span style="color: #1e90ff;">Register Employees</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
                             <a href="{% url 'register-client' %}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                <span>Register Client</span>
+                                <span style="color: #1e90ff;">Register Client</span>
                             </a>
                         </li>
                         {%endif%}
@@ -261,11 +266,11 @@
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-person-badge-fill"></i>
-                                <span>Authentication</span>
+                                <span style="color: #1e90ff;">Logout</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{% url 'logout'%}">Logout</a>
+                                    <a style="color: #1e90ff;" href="{% url 'logout'%}">Logout</a>
                                 </li>
                             </ul>
                         </li>

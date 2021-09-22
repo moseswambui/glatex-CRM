@@ -358,11 +358,16 @@ ACCESSORIES=[
     ('ALUMINIUM','Aluminium'),
     ("BROADBASE STAND",'Broadbase Stand'),
     ('BULB','Bulb'),
-    ('NAMETAGS','Name Tags')
+    ('DX5 INK','DX5 INK'),
+    ('PRINTER INK','PRINTER INK'),
+    ('TONER','TONER'),
 ]
 class Accessory(models.Model):
     Accessory_Name=models.CharField(max_length=25,choices=ACCESSORIES,blank=True, null=True)
     Accessory_Quantity = models.IntegerField(null=True,blank=True)
+    Accessory_Type = models.CharField(max_length=15, blank=True,null=True)
+    Accessory_Color = models.CharField(max_length=15, blank=True,null=True)
+    Accessory_Size = models.CharField(max_length=15, blank=True,null=True)
     Accessory_Cost = models.IntegerField(blank=True, null=True)
     Item_Date_In = models.DateField(null=True, blank=True)
     Dealer_Phone = models.CharField(max_length=15, blank=True,null=True)
