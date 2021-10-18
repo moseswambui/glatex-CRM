@@ -52,7 +52,51 @@
         <div class="body-wrapper">
             <!-- Begin Header Area -->
             <header class="li-header-4">
-               
+                <div class="header-top">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Begin Header Top Left Area -->
+                            <div class="col-lg-3 col-md-4">
+                                <div class="header-top-left">
+                                    <ul class="phone-wrap">
+                                        <li><span>Telephone Enquiry:</span><a href="#">(+254) 717 828 930</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Header Top Left Area End Here -->
+                            <!-- Begin Header Top Right Area -->
+                            <div class="col-lg-9 col-md-8">
+                                <div class="header-top-right">
+                                    <ul class="ht-menu">
+                                        <!-- Begin Setting Area -->
+                                        <li>
+                                            <div class="ht-setting-trigger"><span>Accounts</span></div>
+                                            <div class="setting ht-setting">
+                                                <ul class="ht-setting-list">
+                                                    <li><a href="login-register.html">Sign Up</a></li>
+                                                    <li><a href="checkout.html">Login </a></li>
+                                                    <li><a href="login-register.html">Checkout</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <!-- Setting Area End Here -->
+                                        <!-- Begin Currency Area -->
+                                        <li>
+                                            <span class="currency-selector-wrapper">Order :</span>
+                                            <div class=""><span>Ksh. </span></div>
+                                            
+                                        </li>
+                                        <!-- Currency Area End Here -->
+                                        <!-- Begin Language Area -->
+                                        
+                                        <!-- Language Area End Here -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Header Top Right Area End Here -->
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
                     <div class="container">
@@ -99,26 +143,27 @@
                                         <li class="hm-minicart">
                                             <div class="hm-minicart-trigger">
                                                 <span class="item-icon"></span>
-                                                <span class="item-text">0
-                                                    <span class="cart-item-count">2</span>
+                                                <span class="item-text">{{cart_count}} 
+                                                    <span class="cart-item-count">{{cart_count}}</span>
                                                 </span>
                                             </div>
                                             <span></span>
                                             <div class="minicart">
                                                 <ul class="minicart-product-list">
+                                                    {% for product in products %}
                                                     <li>
                                                         <a href="" class="minicart-product-image">
                                                             <img src="{% static 'customerportal/images/product/small-size/1.jpg' %}" alt="cart products">
                                                         </a>
                                                         <div class="minicart-product-details">
                                                             <h6><a href="">None</a></h6>
-                                                            <span>0</span>
+                                                            <span>{{product.price}}</span>
                                                         </div>
                                                         <button class="close">
                                                             <i class="fa fa-close"></i>
                                                         </button>
                                                     </li>
-                                                   
+                                                   {%endfor%}
                                                 </ul>
                                                 <p class="minicart-total">SUBTOTAL: <span>Ksh.0</span></p>
                                                 <div class="minicart-button">
@@ -226,7 +271,7 @@
                                             <img src="{% static 'customerportal/images/shipping-icon/1.png' %}" alt="Shipping Icon">
                                         </div>
                                         <div class="shipping-text">
-                                            <h2>Free Delivery around Nairobi</h2>
+                                            <h2>Secure Delivery </h2>
                                             <p>And free returns. See checkout for delivery dates.</p>
                                         </div>
                                     </div>

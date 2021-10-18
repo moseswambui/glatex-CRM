@@ -87,6 +87,8 @@ urlpatterns = [
 
     path("designtask/",views.DesignTask, name="designtask"),
     path("fabricationtask/",views.Fabricationtask, name="fabricationtask"),
+    path("town/",views.Town, name="town"),
+
     
 
 

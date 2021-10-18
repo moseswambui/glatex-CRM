@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'customerportal',
     'managementportal',
     'inventory',
+    "accounts",
     
 ]
 
@@ -75,6 +76,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'customerportal.context_processor.menu_links',
+                'customerportal.context_processor.counter',
             ],
         },
     },

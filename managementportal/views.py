@@ -97,14 +97,14 @@ def Messages(request):
     return render(request,"admin_message.html",context)
 
 def EmployeeDashboard(request):
-    my_groups=Group.objects.filter(user=request.user)
+   
     user_profile=request.user.glatexemployee
     
     print(user_profile.Employee_image)
     pic = user_profile.Employee_image
     
     
-    context={'my_groups':my_groups,'user_profile':user_profile,'pic':pic}
+    context={'user_profile':user_profile,'pic':pic}
     messages.success(request, 'logged in successfully')
     return render(request,"employee_index.html",context)
 
@@ -537,6 +537,14 @@ def TownExpenses(request):
     
     today_total =Town_ClothingExpenses.objects.filter(Purchase_Date=today).aggregate(Sum('Total_Cost'))
     total_cost = Town_ClothingExpenses.objects.all().aggregate(Sum('Total_Cost'))
+    for item in today_clothes:
+        total += (Town_ClothingExpenses.Cost_Per_item * Town_ClothingExpenses.Item_Quantity)
     print(today_total)
     context={'form':form,'clothingexpenses':clothingexpenses,'total_cost':total_cost,"localtime":localtime,"today_clothes":today_clothes,"today_total":today_total}
     return render(request,"employee_townexpenses.html",context)
+
+def Town(request):
+    clothingexpenses = Town_ClothingExpenses.objects.all()
+    print(clothingexpenses)
+    context = {'clothingexpenses':clothingexpenses}
+    return render(request, 'employee_town.html',context)

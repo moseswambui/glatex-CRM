@@ -921,7 +921,7 @@ class FabricationTaskForm(forms.ModelForm):
 class TownClothingExpensesForm(forms.ModelForm):
     class Meta:
         model=Town_ClothingExpenses
-        fields = ['Employee_Name','Requester_Name','Item_Category','Item_Type','Item_Color','Item_Size','Item_Quantity','Cost_Per_Item','Total_Cost','Shop_Bought','Preliminary_Expenses']
+        fields = ['Employee_Name','Requester_Name','Item_Category','Item_Type','Item_Color','Item_Size','Item_Quantity','Cost_Per_Item','Shop_Bought','Preliminary_Expenses']
         widgets ={
             'Item_Category':forms.TextInput(attrs={
                 'class':'form-control',

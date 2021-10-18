@@ -20,6 +20,10 @@ from . import views
 urlpatterns = [
     path("",views.Index, name="homeindex"),
     path("shop",views.Shop, name="shop"),
+    path("cart",views.Cart, name="cart"),
+    path("add_cart/<int:product_id>/",views.add_cart, name="add_cart"),
+    path("shop/<slug:category_slug>/",views.Shop, name="product_by_category"),
+    path("shop/<slug:category_slug>/<slug:product_slug>",views.ProductDetail, name="product_detail"),
     path("about",views.AboutUs, name="aboutus"),
     path("checkout",views.Checkout, name="checkout"),
     path("contacts",views.ContactUs, name="contactus"),

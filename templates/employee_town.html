@@ -1,0 +1,74 @@
+{%extends 'employee_base.html'%}
+{%load static%}
+{%block content%}
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+               
+                
+            <section id="section">
+               
+                   <div class="card-body">
+                        <h4 style="color: red;" class="card-title"><strong>Today : {{localtime}}</strong> </h4>
+                        <table class="table table-striped" id="table1">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>size</th>
+                                    <th>Color</th>
+                                    <th>Shop</th>
+                                    <th>Quantity</th>
+                                    <th>Cost Per Item</th>
+                                    <th>Total</th>
+                                    <th>Requester</th>
+                                    <th>Purchase Date</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%for i in clothingexpenses %}
+                                <tr>
+                                    <td>{{i.Item_Category}}</td>
+                                    <td>{{i.Item_Type}}</td>
+                                    <td>{{i.Item_Size}}</td>
+                                    <td>{{i.Item_Color}}</td>
+                                    <td>{{i.Shop_Bought}}</td>
+                                    <td>{{i.Item_Quantity}}</td>
+                                    
+                                    <td>
+                                        <span class="badge bg-success">{{i.Cost_Per_Item}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-success">{{i.Total_Cost}}</span>
+                                    </td>
+                                    <td>
+                                       
+                                            <span class="badge bg-danger">{{i.Requester_Name}}</span>
+                                        
+                                            
+                                        
+                                    </td>
+                                    <td>
+                                     
+                                            <span class="badge bg-danger">{{i.Purchase_Date}}</span>
+                                       
+                                            
+                                        
+                                    </td>
+                                </tr>
+                                {%endfor%}
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                
+            </section>
+                <!-- // Basic multiple Column Form section end -->
+            </div>
+
+           {%endblock%}
