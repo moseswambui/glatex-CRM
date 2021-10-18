@@ -548,3 +548,12 @@ def Town(request):
     print(clothingexpenses)
     context = {'clothingexpenses':clothingexpenses}
     return render(request, 'employee_town.html',context)
+def AllInventory(request):
+    inventory = LargeFormatPrinting.objects.all()
+    context ={'inventory':inventory}
+    return render(request, 'employee_inventory.html',context)
+
+def AllSales(request):
+    sales = DailySales.objects.all()
+    context = {'sales':sales}
+    return render(request, 'employee_allsales.html',context)

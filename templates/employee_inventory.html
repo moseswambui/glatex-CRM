@@ -1,0 +1,66 @@
+{%extends 'employee_base.html'%}
+{%load static%}
+{%block content%}
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+               
+                
+                <section id="multiple-column-form">
+                    <div class="row match-height">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Large Format Inventory Console</h4>
+                                </div>
+                                
+                                <div class="card-body">
+                                    <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Material Name</th>
+                                                <th>size</th>
+                                                <th>Quantity</th>
+                                                
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for i in inventory %}
+                                            <tr>
+                                                <td>{{i.Material_Name}}</td>
+                                                <td>{{i.Item_size}}</td>
+                                                <td>{{i.Item_Quantity}}</td>
+                                                
+                                                
+                                                <td>
+                                                    <span class="badge bg-success">{{i.Item_Date_In}}</span>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="{%url 'largeformat_update' i.id %}">
+                                                        <span class="badge bg-danger">Update Inventory</span>
+                                                    </a>
+                                                        
+                                                    
+                                                </td>
+                                            </tr>
+                                           
+                                            {%endfor%}
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- // Basic multiple Column Form section end -->
+            </div>
+
+           {%endblock%}
