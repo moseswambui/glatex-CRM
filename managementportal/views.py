@@ -537,8 +537,7 @@ def TownExpenses(request):
     
     today_total =Town_ClothingExpenses.objects.filter(Purchase_Date=today).aggregate(Sum('Total_Cost'))
     total_cost = Town_ClothingExpenses.objects.all().aggregate(Sum('Total_Cost'))
-    for item in today_clothes:
-        total += (Town_ClothingExpenses.Cost_Per_item * Town_ClothingExpenses.Item_Quantity)
+  
     print(today_total)
     context={'form':form,'clothingexpenses':clothingexpenses,'total_cost':total_cost,"localtime":localtime,"today_clothes":today_clothes,"today_total":today_total}
     return render(request,"employee_townexpenses.html",context)
