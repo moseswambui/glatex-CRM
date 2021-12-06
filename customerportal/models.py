@@ -19,8 +19,25 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
+class ProductType(models.Model):
+    type_name = models.CharField(max_length=50,blank=True, null=True, unique=True)
+    slug = models.CharField(max_length=50, unique=True)
+    
+    class Meta:
+        verbose_name = 'Product Type'
+        verbose_name_plural='Product Types'
+
+    def get_url(self):
+        return reverse('product_by_category',args=[self.slug])
+
+    def __str__(self):
+        return self.category_name
+
+
+
 class Product(models.Model):
     product_name = models.CharField(max_length=50, blank=True)
+    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE,blank=True,null=True)
     slug = models.SlugField(max_length=50,unique=True)
     description = models.TextField(max_length=255,blank=True)
     price = models.IntegerField()
@@ -65,7 +82,6 @@ class Variation(models.Model):
     def __unicode__(self):
         return self.product
 
-    
 
 class MyCart(models.Model):
     cart_id=models.CharField(max_length=250, blank=True)

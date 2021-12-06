@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'managementportal',
     'inventory',
     "accounts",
+    'services',
     
 ]
 

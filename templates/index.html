@@ -94,7 +94,7 @@
                                 <ul class="nav li-product-menu">
                                    <li><a class="active" data-toggle="tab" href="#large-format-printing"><span>Custom Clothing Designs</span></a></li>
                                    <li><a data-toggle="tab" href="#screen-printing"><span>Design Promotional Items</span></a></li>
-                                   <li><a data-toggle="tab" href="#digital-printing"><span>Programming & Design Services</span></a></li>
+                                   
                                 </ul>               
                             </div>
                             <!-- Begin Li's Tab Menu Content Area -->
@@ -207,65 +207,11 @@
                             </div>
 
                         </div>
-                        <div id="digital-printing" class="tab-pane" role="tabpanel">
-                            <div class="row">
-                                <div class="product-active owl-carousel">
-                                    {%for product in products%}
-                                    <div class="col-lg-12">
-                                        <!-- single-product-wrap start -->
-                                        <div class="single-product-wrap">
-                                            <div class="product-image">
-                                                <a href="">
-                                                    <img src={{product.image.url}} alt="Li's Product Image">
-                                                </a>
-                                                <span class="sticker">New</span>
-                                            </div>
-                                            <div class="product_desc">
-                                                <div class="product_desc_info">
-                                                    <div class="product-review">
-                                                        <h5 class="manufacturer">
-                                                            <a href="">{{product.product_name}}</a>
-                                                        </h5>
-                                                        <div class="rating-box">
-                                                            <ul class="rating">
-                                                                <li><i class="fa fa-star-o"></i></li>
-                                                                <li><i class="fa fa-star-o"></i></li>
-                                                                <li><i class="fa fa-star-o"></i></li>
-                                                                <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                                <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <h4><a class="product_name" href="">{{product.description}}</a></h4>
-                                                    <div class="price-box">
-                                                        <span class="new-price">Ksh.{{product.product_name}}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="add-actions">
-                                                    <ul class="add-actions-link">
-                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                        <li><a class="links-details" href=""><i class="fa fa-heart-o"></i></a></li>
-                                                        <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- single-product-wrap end -->
-                                    </div>
-                                   {%endfor%}
-                                   
-                                   
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
-            <!-- product-area end -->
-            <!-- Begin Li's Static Banner Area -->
            
-            <!-- Li's Static Banner Area End Here -->
-            <!-- Begin Li's Laptop Product Area -->
             <section class="product-area li-laptop-product pt-60 pb-45 pt-sm-50 pt-xs-60">
                 <div class="container">
                     <div class="row">
@@ -273,12 +219,12 @@
                         <div class="col-lg-12">
                             <div class="li-section-title">
                                 <h2>
-                                    <span>Best Selling Designed Items</span>
+                                    <span>Large Format Printing</span>
                                 </h2>
                                 <ul class="li-sub-category-list">
-                                    <li class="active"><a href="">Screen Printing</a></li>
-                                    <li><a href="">Framed Items</a></li>
-                                    <li><a href="">Branding</a></li>
+                                    <li class="active"><a href="">Cloth Printinting</a></li>
+                                    <li><a href="">Promotional Items</a></li>
+                                    <li><a href="">Popular</a></li>
                                 </ul>
                             </div>
 
@@ -331,44 +277,47 @@
                                 </div>
                                 
                             </div>
+
+                            
                         </div>
                         <!-- Li's Section Area End Here -->
                     </div>
                 </div>
             </section>
-            <!-- Li's Laptop Product Area End Here -->
-            <!-- Begin Li's TV & Audio Product Area -->
-            <section class="product-area li-laptop-product li-tv-audio-product pb-45">
+            <section class="product-area li-laptop-product pt-60 pb-45 pt-sm-50 pt-xs-60">
                 <div class="container">
                     <div class="row">
                         <!-- Begin Li's Section Area -->
                         <div class="col-lg-12">
                             <div class="li-section-title">
                                 <h2>
-                                    <span> Popular Services</span>
+                                    <span>Services</span>
                                 </h2>
                                 <ul class="li-sub-category-list">
-                                    <li class="active"><a href="">Signages</a></li>
-                                    <li><a href="">Printouts</a></li>
-                                    <li><a href="">Screen Printing</a></li>
+                                    <li class="active"><a href="">Cloth Printinting</a></li>
+                                    <li><a href="">Large Format Printing</a></li>
+                                    <li><a href="">Promotional Items</a></li>
                                 </ul>
                             </div>
+
                             <div class="row">
+                                
                                 <div class="product-active owl-carousel">
+                                    {%for product in products%}
                                     <div class="col-lg-12">
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
                                             <div class="product-image">
                                                 <a href="">
-                                                    <img src="{% static 'customerportal/images/product/large-size/3d signage.jpg' %}" alt="">
+                                                    <img src="{% static 'customerportal/images/product/large-size/metal framed banner.jpg' %}" alt="Li's Product Image">
                                                 </a>
-                                                <span class="sticker">New</span>
+                                                
                                             </div>
                                             <div class="product_desc">
                                                 <div class="product_desc_info">
                                                     <div class="product-review">
                                                         <h5 class="manufacturer">
-                                                            <a href="">Glatex Popular Products</a>
+                                                            <a href="">Glatex Large Format</a>
                                                         </h5>
                                                         <div class="rating-box">
                                                             <ul class="rating">
@@ -380,9 +329,9 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <h4><a class="product_name" href="">Ligting 3D signages</a></h4>
+                                                    <h4><a class="product_name" href="">Metal Framed Banner</a></h4>
                                                     <div class="price-box">
-                                                        <span class="new-price">Ksh.26,000</span>
+                                                        <span class="new-price">Ksh.2000/ m <sup>2</sup> </span>
                                                     </div>
                                                 </div>
                                                 <div class="add-actions">
@@ -396,16 +345,18 @@
                                         </div>
                                         <!-- single-product-wrap end -->
                                     </div>
-                                   
-                                  
-                                   
+                                    {%endfor%}
                                 </div>
+                                
                             </div>
+
+                            
                         </div>
                         <!-- Li's Section Area End Here -->
                     </div>
                 </div>
             </section>
+           
            
            
             
