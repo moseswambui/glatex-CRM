@@ -15,9 +15,26 @@ class ProductTypeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('type_name',)}
     list_display = ('type_name', 'slug')
 
+class ServiceAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('service_name',)}
+    list_display = ('service_name', 'slug')
+
+class ServiceCategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('category_name',)}
+    list_display = ('category_name', 'slug')
+
+class ServiceTypeAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('type_name',)}
+    list_display = ('type_name', 'slug')
+
+
+
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product,ProductAdmin)
+admin.site.register(ServiceCategory, ServiceCategoryAdmin)
+admin.site.register(Service,ServiceAdmin)
+admin.site.register( ServiceType,ServiceTypeAdmin)
 admin.site.register(MyCart)
 admin.site.register(CartItem)
 admin.site.register(Variation)

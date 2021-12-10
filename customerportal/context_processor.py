@@ -23,3 +23,7 @@ def counter(request):
             cart_count =0
 
     return dict(cart_count=cart_count)
+
+def service_links(request):
+    mylinks = ServiceCategory.objects.all()
+    return dict(mylinks=mylinks)

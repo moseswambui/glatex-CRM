@@ -15,29 +15,36 @@
             <!-- Begin Li's Content Wraper Area -->
             <div class="content-wraper pt-60 pb-60 pt-sm-30">
                 <div class="container">
-                    
                     <div class="row">
-                        
                         <div class="col-lg-9 order-1 order-lg-2">
-                            <div class="toolbar-amount">
-                                <span>Found {{products_count}} products</span>
-                            </div>
+                           
                             <div class="shop-top-bar mt-30">
                                 <div class="shop-bar-inner">
                                     <div class="product-view-mode">
-                                        <form action="{% url 'search' %}" class="hm-searchbox" method="GET">
-                                           
-                                            <input type="text" placeholder="Enter your search key ..." name="keyword">
-                                            <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
-                                        </form>
-                                        
+                                        <!-- shop-item-filter-list start -->
+                                        <ul class="nav shop-item-filter-list" role="tablist">
+                                            <li class="active" role="presentation"><a aria-selected="true" class="active show" data-toggle="tab" role="tab" aria-controls="grid-view" href="#grid-view"><i class="fa fa-th"></i></a></li>
+                                            <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="list-view" href="#list-view"><i class="fa fa-th-list"></i></a></li>
+                                        </ul>
+                                        <!-- shop-item-filter-list end -->
                                     </div>
-                                    <br>
-                                    
-                                   
+                                    <div class="toolbar-amount">
+                                        <span>Found {{service_count}} Services</span>
+                                    </div>
                                 </div>
                                 
-                              
+                                <!-- product-select-box start -->
+                                <div class="product-select-box">
+                                    <div class="product-short">
+                                        <p>Sort By:</p>
+                                        <select class="nice-select">
+                                            {% for category in mylinks %}
+                                            <option value="trending">{{category.category_name|upper}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- product-select-box end -->
                             </div>
                             <!-- shop-top-bar end -->
                             <!-- shop-products-wrapper start -->
@@ -46,13 +53,13 @@
                                     <div id="grid-view" class="tab-pane fade active show" role="tabpanel">
                                         <div class="product-area shop-product-area">
                                             <div class="row">
-                                               {%for product in products%}
+                                               {%for service in services %}
                                                 <div class="col-lg-4 col-md-4 col-sm-6 mt-40">
                                                     <!-- single-product-wrap start -->
                                                     <div class="single-product-wrap">
                                                         <div class="product-image">
-                                                            <a href="{{product.get_url}}">
-                                                                <img src={{product.image.url}} alt="Li's Product Image">
+                                                            <a href="{{service.get_url}}">
+                                                                <img src={{service.image.url}} alt="Li's Product Image">
                                                             </a>
                                                             <span class="sticker">New</span>
                                                         </div>
@@ -60,7 +67,7 @@
                                                             <div class="product_desc_info">
                                                                 <div class="product-review">
                                                                     <h5 class="manufacturer">
-                                                                        <a href="{{product.get_url}}">{{product.product_name}}</a>
+                                                                        <a href="{{service.get_url}}">{{service.service_name}}</a>
                                                                     </h5>
                                                                     <div class="rating-box">
                                                                         <ul class="rating">
@@ -72,15 +79,15 @@
                                                                         </ul>
                                                                     </div>
                                                                 </div>
-                                                                <h4><a class="product_name" href="{{product.get_url}}">{{product.description}}</a></h4>
+                                                                <h4><a class="product_name" href="{{service.get_url}}">{{service.description}}</a></h4>
                                                                 <div class="price-box">
-                                                                    <span class="new-price">Ksh.{{product.price}}</span>
+                                                                    <span class="new-price">Ksh.{{service.price}}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="add-actions">
                                                                 <ul class="add-actions-link">
-                                                                    <li class="add-cart active"><a href="{{product.get_url}}}">View Details</a></li>
-                                                                    <li><a href="{% url 'add_cart' product.id%}" title="quick view"   ><i class="fa fa-shopping-cart"></i></a></li>
+                                                                    <li class="add-cart active"><a href="{{service.get_url}}}">View Details</a></li>
+                                                                    <li><a href="" title="quick view"   ><i class="fa fa-shopping-cart"></i></a></li>
                                                                     <li><a  href="#"><i class="fa fa-info-circle"></i></a></li>
                                                                 </ul>
                                                             </div>
@@ -197,30 +204,28 @@
                                                 <p>Showing 9 of  {{products_count}} item(s)</p>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
-                                                {% if products.has_other_pages %}
+                                                {% if services.has_other_pages %}
                                                 <ul class="pagination-box pt-xs-20 pb-xs-15">
-                                                    {% if products.has_previous%}
-                                                    <li><a href="?page={{products.previous_page_number}}" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a>
-                                                    </li>
+                                                    {% if services.has_previous%}
+                                                        <li><a href="?page={{services.previous_page_number}}" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a>
+                                                        </li>
                                                     {% else %}
-                                                    <li><a href=""  class="Previous disabled"><i class="fa fa-chevron-left"></i> Previous</a>
-                                                    </li>
-                                                    
+                                                   
                                                     {% endif %}
-                                                    {% for i in products.paginator.page_range %}
-                                                    {% if products.number == i  %}
+                                                    {% for i in services.paginator.page_range %}
+                                                    {% if services.number == i  %}
                                                     <li class="active"><a href="#">{{i}}</a></li>
                                                     {% else %}
-                                                    <li class=""><a href="?page={{i}}">{{i}}</a></li>
+                                                         <li class=""><a href="?page={{i}}">{{i}}</a></li>
                                                     {%endif%}
                                                     {%endfor%}
-                                                    {% if products.has_next %}
-                                                    <li>
-                                                      <a href="?page={{products.next_page_number}}" class="Next"> Next <i class="fa fa-chevron-right"></i></a>
-                                                    </li>
+                                                    {% if services.has_next %}
+                                                        <li>
+                                                        <a href="?page={{services.next_page_number}}" class="Next"> Next <i class="fa fa-chevron-right"></i></a>
+                                                        </li>
                                                     {% else %}
                                                         <li>
-                                                            <a href="" disabled class="Next"> Next <i class="fa fa-chevron-right"></i></a>
+                                                            <a href="#" class="Next" disabled> Next <i class="fa fa-chevron-right"></i></a>
                                                         </li>
                                                     {% endif %}
                                                 </ul>
@@ -236,13 +241,13 @@
                             <!--sidebar-categores-box start  -->
                             <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
                                 <div class="sidebar-title">
-                                    <h2>Categories</h2>
+                                    <h2 style="color: red;">Categories</h2>
                                 </div>
                                 <!-- category-sub-menu start -->
                                 <div class="category-sub-menu">
-                                    {% for category in links %}
+                                    {% for category in mylinks %}
                                     <ul>
-                                        <li ><a href="{{category.get_url}} ">{{category.category_name}}</a>
+                                        <li ><a style="color: blue;" href="{{category.get_url}} ">{{category.category_name|upper}}</a>
                                            
                                         </li>
                                        
@@ -251,45 +256,46 @@
                                 </div>
                                 <!-- category-sub-menu end -->
                             </div>
-                            <!--sidebar-categores-box end  -->
-                            <!--sidebar-categores-box start  -->
-                            <div class="sidebar-categores-box">
+                            <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
                                 <div class="sidebar-title">
-                                    <h2>Filter By</h2>
+                                    <h2 style="color: red;">Office Branding</h2>
                                 </div>
+                                <!-- category-sub-menu start -->
+                                <div class="category-sub-menu">
+                                   
+                                    <ul>
+                                        <li ><a style="color: blue;" href="{{category.get_url}} ">Offical Office Branding</a></li>
+                                        <li ><a style="color: blue;" href="{{category.get_url}} ">2D Office Branding</a></li>
+                                        <li ><a style="color: blue;" href="{{category.get_url}} ">3D office Branding</a></li>
 
-                                <div class="filter-sub-area">
-                                    <h5 class="filter-sub-titel">Brand</h5>
-                                    <div class="categori-checkbox">
-                                        <form action="#">
-                                            <ul>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">Prizes</a></li>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">Materials</a></li>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">Relevance</a></li>
-                                            </ul>
-                                        </form>
-                                    </div>
-                                 </div>
-                                <!-- filter-sub-area end -->
-                               
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                                    <h5 class="filter-sub-titel">Size</h5>
-                                    <div class="size-checkbox">
-                                        <form action="#">
-                                            <ul>
-                                                <li><input type="checkbox" name="product-size"><a href="#">S (3)</a></li>
-                                                <li><input type="checkbox" name="product-size"><a href="#">M (3)</a></li>
-                                                <li><input type="checkbox" name="product-size"><a href="#">L (3)</a></li>
-                                                <li><input type="checkbox" name="product-size"><a href="#">XL (3)</a></li>
-                                            </ul>
-                                        </form>
-                                    </div>
+                                           
+                                    </ul>   
+                                       
+                                 
                                 </div>
-                                <!-- filter-sub-area end -->
                                
-                              
                             </div>
+                            <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
+                                <div class="sidebar-title">
+                                    <h2 style="color: red;">Office Branding</h2>
+                                </div>
+                                <!-- category-sub-menu start -->
+                                <div class="category-sub-menu">
+                                   
+                                    <ul>
+                                        <li ><a style="color: blue;" href="{{category.get_url}} ">Offical Office Branding</a></li>
+                                        <li ><a style="color: blue;" href="{{category.get_url}} ">2D Office Branding</a></li>
+                                        <li ><a style="color: blue;" href="{{category.get_url}} ">3D office Branding</a></li>
+
+                                           
+                                    </ul>   
+                                       
+                                 
+                                </div>
+                               
+                            </div>
+                            
+                            
                             
                         </div>
                     </div>

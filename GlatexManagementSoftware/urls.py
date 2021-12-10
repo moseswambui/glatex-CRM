@@ -22,6 +22,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("customerportal.urls")),
+    
+    
     path("glatexportal/", include("managementportal.urls")),
     path('accounts/', include('accounts.urls')),
     

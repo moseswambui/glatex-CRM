@@ -45,10 +45,36 @@
         <script src="{% static 'customerportal/js/vendor/modernizr-2.8.3.min.js' %}"></script>
     </head>
     <body>
-    <!--[if lt IE 8]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-        <!-- Begin Body Wrapper -->
+  <!-- Messenger Chat Plugin Code -->
+  <div id="fb-root"></div>
+
+  <!-- Your Chat Plugin code -->
+  <div id="fb-customer-chat" class="fb-customerchat">
+  </div>
+
+  <script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "108959668092795");
+    chatbox.setAttribute("attribution", "biz_inbox");
+  </script>
+
+  <!-- Your SDK code -->
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        xfbml            : true,
+        version          : 'v12.0'
+      });
+    };
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
         <div class="body-wrapper">
             <!-- Begin Header Area -->
             <header class="li-header-4">
@@ -116,9 +142,10 @@
                                 <form action="#" class="hm-searchbox">
                                     <select class="nice-select select-search-category">
                                         <option value="0">All</option>                         
-                                        <option value="10">Tshirt Printing</option>                     
-                                        <option value="17">Promotional Items Printing</option>                    
-                                        <option value="20">Other Services</option>                     
+                                        <option value="">Tshirt Printing</option>                     
+                                        <option value="">Promotional Items Printing</option>                    
+                                        <option value="">Large Format Printing </option>  
+                                        <option value="">Services </option>                   
                     
          
  
@@ -195,9 +222,7 @@
                                <div class="hb-menu">
                                    <nav>
                                        <ul>
-                                           <li class=""><a href="{%url 'homeindex'%}">Home</a>
-                                               
-                                           </li>
+                                           <li class=""><a href="{%url 'homeindex'%}">Home</a></li>
                                            <li class="megamenu-holder"><a href="{%url 'shop'%}">Shop</a>
                                                <ul class="megamenu hb-megamenu">
                                                    <li><a href="{%url 'shop'%}">Tshirt Printing</a>
@@ -218,22 +243,63 @@
                                                           
                                                        </ul>
                                                    </li>
-                                                   <li><a href="{%url 'shop'%}">Other Services</a>
-                                                       <ul>
-                                                           <li><a href="">Vehicle | Car Branding</a></li>
-                                                           <li><a href="">Office Branding</a></li>
-
-                                                       </ul>
-                                                   </li>
+                                                   
                                                   
                                                 </li>
                                                </ul>
                                            </li>
+
+                                           <li class="megamenu-holder"><a href="{%url 'services'%}">Services</a>
+                                                <ul class="megamenu hb-megamenu">
+                                                        <li><a href="{%url 'shop'%}">Office Branding</a>
+                                                            <ul>
+                                                                <li><a href="">Full Office Branding</a></li>
+                                                                <li><a href="">Half Office Branding</a></li>
+                                                                
+                                                            
+                                                            </ul>
+                                                        </li>
+                                                        <li><a href="{%url 'shop'%}">Vehicle Branding</a>
+                                                            <ul>
+                                                                <li><a href="">Probox </a></li>
+                                                                <li><a href="">Lorry Branding</a></li>
+                                                                <li><a href="">4 x 4 Branding</a></li>
+                                                                <li><a href="">Van Branding</a></li>
+                                                                <li><a href="">Motorbike branding</a></li>
+                                                            
+                                                            </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="megamenu-holder"><a href="{%url 'aboutus'%}">About Us</a>
+                                                
+                                            </li>
+
+                                            <li class="megamenu-holder"><a href="{%url 'contactus'%}">Contact Us</a>
+                                                <ul class="megamenu hb-megamenu">
+                                                        <li><a href="{%url 'shop'%}">Office Branding</a>
+                                                            <ul>
+                                                                <li><a href="">Full Office Branding</a></li>
+                                                                <li><a href="">Half Office Branding</a></li>
+                                                                
+                                                            
+                                                            </ul>
+                                                        </li>
+                                                        <li><a href="{%url 'shop'%}">Vehicle Branding</a>
+                                                            <ul>
+                                                                <li><a href="">Probox </a></li>
+                                                                <li><a href="">Lorry Branding</a></li>
+                                                                <li><a href="">4 x 4 Branding</a></li>
+                                                                <li><a href="">Van Branding</a></li>
+                                                                <li><a href="">Motorbike branding</a></li>
+                                                            
+                                                            </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
                                           
-                                           <li><a href="{%url 'aboutus'%}">About Us</a></li>
-                                           <li><a href="{%url 'contactus'%}">Contact</a></li> 
-                                           <li><a href="">offers</a></li>
-                                           <li><a href="">Accessories</a></li>
+                                           
+                                           
                                        </ul>
                                    </nav>
                                </div>

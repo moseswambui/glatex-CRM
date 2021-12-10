@@ -1,6 +1,8 @@
 from django.core import exceptions
+from django.http.response import HttpResponse
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
+from django.db.models import Q
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 def Index(request):
@@ -15,7 +17,7 @@ def Shop(request,category_slug=None):
     if category_slug !=None:
         categories = get_object_or_404(Category, slug=category_slug)
         products = Product.objects.filter(category=categories)
-        paginator = Paginator(products,3)
+        paginator = Paginator(products,6)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         products_count=products.count()
@@ -92,6 +94,39 @@ def Cart(request, total=0,quantity=0,cart_items=None):
     } 
     return render(request, 'customer_cart.html',context)
 
+def remove_cart(request, product_id):
+    cart = MyCart.objects.get(cart_id=_cart_id(request))
+    product = get_object_or_404(Product, id=product_id)
+    cart_item = CartItem.objects.get(product=product, cart=cart)
+    
+    cart_item.delete()
+
+    return redirect('cart')
+
+def Services(request, servicecategory_slug = None):
+    servicecategories =None
+    services = None
+
+    if servicecategory_slug != None:
+        servicecategories = get_object_or_404(ServiceCategory, slug = servicecategory_slug)
+        services = Service.objects.filter(category=servicecategories)
+        paginator = Paginator(services, 1)
+        page = request.GET.get('page')
+        paged_services = paginator.get_page(page)
+        service_count =  services.count()
+
+    else:
+        services = Service.objects.all()
+        paginator = Paginator(services, 3)
+        page = request.GET.get('page')
+        paged_services = paginator.get_page(page)
+        service_count =  services.count()
+    context = {
+        'services':paged_services,
+        'service_count':service_count,
+    }
+    return render(request,"customer_services.html",context )
+
 def AboutUs(request):
     return render(request,"customer_about-us.html" )
 
@@ -101,3 +136,13 @@ def Checkout(request):
 def ContactUs(request):
     return render(request,"customer_contact.html" )
 
+def search(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            products = Product.objects.order_by('-created_date').filter(Q(description__icontains=keyword) | Q(product_name__icontains = keyword))
+
+    context = {
+        'products':products,
+    }
+    return render(request,'customer_shop.html',context)

@@ -79,6 +79,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'customerportal.context_processor.menu_links',
                 'customerportal.context_processor.counter',
+                'customerportal.context_processor.service_links',
             ],
         },
     },
