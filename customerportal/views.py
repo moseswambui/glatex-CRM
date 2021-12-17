@@ -1,12 +1,15 @@
+from typing import ItemsView
 from django.core import exceptions
 from django.http.response import HttpResponse
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
+from datetime import date
 from django.db.models import Q
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 def Index(request):
     products = Product.objects.all()
+    large_format = Product.objects.all()
     context = {'products':products}
     return render(request,"index.html",context )
 
@@ -32,13 +35,25 @@ def Shop(request,category_slug=None):
     return render(request,"customer_shop.html",context )
 
 def ProductDetail(request,product_slug,category_slug):
+    today = date.today()
+    
     try:
         single_product = Product.objects.get(category__slug=category_slug,slug=product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id = _cart_id(request),product=single_product).exists()
+        product_images = single_product.productimages_set.all()
+        
+        
+        all_products = Product.objects.all().order_by('-id')[:10]
     except Exception as e:
         raise e
 
-    context = {'single_product':single_product, 'in_cart':in_cart}
+    context = {
+        'single_product':single_product,
+        'in_cart':in_cart,
+        'all_products':all_products,
+        'today':today,
+        'product_images':product_images,
+    }
     return render(request, 'customer_single-product.html',context)
 
 def  _cart_id(request):
@@ -48,9 +63,21 @@ def  _cart_id(request):
     return cart
 
 def add_cart(request,product_id):
-    print("added")
     product = Product.objects.get(id=product_id)
-    
+    product_variation = []
+    if request.method == 'POST':
+        for item in request.POST:
+            key = item
+            value = request.POST[key]
+            print(key, value)
+
+            try:
+                variation = Variation.objects.get(product=product,variation_category__iexact=key, variation_value__iexact=value)
+                product_variation.append(variation)
+
+            except:
+                pass
+
     try:
         cart = MyCart.objects.get(cart_id = _cart_id(request))
     except MyCart.DoesNotExist:

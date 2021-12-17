@@ -31,9 +31,17 @@ class ProductType(models.Model):
         return reverse('product_by_category',args=[self.slug])
 
     def __str__(self):
-        return self.category_name
+        return self.type_name
 
+class ProductTag(models.Model):
+    name = models.CharField(max_length=50,blank=True,null=True)
+    slug = models.CharField(max_length=50, unique=True)
 
+    def get_url(self):
+        return reverse('product_by_tag',args=[self.slug])
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     product_name = models.CharField(max_length=50, blank=True)
@@ -41,7 +49,8 @@ class Product(models.Model):
     slug = models.SlugField(max_length=50,unique=True)
     description = models.TextField(max_length=255,blank=True)
     price = models.IntegerField()
-    image = models.ImageField(upload_to ='custmerportal/uploaded')
+    tag = models.ForeignKey(ProductTag, on_delete=models.CASCADE,blank=True, null=True)
+    image = models.ImageField(upload_to ='customerportal/uploaded/products')
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
     product_color = models.CharField(max_length=50,blank=True)
     size = models.CharField(max_length=10, blank=True)
@@ -54,17 +63,23 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
 
-class VariationManager(models.Manager):
-    def colors(self):
-        return super(VariationManager, self).filter(variation_category='color')
+class ProductImages(models.Model):
+    tag_identifier = models.CharField(max_length=15,blank=True, null=True)
+    product_image = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    image = models.ImageField(blank=True, null=True, upload_to ='customerportal/uploaded/products')
+
+    def __str__(self):
+        return self.tag_identifier
 
 class VariationManager(models.Manager):
-    def sizes(self):
+    def color(self):
+        return super(VariationManager, self).filter(variation_category='color')
+    def size(self):
         return super(VariationManager, self).filter(variation_category='size')
 
-class VariationManager(models.Manager):
-    def services(self):
+    def service(self):
         return super(VariationManager, self).filter(variation_category='service')
+    
 
 variation_category_choice=(
     ('color','color'),
@@ -79,8 +94,8 @@ class Variation(models.Model):
 
     objects = VariationManager()
 
-    def __unicode__(self):
-        return self.product
+    def __str__(self):
+        return self.variation_category
 
 
 class ServiceCategory(models.Model):
@@ -137,13 +152,14 @@ class MyCart(models.Model):
 
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    variations = models.ManyToManyField(Variation, blank=True)
     cart = models.ForeignKey(MyCart, on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
     def sub_total(self):
         return self.product.price * self.quantity
 
-    def __str__(self):
+    def __unicode__(self):
         return self.product
 
 class ContactUs(models.Model):

@@ -27,6 +27,17 @@ class ServiceTypeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('type_name',)}
     list_display = ('type_name', 'slug')
 
+class ProductTagAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('name',)}
+    list_display = ('name', 'slug')
+
+class VavirationAdmin(admin.ModelAdmin):
+    list_display = ('product','variation_category','variation_value')
+class MyCartAdmin(admin.ModelAdmin):
+    list_display = ('cart_id','date_added')
+
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ('product','cart','quantity')
 
 
 
@@ -35,7 +46,9 @@ admin.site.register(Product,ProductAdmin)
 admin.site.register(ServiceCategory, ServiceCategoryAdmin)
 admin.site.register(Service,ServiceAdmin)
 admin.site.register( ServiceType,ServiceTypeAdmin)
-admin.site.register(MyCart)
-admin.site.register(CartItem)
-admin.site.register(Variation)
+admin.site.register(MyCart,MyCartAdmin)
+admin.site.register(CartItem, CartItemAdmin)
+admin.site.register(Variation,VavirationAdmin)
 admin.site.register(ProductType, ProductTypeAdmin)
+admin.site.register(ProductTag, ProductTagAdmin)
+admin.site.register(ProductImages)

@@ -60,7 +60,7 @@
                                                 <div class="product_desc_info">
                                                     <div class="product-review">
                                                         <h5 class="manufacturer">
-                                                            <a href="{{product.get_url}}">{{product.product_name}}</a>
+                                                            <a href="{{product.get_url}}" style="color: red;">{{product.product_name}}</a>
                                                         </h5>
                                                         <div class="rating-box">
                                                             <ul class="rating">
@@ -83,9 +83,9 @@
                                                         <li class="add-cart active"><a href="{{product.get_url}}}">View
                                                                 Details</a></li>
                                                         <li><a href="{% url 'add_cart' product.id%}"
-                                                                title="quick view"><i
+                                                                title="add to cart"><i
                                                                     class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-info-circle"></i></a></li>
+                                                        <li><a href="#quick-view"><i class="fa fa-info-circle"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -98,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="list-view" class="tab-pane fade product-list-view" role="tabpanel">
+                        <div id="quick-view" class="tab-pane fade product-list-view" role="tabpanel">
                             <div class="row">
                                 <div class="col">
                                     <div class="row product-layout-list">
