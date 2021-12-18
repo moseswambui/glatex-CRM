@@ -262,7 +262,7 @@
                 <!--sidebar-categores-box start  -->
                 <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
                     <div class="sidebar-title">
-                        <h2>Categories</h2>
+                        <h2 style="color: blue;">Categories</h2>
                     </div>
                     <!-- category-sub-menu start -->
                     <div class="category-sub-menu">
@@ -281,35 +281,36 @@
                 <!--sidebar-categores-box start  -->
                 <div class="sidebar-categores-box">
                     <div class="sidebar-title">
-                        <h2>Filter By</h2>
+                        <h2 style="color: blue;">Filter By</h2>
                     </div>
 
                     <div class="filter-sub-area">
-                        <h5 class="filter-sub-titel">Brand</h5>
-                        <div class="categori-checkbox">
-                            <form action="#">
-                                <ul>
-                                    <li><input type="checkbox" name="product-categori"><a href="#">Prizes</a></li>
-                                    <li><input type="checkbox" name="product-categori"><a href="#">Materials</a></li>
-                                    <li><input type="checkbox" name="product-categori"><a href="#">Relevance</a></li>
-                                </ul>
-                            </form>
+                        <h5 class="filter-sub-titel" style="color: blue;">Popular Tags</h5>
+                        <div class="category-sub-menu">
+                            {% for tag in taglinks %}
+                            <ul>
+                                <li><a href="{{tag.get_url}} ">{{tag.name}}</a>
+    
+                                </li>
+    
+                            </ul>
+                            {%endfor%}
                         </div>
                     </div>
                     <!-- filter-sub-area end -->
 
                     <!-- filter-sub-area start -->
                     <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                        <h5 class="filter-sub-titel">Size</h5>
-                        <div class="size-checkbox">
-                            <form action="#">
-                                <ul>
-                                    <li><input type="checkbox" name="product-size"><a href="#">S (3)</a></li>
-                                    <li><input type="checkbox" name="product-size"><a href="#">M (3)</a></li>
-                                    <li><input type="checkbox" name="product-size"><a href="#">L (3)</a></li>
-                                    <li><input type="checkbox" name="product-size"><a href="#">XL (3)</a></li>
-                                </ul>
-                            </form>
+                        <h5 class="filter-sub-titel" style="color: blue;">Product Type</h5>
+                        <div class="category-sub-menu">
+                            {% for type in typelinks %}
+                            <ul>
+                                <li><a href="{{type.get_url}} ">{{type.type_name}}</a>
+    
+                                </li>
+    
+                            </ul>
+                            {%endfor%}
                         </div>
                     </div>
                     <!-- filter-sub-area end -->

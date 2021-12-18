@@ -72,6 +72,9 @@ TEMPLATES = [
                 'customerportal.context_processor.menu_links',
                 'customerportal.context_processor.counter',
                 'customerportal.context_processor.service_links',
+
+                'customerportal.context_processor.tag_links',
+                'customerportal.context_processor.type_links',
             ],
         },
     },

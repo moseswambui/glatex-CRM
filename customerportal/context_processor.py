@@ -27,3 +27,11 @@ def counter(request):
 def service_links(request):
     mylinks = ServiceCategory.objects.all()
     return dict(mylinks=mylinks)
+
+def type_links(request):
+    typelinks = ProductType.objects.all()
+    return dict(typelinks=typelinks)
+
+def tag_links(request):
+    taglinks = ProductTag.objects.all()
+    return dict(taglinks=taglinks)
