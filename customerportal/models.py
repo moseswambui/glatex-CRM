@@ -134,7 +134,7 @@ class Service(models.Model):
     service_name = models.CharField(max_length=50, blank=True)
     service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE,blank=True,null=True)
     slug = models.SlugField(max_length=50,unique=True)
-    description = models.TextField(max_length=255,blank=True)
+    description = models.TextField(max_length=500,blank=True)
     price = models.IntegerField()
     image = models.ImageField(upload_to ='customerportal/uploaded')
     category=models.ForeignKey(ServiceCategory,on_delete=models.CASCADE)
