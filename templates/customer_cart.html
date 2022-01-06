@@ -121,6 +121,26 @@
 </body>
 
 <script>
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+   var url ="{% url 'payments' %}"
+    const csrftoken = getCookie('csrftoken');
+    
     
     paypal.Buttons({
 
@@ -147,6 +167,23 @@
                 console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                 var transaction = orderData.purchase_units[0].payments.captures[0];
                 alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                sendData()
+                function sendData(){
+                    fetch(url,{
+                        method : "POST",
+                        headers:{
+                            "Content-type":"application/json",
+                            "X-CSRFToken":csrftoken,
+                        },
+                        body: JSON.stringify({
+                            transID : orderData.id,
+                            payment_method: "Paypal",
+                            status: orderData.status,
+                        }),
+                    })
+                    //.then (response => response.json())
+                    //.then(data => console.log(data));
+                }
 
                 // Replace the above to show a success message within this page, e.g.
                 // const element = document.getElementById('paypal-button-container');

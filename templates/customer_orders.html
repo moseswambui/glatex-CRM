@@ -1,0 +1,160 @@
+{%extends 'customer_base.html' %}
+{%load static%}
+{%block content%}
+
+<body>
+
+    <div class="body-wrapper">
+
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="breadcrumb-content">
+                    <ul>
+                        <li><a href="{%url 'shop'%}">Orders</a></li>
+                        <li class="active">Order Details</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Li's Breadcrumb Area End Here -->
+        <!--Shopping Cart Area Strat-->
+        <div class="Shopping-cart-area pt-60 pb-60">
+            <div class="container">
+               
+
+                    <div class="col-12">
+                        <form action="#">
+
+                            <div class="table-content table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="li-product-remove">Name</th>
+                                            <th class="li-product-thumbnail">status</th>
+                                            <th class="cart-product-name">Amount Paid</th>
+                                            <th class="li-product-price">Payment Method</th>
+                                            <th class="li-product-quantity">Date Ordered</th>
+                                            
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for order in orders %}
+                                       
+                                        <tr>
+                                            
+                                            <td class="li-product-name"><a
+                                                    href="">{{order.}}</a>
+                                            </td>
+                                            <td class="li-product-price"><span
+                                                    class="amount">{{order.status}}</span></td>
+                                            
+                                                    <td class="li-product-name"><a
+                                                        href="{{cart_item.product.get_url}}">{{cart_item.product.product_name}}</a>
+                                                </td>
+                                                <td class="li-product-name"><a
+                                                    href="{{cart_item.product.get_url}}">{{order.payment_method}}</a>
+                                            </td>
+                                            <td class="product-subtotal"><span
+                                                    class="amount">{{order.created_at}}</span></td>
+                                        </tr>
+                                     {%endfor%}
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                           
+                           
+                        </form>
+                    </div>
+
+                </div>
+               
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+<script>
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+   var url ="{% url 'payments' %}"
+    const csrftoken = getCookie('csrftoken');
+    
+    
+    paypal.Buttons({
+
+        style: {
+            color:  'blue',
+            shape:  'rect',
+            label:  'pay',
+            height: 40
+        },
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '5.5'
+                    }
+                }]
+            });
+        },
+
+        // Finalize the transaction
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (orderData) {
+                // Successful capture! For demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                var transaction = orderData.purchase_units[0].payments.captures[0];
+                alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                sendData()
+                function sendData(){
+                    fetch(url,{
+                        method : "POST",
+                        headers:{
+                            "Content-type":"application/json",
+                            "X-CSRFToken":csrftoken,
+                        },
+                        body: JSON.stringify({
+                            transID : orderData.id,
+                            payment_method: "Paypal",
+                            status: orderData.status,
+                        }),
+                    })
+                    //.then (response => response.json())
+                    //.then(data => console.log(data));
+                }
+
+                // Replace the above to show a success message within this page, e.g.
+                // const element = document.getElementById('paypal-button-container');
+                // element.innerHTML = '';
+                // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                // Or go to another URL:  actions.redirect('thank_you.html');
+            });
+        }
+
+
+    }).render('#paypal-button-container');
+</script>
+
+</html>
+{%endblock%}

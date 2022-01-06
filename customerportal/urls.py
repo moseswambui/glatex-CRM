@@ -13,6 +13,8 @@ urlpatterns = [
     path("shop/category/<slug:category_slug>/",views.Shop, name="product_by_category"),
     path("shop/category/<slug:producttype_slug>/",views.Shop, name="product_by_type"),
     path("shop/category/<slug:producttag_slug>/",views.Shop, name="product_by_tag"),
+    path("payment", views.OnlinePayment, name='payments'),
+    path("orders", views.Orders, name='orders'),
 
     path("shop/category/<slug:category_slug>/<slug:product_slug>",views.ProductDetail, name="product_detail"),
     path("about",views.AboutUs, name="aboutus"),

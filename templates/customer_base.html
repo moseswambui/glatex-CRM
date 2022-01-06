@@ -100,9 +100,9 @@
                                             <div class="ht-setting-trigger"><span>Accounts</span></div>
                                             <div class="setting ht-setting">
                                                 <ul class="ht-setting-list">
-                                                    <li><a href="login-register.html">Sign Up</a></li>
-                                                    <li><a href="checkout.html">Login </a></li>
-                                                    <li><a href="login-register.html">Checkout</a></li>
+                                                    <li><a href="">Sign Up</a></li>
+                                                    <li><a href="">Login </a></li>
+                                                    <li><a href="">Checkout</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -178,14 +178,14 @@
                                             <span></span>
                                             <div class="minicart">
                                                 <ul class="minicart-product-list">
-                                                    {% for product in products %}
+                                                    {% for cart_item in cart_items %}
                                                     <li>
                                                         <a href="" class="minicart-product-image">
-                                                            <img src="{% static 'customerportal/images/product/small-size/1.jpg' %}" alt="cart products">
+                                                            <img src="{{cart_item.product.image.url}}" alt="cart products">
                                                         </a>
                                                         <div class="minicart-product-details">
                                                             <h6><a href="">None</a></h6>
-                                                            <span>{{product.price}}</span>
+                                                            <span>{{cart_item.product.price}}</span>
                                                         </div>
                                                         <button class="close">
                                                             <i class="fa fa-close"></i>
@@ -451,32 +451,24 @@
                                         <h3 class="footer-block-title">Follow Us</h3>
                                         <ul class="social-link">
                                             <li class="twitter">
-                                                <a href="" data-toggle="tooltip" target="_blank" title="Twitter">
+                                                <a href="www.instagram.com/glatexsignsafrica/" data-toggle="tooltip" target="_blank" title="Twitter">
                                                     <i class="fa fa-twitter"></i>
                                                 </a>
                                             </li>
-                                            <li class="rss">
-                                                <a href="" data-toggle="tooltip" target="_blank" title="RSS">
-                                                    <i class="fa fa-rss"></i>
-                                                </a>
-                                            </li>
-                                            <li class="google-plus">
-                                                <a href="" data-toggle="tooltip" target="_blank" title="Google +">
-                                                    <i class="fa fa-google-plus"></i>
-                                                </a>
-                                            </li>
+                                           
+                                            
                                             <li class="facebook">
-                                                <a href="" data-toggle="tooltip" target="_blank" title="Facebook">
+                                                <a href="facebook.com/glatexsignsafrica" data-toggle="tooltip" target="_blank" title="Facebook">
                                                     <i class="fa fa-facebook"></i>
                                                 </a>
                                             </li>
                                             <li class="youtube">
-                                                <a href="" data-toggle="tooltip" target="_blank" title="Youtube">
+                                                <a href="facebook.com/glatexsignsafrica" data-toggle="tooltip" target="_blank" title="Youtube">
                                                     <i class="fa fa-youtube"></i>
                                                 </a>
                                             </li>
                                             <li class="instagram">
-                                                <a href="" data-toggle="tooltip" target="_blank" title="Instagram">
+                                                <a href="www.instagram.com/glatexsignsafrica/" data-toggle="tooltip" target="_blank" title="Instagram">
                                                     <i class="fa fa-instagram"></i>
                                                 </a>
                                             </li>

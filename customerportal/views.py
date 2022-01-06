@@ -5,12 +5,37 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
 from datetime import date
 from django.db.models import Q
+from django.core.mail import send_mail
+import json
+from django.template.loader import render_to_string
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
+def OnlinePayment(request):
+    body = json.loads(request.body)
+    #store transaction details
+
+    payment = Payment(payment_id=body['transID'],payment_method = body['payment_method'], status = body['status'])
+    payment.save()
+    return render(request, 'customer_checkout.html')
+
+def Orders(request):
+    orders = Payment.objects.all()
+    context = {
+        'orders':orders
+    }
+    return render(request, 'customer_orders.html', context)
 
 def Index(request):
     products = Product.objects.all()
-    large_format = Product.objects.all()
-    context = {'products':products}
+    large_format = ProductType.objects.filter(type_name='Large Format')
+    services = Service.objects.all()
+    
+   
+    context = {
+        'products':products,
+        'large_format':large_format,
+        'services': services,
+        }
     return render(request,"index.html",context )
 
 def Shop(request,category_slug=None):
@@ -119,6 +144,14 @@ def Cart(request, total=0,quantity=0,cart_items=None):
         'tax':tax,
         'grand_total':grand_total,
     } 
+    send_mail(
+        "oder fullfillment",
+        "Order Received successfully",
+        "moseswambui044@gmail.com",
+        ['blackuser321@gmail.com'],
+        fail_silently=False,
+
+    )
     return render(request, 'customer_cart.html',context)
 
 def remove_cart(request, product_id):

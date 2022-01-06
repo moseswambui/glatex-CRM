@@ -173,3 +173,12 @@ class Order(models.Model):
     product_name = models.CharField(max_length=30, null=True, blank=True)
     first_name =models.CharField(max_length=34, null=True, blank=True)
 
+class Payment(models.Model):
+    name = models.CharField(max_length=30 , null=True,blank=True)
+    payment_id = models.CharField(max_length=30 , null=True,blank=True)
+    amount_paid =models.CharField(max_length=50, null=True, blank=True)
+    payment_method = models.CharField(max_length=30 , null=True,blank=True)
+    status = models.CharField(max_length=80,blank=True, null=True)
+    created_at =models.DateTimeField(auto_now_add=True)
+
+

@@ -18,7 +18,7 @@
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="{% url 'index'%}">Glatex Admin Signs</a>
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="{% url 'index'%}">Admin Dashboard</a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav nav-icons">
                             <li class="active"><a href="#"><i class="icon-envelope"></i></a></li>
@@ -33,9 +33,9 @@
                         </form>
                         <ul class="nav pull-right">
                            
-                            <li><a href="#">Clement Ngatia </a></li>
+                            <li><a href="#">Clemen Ngatia </a></li>
                             <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="{% static 'adminportal/images/user.png'" class="nav-avatar" />
+                                <img src="{% static 'adminportal/images/user.png'%}" class="nav-avatar" />
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Your Profile</a></li>
@@ -61,22 +61,20 @@
                             <ul class="widget widget-menu unstyled">
                                 <li class="active"><a href="{% url 'index'%}"><i class="menu-icon icon-dashboard"></i>Dashboard
                                 </a></li>
-                                <li><a href="{% url 'inventory'%}"><i class="menu-icon icon-bullhorn"></i>Inventory </a>
+                                <li><a href="{% url 'inventory'%}"><i class="menu-icon icon-bullhorn"></i>Orders <b class="label orange pull-right"></b> </a>
                                 </li>
-                                <li><a href="{% url 'messages'%}"><i class="menu-icon icon-inbox"></i>Inventory Sales <b class="label green pull-right">
-                                    11</b> </a></li>
-                                <li><a href="{% url 'admininvoices'%}"><i class="menu-icon icon-tasks"></i>Invoices <b class="label orange pull-right">
+                                
+                                <li><a href="{% url 'admininvoices'%}"><i class="menu-icon icon-tasks"></i>Sales <b class="label orange pull-right">
                                     19</b> </a></li>
                             </ul>
                             <!--/.widget-nav-->
                             
                             
                             <ul class="widget widget-menu unstyled">
-                                <li><a href="{% url 'meetings' %}"><i class="menu-icon icon-book"></i>Weekly Meetings </a></li>
-                                <li><a href="{% url 'advert'%}"><i class="menu-icon icon-table"></i>Post Adverts </a></li>
-                                <li><a href="{% url 'addoffice'%}"><i class="menu-icon icon-table"></i>Add Office </a></li>
-                                <li><a href="{% url 'addadmin'%}"><i class="menu-icon icon-table"></i>Add Admin </a></li>
-                                <li><a href="{% url 'clients'%}"><i class="menu-icon icon-paste"></i>Clients </a></li>
+                                <li><a href="{% url 'meetings' %}"><i class="menu-icon icon-book"></i>Accounts </a></li>
+                                <li><a href="{% url 'advert'%}"><i class="menu-icon icon-table"></i>Promotional codes </a></li>
+                                <li><a href="{% url 'addoffice'%}"><i class="menu-icon icon-table"></i>Add Order </a></li>
+ 
                             </ul>
                             <!--/.widget-nav-->
                             <ul class="widget widget-menu unstyled">
