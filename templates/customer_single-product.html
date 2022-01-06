@@ -125,7 +125,7 @@
                                                
                                                 {% if in_cart%}
                                                 <a href="" class="btn btn-success" type="submit">Added to cart <i class="fa fa-check"></i> </a>
-                                                <a href="{% url 'cart'}" class="btn btn-outline-primary" type="submit">View cart <i class="fa fa-eye"></i> </a>
+                                                <a href="{% url 'cart'%}" class="btn btn-outline-primary" type="submit">View cart <i class="fa fa-eye"></i> </a>
                                                 {%else%}
                                                 <button  class="add-to-cart btn-success" type="submit">Add to cart</button>
                                                 {%endif%}

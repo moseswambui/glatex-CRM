@@ -29,9 +29,13 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="li-product-remove">Name</th>
+                                            <th class="li-product-remove">Names</th>
+                                            <th class="li-product-remove">Email Address</th>
+                                            <th class="li-product-remove">Area</th>
+                                            <th class="li-product-remove">Item Purchased</th>
+                                            <th class="li-product-remove">Amount Paid</th>
+
                                             <th class="li-product-thumbnail">status</th>
-                                            <th class="cart-product-name">Amount Paid</th>
                                             <th class="li-product-price">Payment Method</th>
                                             <th class="li-product-quantity">Date Ordered</th>
                                             
@@ -44,19 +48,32 @@
                                         <tr>
                                             
                                             <td class="li-product-name"><a
-                                                    href="">{{order.}}</a>
+                                                    href="">{{order.name}}</a>
                                             </td>
                                             <td class="li-product-price"><span
-                                                    class="amount">{{order.status}}</span></td>
+                                                    class="amount">{{order.email_address}}</span>
+                                            </td>
                                             
-                                                    <td class="li-product-name"><a
-                                                        href="{{cart_item.product.get_url}}">{{cart_item.product.product_name}}</a>
-                                                </td>
-                                                <td class="li-product-name"><a
-                                                    href="{{cart_item.product.get_url}}">{{order.payment_method}}</a>
+                                            <td class="li-product-name"><a
+                                                        href="{{cart_item.product.get_url}}">{{order.area}}</a>
+                                            </td>
+                                            <td class="li-product-name"><a
+                                                    href="{{cart_item.product.get_url}}">{{order.item}}</a>
                                             </td>
                                             <td class="product-subtotal"><span
-                                                    class="amount">{{order.created_at}}</span></td>
+                                                    class="amount">{{order.amount_paid}}</span>
+                                            </td>
+                                            <td class="product-subtotal"><span
+                                                class="amount">{{order.status}}</span>
+                                            </td>
+                                            <td class="product-subtotal"><span
+                                                class="amount">{{order.payment_method}}</span>
+                                            </td>
+                                            <td class="product-subtotal"><span
+                                            class="amount">{{order.created_at}}</span>
+                                            </td>
+                                            
+                            
                                         </tr>
                                      {%endfor%}
                                     </tbody>

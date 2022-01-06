@@ -47,7 +47,7 @@ class Product(models.Model):
     product_name = models.CharField(max_length=50, blank=True)
     product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE,blank=True,null=True)
     slug = models.SlugField(max_length=50,unique=True)
-    description = models.TextField(max_length=255,blank=True)
+    description = models.TextField(max_length=455,blank=True)
     price = models.IntegerField()
     tag = models.ForeignKey(ProductTag, on_delete=models.CASCADE,blank=True, null=True)
     image = models.ImageField(upload_to ='customerportal/uploaded/products')
@@ -180,5 +180,7 @@ class Payment(models.Model):
     payment_method = models.CharField(max_length=30 , null=True,blank=True)
     status = models.CharField(max_length=80,blank=True, null=True)
     created_at =models.DateTimeField(auto_now_add=True)
-
+    email_address = models.EmailField(blank=True, null=True)
+    area = models.CharField(max_length=80,blank=True, null=True)
+    item = models.CharField(max_length=200,blank=True, null=True)
 

@@ -138,7 +138,9 @@
 }
 
 
-   var url ="{% url 'payments' %}"
+    var url ="{% url 'payments' %}"
+    
+ 
     const csrftoken = getCookie('csrftoken');
     
     
@@ -179,6 +181,13 @@
                             transID : orderData.id,
                             payment_method: "Paypal",
                             status: orderData.status,
+                            name : orderData.purchase_units.shipping.name.full_name,
+                            amount_paid : orderData.purchase_units.amount.value,
+                            email_address : orderData.purchase_units.payee.email_address,
+                            area : orderData.purchase_units.address.admin_area_2,
+                            
+                           
+                            
                         }),
                     })
                     //.then (response => response.json())

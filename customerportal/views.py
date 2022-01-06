@@ -11,11 +11,13 @@ from django.template.loader import render_to_string
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 def OnlinePayment(request):
+    print("we are here")
     body = json.loads(request.body)
     #store transaction details
-
-    payment = Payment(payment_id=body['transID'],payment_method = body['payment_method'], status = body['status'])
+    print("we are here")
+    payment = Payment(name = body['name'],amount_paid=body['amount_paid'],email_address=body['email_address'], area=body['area'], payment_id=body['transID'],payment_method = body['payment_method'], status = body['status'])
     payment.save()
+    print("payment saved")
     return render(request, 'customer_checkout.html')
 
 def Orders(request):
@@ -129,6 +131,12 @@ def Cart(request, total=0,quantity=0,cart_items=None):
     try:
         cart= MyCart.objects.get(cart_id = _cart_id(request))
         cart_items = CartItem.objects.filter(cart=cart)
+        my_items = []
+        for item in cart_items:
+            product_name = item.product.product_name
+            my_items.append(product_name)
+        string_items = ''.join([str(item) for item in my_items])
+        print(string_items)
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
@@ -143,6 +151,7 @@ def Cart(request, total=0,quantity=0,cart_items=None):
         'cart_items':cart_items,
         'tax':tax,
         'grand_total':grand_total,
+        'string_items':string_items
     } 
     send_mail(
         "oder fullfillment",
