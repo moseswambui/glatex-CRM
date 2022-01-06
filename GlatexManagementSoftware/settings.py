@@ -156,6 +156,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = "/media/"
+MEDIA_URL = "/staticfiles/media/"
+
 MEDIA_ROOT = os.path.join(BASE_DIR,"static/media")
 
 django_heroku.settings(locals())
