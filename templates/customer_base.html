@@ -184,7 +184,7 @@
                                                             <img src="{{cart_item.product.image.url}}" alt="cart products">
                                                         </a>
                                                         <div class="minicart-product-details">
-                                                            <h6><a href="">None</a></h6>
+                                                            <h6><a href="">{{cart_item.product.product_name}}</a></h6>
                                                             <span>{{cart_item.product.price}}</span>
                                                         </div>
                                                         <button class="close">
@@ -193,12 +193,12 @@
                                                     </li>
                                                    {%endfor%}
                                                 </ul>
-                                                <p class="minicart-total">SUBTOTAL: <span>Ksh.0</span></p>
+                                                <p class="minicart-total">SUBTOTAL: <span>Ksh.{{grand_total}}</span></p>
                                                 <div class="minicart-button">
                                                     <a href="" class="li-button li-button-dark li-button-fullwidth li-button-sm">
                                                         <span>View Full Cart</span>
                                                     </a>
-                                                    <a href="{%url 'checkout'%}" class="li-button li-button-fullwidth li-button-sm">
+                                                    <a href="{%url 'cart'%}" class="li-button li-button-fullwidth li-button-sm">
                                                         <span>Checkout</span>
                                                     </a>
                                                 </div>
@@ -225,51 +225,12 @@
                                        <ul>
                                            <li class=""><a href="{%url 'homeindex'%}">Home</a></li>
                                            <li class="megamenu-holder"><a href="{%url 'shop'%}">Shop</a>
-                                               <ul class="megamenu hb-megamenu">
-                                                   <li><a href="{%url 'shop'%}">Tshirt Printing</a>
-                                                       <ul>
-                                                           <li><a href="">Roundkneck tshirt</a></li>
-                                                           <li><a href="">Polo Tshirts</a></li>
-                                                           <li><a href="">v-Shaped Tshirts</a></li>
-                                                          
-                                                       </ul>
-                                                   </li>
-                                                   <li><a href="{%url 'shop'%}">Promotional Item Printing</a>
-                                                       <ul>
-                                                           <li><a href="">Normal Mugs</a></li>
-                                                           <li><a href="">Magic Mugs</a></li>
-                                                           <li><a href="">Caps</a></li>
-                                                           <li><a href="">Work Shirts</a></li>
-                                                           <li><a href="">Campaign Items</a></li>
-                                                          
-                                                       </ul>
-                                                   </li>
-                                                   
-                                                  
-                                                </li>
-                                               </ul>
+                                              
                                            </li>
 
                                            <li class="megamenu-holder"><a href="{%url 'services'%}">Services</a>
                                                 <ul class="megamenu hb-megamenu">
-                                                        <li><a href="{%url 'shop'%}">Office Branding</a>
-                                                            <ul>
-                                                                <li><a href="">Full Office Branding</a></li>
-                                                                <li><a href="">Half Office Branding</a></li>
-                                                                
-                                                            
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="{%url 'shop'%}">Vehicle Branding</a>
-                                                            <ul>
-                                                                <li><a href="">Probox </a></li>
-                                                                <li><a href="">Lorry Branding</a></li>
-                                                                <li><a href="">4 x 4 Branding</a></li>
-                                                                <li><a href="">Van Branding</a></li>
-                                                                <li><a href="">Motorbike branding</a></li>
-                                                            
-                                                            </ul>
-                                                    </li>
+                                                      
                                                 </ul>
                                             </li>
                                             <li class="megamenu-holder"><a href="{%url 'aboutus'%}">About Us</a>
@@ -278,24 +239,7 @@
 
                                             <li class="megamenu-holder"><a href="{%url 'contactus'%}">Contact Us</a>
                                                 <ul class="megamenu hb-megamenu">
-                                                        <li><a href="{%url 'shop'%}">Office Branding</a>
-                                                            <ul>
-                                                                <li><a href="">Full Office Branding</a></li>
-                                                                <li><a href="">Half Office Branding</a></li>
-                                                                
-                                                            
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="{%url 'shop'%}">Vehicle Branding</a>
-                                                            <ul>
-                                                                <li><a href="">Probox </a></li>
-                                                                <li><a href="">Lorry Branding</a></li>
-                                                                <li><a href="">4 x 4 Branding</a></li>
-                                                                <li><a href="">Van Branding</a></li>
-                                                                <li><a href="">Motorbike branding</a></li>
-                                                            
-                                                            </ul>
-                                                    </li>
+                                                        
                                                 </ul>
                                             </li>
                                           
