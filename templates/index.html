@@ -132,7 +132,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <h4><a class="product_name" href="{{product.get_url}}">{{product.description}}</a></h4>
+                                                    <h4><a class="product_name" href="{{product.get_url}}">{{product.description | truncatewords:"20"}}</a></h4>
                                                     <div class="price-box">
                                                         <span class="new-price new-price-2">Ksh.{{product.price}}</span>
                                                         
@@ -186,7 +186,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <h4><a class="product_name" href="">{{product.description}}</a></h4>
+                                                    <h4><a class="product_name" href="">{{product.description | truncatewords:"20"}}</a></h4>
                                                     <div class="price-box">
                                                         <span class="new-price">Ksh. {{product.price}}</span>
                                                     </div>
