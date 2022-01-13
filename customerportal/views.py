@@ -153,6 +153,7 @@ def Cart(request, total=0,quantity=0,cart_items=None):
         'grand_total':grand_total,
         'string_items':string_items
     } 
+    """
     send_mail(
         "oder fullfillment",
         "Order Received successfully",
@@ -161,6 +162,7 @@ def Cart(request, total=0,quantity=0,cart_items=None):
         fail_silently=False,
 
     )
+    """
     return render(request, 'customer_cart.html',context)
 
 def remove_cart(request, product_id):
@@ -215,3 +217,6 @@ def search(request):
         'products':products,
     }
     return render(request,'customer_shop.html',context)
+
+def Dashboard(request):
+    return render(request,'customer_dashboard.html')

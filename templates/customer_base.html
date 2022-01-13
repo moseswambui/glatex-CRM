@@ -6,7 +6,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> Glatex Signs Africa || Customer Portal</title>
+        <title> Glatex Signs Africa</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
@@ -97,26 +97,17 @@
                                     <ul class="ht-menu">
                                         <!-- Begin Setting Area -->
                                         <li>
-                                            <div class="ht-setting-trigger"><span>Accounts</span></div>
-                                            <div class="setting ht-setting">
-                                                <ul class="ht-setting-list">
-                                                    <li><a href="">Sign Up</a></li>
-                                                    <li><a href="">Login </a></li>
-                                                    <li><a href="">Checkout</a></li>
-                                                </ul>
-                                            </div>
+                                            <a href="">
+                                                <span class="links">Sign In</span>
+                                            </a>
                                         </li>
-                                        <!-- Setting Area End Here -->
-                                        <!-- Begin Currency Area -->
                                         <li>
-                                            <span class="currency-selector-wrapper">Order :</span>
-                                            <div class=""><span>Ksh. </span></div>
-                                            
+                                            <a href="">
+                                                <span class="links">Sign Up</span>
+                                            </a>
                                         </li>
-                                        <!-- Currency Area End Here -->
-                                        <!-- Begin Language Area -->
                                         
-                                        <!-- Language Area End Here -->
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -131,8 +122,8 @@
                             <!-- Begin Header Logo Area -->
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
-                                    <a href="">
-                                        <img src="{% static 'customerportal/images/menu/Glatex.PNG' %}" alt="">
+                                    <a href="{%url 'homeindex'%}">
+                                        <img src="{% static 'customerportal/images/logos/Glatex.png' %}" alt="Glatex Signs Africa Logo">
                                     </a>
                                 </div>
                             </div>
@@ -181,7 +172,7 @@
                                                     {% for cart_item in cart_items %}
                                                     <li>
                                                         <a href="" class="minicart-product-image">
-                                                            <img src="{{cart_item.product.image.url}}" alt="cart products">
+                                                            <img src="{{cart_item.product.image.url}}" alt="glatex signs africa cart items">
                                                         </a>
                                                         <div class="minicart-product-details">
                                                             <h6><a href="">{{cart_item.product.product_name}}</a></h6>

@@ -19,7 +19,7 @@
                                             <h2>Cap Printing | Personal & Campaign</h2>
                                             <h3>Starting at <span>Ksh.400</span></h3>
                                             <div class="default-btn slide-btn">
-                                                <a class="links" href="">Order Now</a>
+                                                <a class="links" href="{%url 'shop'%}">Order Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -32,7 +32,7 @@
                                             <h2>Polo Tshirt Printing | Custom Design</h2>
                                             <h3>Starting at <span>Ksh.950</span></h3>
                                             <div class="default-btn slide-btn">
-                                                <a class="links" href="">Order Now</a>
+                                                <a class="links" href="{%url 'shop'%}">Order Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                             <h2>Cap Printing</h2>
                                             <h3>Starting at <span>Ksh.8,500</span></h3>
                                             <div class="default-btn slide-btn">
-                                                <a class="links" href="">Order Now</a>
+                                                <a class="links" href="{%url 'shop'%}">Order Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -58,12 +58,12 @@
                         <div class="col-lg-4 col-md-4 text-center pt-sm-30 pt-xs-30">
                             <div class="li-banner">
                                 <a href="#">
-                                    <img src="{% static 'customerportal/images/banner/black-and-white-t-shirt-2.png' %}" width="10" height="200" alt="">
+                                    <img src="{% static 'customerportal/images/banner/black-and-white-t-shirt-2.png' %}" width="10" height="200" alt="glatex signs africa branded tshirts">
                                 </a>
                             </div>
                             <div class="li-banner mt-15 mt-md-30 mt-xs-25 mb-xs-5">
                                 <a href="#">
-                                    <img src="{% static 'customerportal/images/banner/hoods.jpg' %}"  width="70" height="200" alt="">
+                                    <img src="{% static 'customerportal/images/banner/hoods.jpg' %}"  width="70" height="200" alt="car branding glatex signs africa">
                                 </a>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                         <div class="col-lg-12">
                             <div class="static-top-content mt-sm-30">
                                 Gift Special: Gift every single day on Weekends - New Coupon code "
-                                <span>GlatexSignsAfrica</span>
+                                <span>Glatex Signs Africa</span>
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                             <div class="li-product-tab">
                                 <ul class="nav li-product-menu">
                                    <li><a class="active" data-toggle="tab" href="#large-format-printing"><span>Custom Clothing Designs</span></a></li>
-                                   <li><a data-toggle="tab" href="#screen-printing"><span>Design Promotional Items</span></a></li>
+                                   <li><a data-toggle="tab" href="#screen-printing"><span>Promotional Items Design</span></a></li>
                                    
                                 </ul>               
                             </div>
@@ -112,7 +112,7 @@
                                         <div class="single-product-wrap">
                                             <div class="product-image">
                                                 <a href="{{product.get_url}}">
-                                                    <img src={{product.image.url}} alt="">
+                                                    <img src={{product.image.url}} alt="glatex signs africa branded item">
                                                 </a>
                                                 
                                             </div>
@@ -141,7 +141,7 @@
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
-                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
+                                                        <li class="add-cart active"><a href="{{product.get_url}}">View Details</a></li>
                                                         <li><a class="links-details" href=""><i class="fa fa-heart-o"></i></a></li>
                                                         
                                                     </ul>
@@ -166,7 +166,7 @@
                                         <div class="single-product-wrap">
                                             <div class="product-image">
                                                 <a href="">
-                                                    <img src={{product.image.url}} alt="Li's Product Image">
+                                                    <img src={{product.image.url}} alt="glatex signs africa promotional items branding">
                                                 </a>
                                                
                                             </div>
@@ -174,7 +174,7 @@
                                                 <div class="product_desc_info">
                                                     <div class="product-review">
                                                         <h5 class="manufacturer">
-                                                            <a href="">{{product.product_name}}</a>
+                                                            <a href="{{product.get_url}}">{{product.product_name}}</a>
                                                         </h5>
                                                         <div class="rating-box">
                                                             <ul class="rating">
@@ -193,7 +193,7 @@
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
-                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
+                                                        <li class="add-cart active"><a href="{{product.get_url}}">View Details</a></li>
                                                         <li><a class="links-details" href=""><i class="fa fa-heart-o"></i></a></li>
                                                         <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                     </ul>
@@ -223,8 +223,8 @@
                                     <span>Large Format Printing</span>
                                 </h2>
                                 <ul class="li-sub-category-list">
-                                    <li class="active"><a href="">Cloth Printinting</a></li>
-                                    <li><a href="">Promotional Items</a></li>
+                                    <li class="active"><a href="{%url 'shop'%}">Cloth Printinting</a></li>
+                                    <li><a href="{%url 'shop'%}">Promotional Items</a></li>
                                     <li><a href="">Popular</a></li>
                                 </ul>
                             </div>
@@ -237,8 +237,8 @@
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
                                             <div class="product-image">
-                                                <a href="">
-                                                    <img src="{% static 'customerportal/images/product/large-size/rollup banners.jpg' %}" alt="Li's Product Image">
+                                                <a href="{{product.get_url}}">
+                                                    <img src="{{product.image.url}}" alt="Glatex signs africa large format printing">
                                                 </a>
                                                 
                                             </div>
@@ -246,7 +246,7 @@
                                                 <div class="product_desc_info">
                                                     <div class="product-review">
                                                         <h5 class="manufacturer">
-                                                            <a href="">Broad Base</a>
+                                                            <a href="{{product.get_url}}">Broad Base</a>
                                                         </h5>
                                                         <div class="rating-box">
                                                             <ul class="rating">
@@ -265,7 +265,7 @@
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
-                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
+                                                        <li class="add-cart active"><a href="{{product.get_url}}">View Details</a></li>
                                                         <li><a class="links-details" href=""><i class="fa fa-heart-o"></i></a></li>
                                                         <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                     </ul>
@@ -310,7 +310,7 @@
                                         <div class="single-product-wrap">
                                             <div class="product-image">
                                                 <a href="">
-                                                    <img src="{{service.image.url }}" alt="Li's Product Image">
+                                                    <img src="{{service.image.url }}" alt="Glatex signs africa car branding">
                                                 </a>
                                                 
                                             </div>
@@ -337,7 +337,7 @@
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
-                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
+                                                        <li class="add-cart active"><a href="#">View Details</a></li>
                                                         <li><a class="links-details" href=""><i class="fa fa-heart-o"></i></a></li>
                                                         <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                     </ul>
