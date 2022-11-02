@@ -1,4 +1,4 @@
-from django.db import models
+"""from django.db import models
 from django.db.models import fields
 from django.db.models.fields import Field
 from django.forms import ModelForm, widgets
@@ -39,7 +39,7 @@ class AdminForm(forms.ModelForm):
 
 class CrreateUserForm(UserCreationForm):
     class Meta:
-        model = User
+        #model = User
         fields= ['username', 'email', 'password1', 'password2', 'first_name','last_name']
 
         widgets ={
@@ -972,3 +972,4 @@ class TownClothingExpensesForm(forms.ModelForm):
 
 
 
+"""

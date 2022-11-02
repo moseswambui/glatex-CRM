@@ -1,4 +1,4 @@
-from django.contrib import admin
+"""from django.contrib import admin
 from .models import Category,ServiceType,Service
 
 # Register your models here.
@@ -18,4 +18,4 @@ class ServiceTypeAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, ServiceCategoryAdmin)
 admin.site.register(Service,ServiceAdmin)
-admin.site.register( ServiceType,ServiceTypeAdmin)
+admin.site.register( ServiceType,ServiceTypeAdmin)"""

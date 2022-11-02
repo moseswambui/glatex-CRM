@@ -3,24 +3,30 @@ from django.urls import reverse
 from django.db.models.deletion import SET_NULL
 from django.db.models.fields import CharField, NullBooleanField
 from django.db.models.fields.related import ManyToManyField, OneToOneField
-
+from accounts.models import Account
 class Category(models.Model):
-    category_name = models.CharField(max_length=50,blank=True, null=True, unique=True)
+    name = models.CharField(max_length=50,blank=True, null=True, unique=True)
     slug = models.CharField(max_length=50, unique=True)
     description = models.TextField(max_length=255, blank=True)
 
     class Meta:
-        verbose_name = 'category'
-        verbose_name_plural='categories'
+        verbose_name = 'Category'
+        verbose_name_plural='Categories'
 
     def get_url(self):
         return reverse('product_by_category',args=[self.slug])
 
     def __str__(self):
-        return self.category_name
+        return self.name
 
 class ProductType(models.Model):
-    type_name = models.CharField(max_length=50,blank=True, null=True, unique=True)
+    name = models.CharField(max_length=50,blank=True, null=True, unique=True)
+    category = models.ForeignKey(
+        Category,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE
+    )
     slug = models.CharField(max_length=50, unique=True)
     
     class Meta:
@@ -31,10 +37,16 @@ class ProductType(models.Model):
         return reverse('product_by_type',args=[self.slug])
 
     def __str__(self):
-        return self.type_name
+        return self.name
 
 class ProductTag(models.Model):
     name = models.CharField(max_length=50,blank=True,null=True)
+    type = models.ForeignKey(
+        ProductType,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE
+    )
     slug = models.CharField(max_length=50, unique=True)
 
     def get_url(self):
@@ -43,9 +55,10 @@ class ProductTag(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
-    product_name = models.CharField(max_length=50, blank=True)
-    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE,blank=True,null=True)
+    name = models.CharField(max_length=50, blank=True)
+    type = models.ForeignKey(ProductType, on_delete=models.CASCADE,blank=True,null=True)
     slug = models.SlugField(max_length=50,unique=True)
     description = models.TextField(max_length=455,blank=True)
     price = models.IntegerField()
@@ -57,19 +70,22 @@ class Product(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = 'Product'
+        verbose_name_plural='Products'
+
     def get_url(self):
         return reverse('product_detail',args=[ self.category.slug, self.slug])
 
     def __str__(self):
-        return self.product_name
-
+        return self.name
 class ProductImages(models.Model):
     tag_identifier = models.CharField(max_length=15,blank=True, null=True)
-    product_image = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(blank=True, null=True, upload_to ='customerportal/uploaded/products')
 
     def __str__(self):
-        return self.tag_identifier
+        return str(self.product)
 
 class VariationManager(models.Manager):
     def color(self):
@@ -93,9 +109,12 @@ class Variation(models.Model):
     created_date = models.DateTimeField(auto_now=True)
 
     objects = VariationManager()
+    class Meta:
+        verbose_name = ("Variation")
+        verbose_name_plural =("Variations")
 
     def __str__(self):
-        return self.variation_category
+        return self.variation_value
 
 
 class ServiceCategory(models.Model):
@@ -104,8 +123,8 @@ class ServiceCategory(models.Model):
     description = models.TextField(max_length=255, blank=True)
 
     class Meta:
-        verbose_name = 'servicecategory'
-        verbose_name_plural='servicecategories'
+        verbose_name = 'Service Category'
+        verbose_name_plural='Service Categories'
 
     def get_url(self):
         return reverse('service_by_category',args=[self.slug])
@@ -147,20 +166,32 @@ class MyCart(models.Model):
     cart_id=models.CharField(max_length=250, blank=True)
     date_added = models.DateField(auto_now_add=True)
     
-    def __str(self):
+    class Meta:
+        verbose_name = 'My Cart'
+        verbose_name_plural='My Carts'
+        
+    def __str__(self):
         return self.cart_id
 
 class CartItem(models.Model):
+    user = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     variations = models.ManyToManyField(Variation, blank=True)
     cart = models.ForeignKey(MyCart, on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
+    class Meta:
+        verbose_name = 'Cart Item'
+        verbose_name_plural='Cart Items'
+
+    def __int__(self):
+        return self.id
+
+    @property
     def sub_total(self):
         return self.product.price * self.quantity
 
-    def __unicode__(self):
-        return self.product
+   
 
 class ContactUs(models.Model):
     name = models.CharField(max_length=30 , null=True,blank=True)
@@ -169,9 +200,7 @@ class ContactUs(models.Model):
     subject = models.CharField(max_length=80,blank=True, null=True)
     message =models.TextField(null=True, blank=True)
 
-class Order(models.Model):
-    product_name = models.CharField(max_length=30, null=True, blank=True)
-    first_name =models.CharField(max_length=34, null=True, blank=True)
+
 
 class Payment(models.Model):
     name = models.CharField(max_length=30 , null=True,blank=True)

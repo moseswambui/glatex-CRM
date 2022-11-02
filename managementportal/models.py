@@ -5,7 +5,7 @@ from django.db.models.fields import NullBooleanField
 from django.db.models.fields.related import ManyToManyField, OneToOneField
 from django.forms.models import modelformset_factory
 from django.utils import tree
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 
 
 DEPARTMENTS = [
@@ -62,7 +62,7 @@ class GlatexManager(models.Model):
 
 class GlatexEmployee(models.Model):
    
-    Employee = models.OneToOneField(User,blank=True, null=True, on_delete=models.CASCADE)
+    #Employee = models.OneToOneField(User,blank=True, null=True, on_delete=models.CASCADE)
    
     Employee_Id_Number=models.CharField(max_length=50,null=True, blank=True)
     Employee_Birth = models.DateField(null=True, blank=True)

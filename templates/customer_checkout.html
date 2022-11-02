@@ -18,14 +18,15 @@
                     
                     <div class="row">
                         <div class="col-lg-6 col-12">
-                            <form action="#">
+                            <form action="{% url 'place_order' %}" method="POST">
+                                {% csrf_token %}
                                 <div class="checkbox-form">
                                     <h3>Billing Details</h3>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="country-select clearfix">
                                                 <label>County <span class="required">*</span></label>
-                                                <select class="nice-select wide">
+                                                <select class="nice-select wide" name="county">
                                                   <option data-display="nai">Nairobi</option>
                                                   <option value="naks">Nakuru</option>
                                                   
@@ -35,13 +36,13 @@
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>First Name <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
+                                                <input placeholder="First Name" name="first_name" type="text">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Last Name <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
+                                                <input placeholder="" type="text" name="last_name">
                                             </div>
                                         </div>
                                         
@@ -49,34 +50,39 @@
                                         <div class="col-md-12">
                                             <div class="checkout-form-list">
                                                 <label>Town / City <span class="required">*</span></label>
-                                                <input type="text">
+                                                <input type="text" name="city">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
-                                                <label>State / County <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="checkout-form-list">
-                                                <label>Postcode / Zip <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
+                                                <label>Phone Number <span class="required">*</span></label>
+                                                <input placeholder="" type="text" name="phone">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Email Address <span class="required">*</span></label>
-                                                <input placeholder="" type="email">
+                                                <input placeholder="" type="email" name="email">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
-                                                <label>Phone  <span class="required">*</span></label>
-                                                <input type="text">
+                                                <label>Zip Code <span class="required">*</span></label>
+                                                <input placeholder="" type="text" name="zip_code">
                                             </div>
                                         </div>
-                                       
+                                        <div class="col-md-6">
+                                            <div class="checkout-form-list">
+                                                <label>Address <span class="required">*</span></label>
+                                                <input type="text" name="address">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="checkout-form-list">
+                                                <label>Order Note <span class="required">*</span></label>
+                                                <input type="textarea", name="order_note">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="different-address">
                                         
@@ -118,7 +124,7 @@
                                         
                                     </div>
                                 </div>
-                            </form>
+                            
                         </div>
                         <div class="col-lg-6 col-12">
                             <div class="your-order">
@@ -128,27 +134,27 @@
                                         <thead>
                                             <tr>
                                                 <th class="cart-product-name">Product</th>
-                                                <th class="cart-product-total">Total</th>
+                                                <th class="cart-product-name">Quantity</th>
+                                                <th class="cart-product-total">Price</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for item in cart_items %}
                                             <tr class="cart_item">
-                                              <td class="cart-product-name"> Vestibulum suscipit<strong class="product-quantity"> × 1</strong></td>
-                                              <td class="cart-product-total"><span class="amount">£165.00</span></td>  
+                                              <td class="cart-product-name"> {{item.product.name}}<strong class="product-quantity"> × 1</strong></td>
+                                              <td class="cart-product-total"><span class="amount">{{item.quantity}}</span></td>  
+                                              <td class="cart-product-total"><span class="amount">{{item.product.price}}</span></td>  
                                             </tr>
-                                            <tr class="cart_item">
-                                              <td class="cart-product-name"> Vestibulum suscipit<strong class="product-quantity"> × 1</strong></td>
-                                              <td class="cart-product-total"><span class="amount">£165.00</span></td>  
-                                            </tr>
+                                           {%endfor%}
                                         </tbody>
                                         <tfoot>
                                             <tr class="cart-subtotal">
                                                 <th>Cart Subtotal</th>
-                                                <td><span class="amount">£215.00</span></td>
+                                                <td><span class="amount">{{total}}</span></td>
                                             </tr>
                                             <tr class="order-total">
                                                 <th>Order Total</th>
-                                                <td><strong><span class="amount">£215.00</span></strong></td>
+                                                <td><strong><span class="amount">{{grand_total}}</span></strong></td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -180,6 +186,8 @@
                                 </div>
                             </div>
                         </div>
+
+                    </form>
                     </div>
                 </div>
             </div>

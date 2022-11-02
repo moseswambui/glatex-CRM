@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path("",views.Index, name="homeindex"),
     path("shop",views.Shop, name="shop"),
-    path("dashboard",views.Dashboard, name="dashboard"),
+    #path("dashboard/",views.Dashboard, name="dashboard"),
 
     path("services/",views.Services, name="services"),
     path("services/category/<slug:servicecategory_slug>",views.Services, name="service_by_category"),
@@ -20,7 +20,9 @@ urlpatterns = [
 
     path("shop/category/<slug:category_slug>/<slug:product_slug>",views.ProductDetail, name="product_detail"),
     path("about",views.AboutUs, name="aboutus"),
-    path("checkout",views.Checkout, name="checkout"),
+    path("checkout/",views.Checkout, name="checkout"),
     path("contacts",views.ContactUs, name="contactus"),
     path("shop/search/",views.search, name="search"),
+
+    path("myorders",views.Orders, name="myorders"),
 ]

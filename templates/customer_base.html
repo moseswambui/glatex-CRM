@@ -86,23 +86,24 @@
                             <div class="col-lg-3 col-md-4">
                                 <div class="header-top-left">
                                     <ul class="phone-wrap">
-                                        <li><span>Telephone Enquiry:</span><a href="#">(+254) 718 423 003</a></li>
+                                        <li><span>Telephone Enquiry:</span><a href="#">(+254) 718 423 00</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <!-- Header Top Left Area End Here -->
                             <!-- Begin Header Top Right Area -->
                             <div class="col-lg-9 col-md-8">
+                                {% if user.id is None %}
                                 <div class="header-top-right">
                                     <ul class="ht-menu">
                                         <!-- Begin Setting Area -->
                                         <li>
-                                            <a href="">
+                                            <a href="{% url 'login'%}">
                                                 <span class="links">Sign In</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="{% url 'register'%}">
                                                 <span class="links">Sign Up</span>
                                             </a>
                                         </li>
@@ -110,6 +111,27 @@
                                         
                                     </ul>
                                 </div>
+                                {% else %}
+
+                                <div class="header-top-right">
+                                    <ul class="ht-menu">
+                                        <!-- Begin Setting Area -->
+                                        <li>
+                                            <a href="">
+                                                <span class="links">{{user.username}}</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'logout' %}">
+                                                <span class="links">Logout</span>
+                                            </a>
+                                        </li>
+                                        
+                                        
+                                    </ul>
+                                </div>
+
+                                {% endif %}
                             </div>
                             <!-- Header Top Right Area End Here -->
                         </div>
@@ -220,6 +242,12 @@
                                            </li>
 
                                            <li class="megamenu-holder"><a href="{%url 'services'%}">Services</a>
+                                                <ul class="megamenu hb-megamenu">
+                                                      
+                                                </ul>
+                                            </li>
+
+                                            <li class="megamenu-holder"><a href="{%url 'services'%}">Blog</a>
                                                 <ul class="megamenu hb-megamenu">
                                                       
                                                 </ul>

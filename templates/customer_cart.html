@@ -2,6 +2,11 @@
 {%load static%}
 {%block content%}
 
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="{% static 'customerportal/cart_counter.css' %}">
+
 <body>
 
     <div class="body-wrapper">
@@ -51,28 +56,49 @@
                                                         src="{{cart_item.product.image.url}}" alt="Glatex Signs Africa Cart items"
                                                         height="120" width="130"></a></td>
                                             <td class="li-product-name"><a
-                                                    href="{{cart_item.product.get_url}}">{{cart_item.product.product_name}}</a>
+                                                    href="{{cart_item.product.get_url}}">{{cart_item.product.name}}</a>
+                                                    <p>
+                                                        {% if cart_item.variations.all %}
+                                                            {% for item in cart_item.variations.all %}
+                                                            {{ item.variation_category }} : {{item.variation_value}}
+                                                            
+                                                            {%endfor%}
+
+                                                        {% endif %}
+
+                                                    </p>
                                             </td>
                                             <td class="li-product-price"><span
-                                                    class="amount">Ksh.{{cart_item.product.price}}</span></td>
+                                                    class="amount">Ksh.{{cart_item.product.price}}</span>
+                                            </td>
+                                            
                                             <td class="quantity">
-                                                <label>Quantity</label>
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="{{cart_item.quantity}}"
-                                                        type="text">
-                                                    <a href="{% url 'remove_cart' cart_item.product.id %}"
-                                                        class="dec qtybutton"><i class="fa fa-angle-down"></i></a>
-                                                    <a href="{% url 'add_cart' cart_item.product.id %}"
-                                                        class="inc qtybutton" type="button"> <i
-                                                            class="fa fa-angle-up"></i></a>
+
+                                                <div class="center">
+                                                
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <a href="{% url 'remove_cart' cart_item.product.id %}" type="button" class="btn btn-danger btn-number"  data-type="minus">
+                                                            <span class="glyphicon glyphicon-minus"></span>
+                                                            </a>
+                                                        </span>
+                                                        <input type="text" name="quant[2]" class="form-control input-number" value={{cart_item.quantity}} min="1" max="100">
+                                                        <span class="input-group-btn">
+                                                            <a href="{% url 'add_cart' cart_item.product.id %}" type="button" class="btn btn-success btn-number"  >
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+
                                                 </div>
+
                                             </td>
                                             <td class="product-subtotal"><span
                                                     class="amount">Ksh.{{cart_item.sub_total}}</span></td>
                                         </tr>
                                         {%endfor%}
                                     </tbody>
-
+                                    
                                 </table>
                             </div>
 
@@ -86,7 +112,7 @@
                                                 type="submit">
                                         </div>
                                         <div class="coupon2">
-                                            <input class="button" name="update_cart" value="Update cart" type="submit">
+                                            <input class="button" name="update_cart" value="Checkout" type="submit">
                                         </div>
                                     </div>
                                 </div>
@@ -100,6 +126,7 @@
                                             <li>Sub Total <span>Ksh.{{grand_total}}</span></li>
                                             
                                         </ul>
+                                        <li class="megamenu-holder"><a href="{%url 'checkout' %}">Checkout</a>
                                         <div id="paypal-button-container">
                                             <!--Paypal button will load-->
                                         </div>
@@ -205,6 +232,6 @@
 
     }).render('#paypal-button-container');
 </script>
-
+<script src="{% static 'customerportal/cart_counter.js' %}"></script>
 </html>
 {%endblock%}

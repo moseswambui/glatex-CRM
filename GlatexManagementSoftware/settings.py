@@ -42,6 +42,11 @@ INSTALLED_APPS = [
     "accounts",
     'services',
     'storages',
+    'billing',
+    'blog',
+    'orders',
+    'base',
+    
     
 ]
 
@@ -89,30 +94,17 @@ WSGI_APPLICATION = 'GlatexManagementSoftware.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'glatexdatabase',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST':'localhost',
-        "PORT":'3306',
-        "OPTION": {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
-            'charset': 'utf8mb4',
-            "autocommit": True,
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        
+        
     }
 }
-"""
-DATABASES ={
-    'default':{
-        'ENGINE':'django.db.backends.postgresql_psycopg2'
-    }
-}
-"""
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
+"""AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -125,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-]
+]"""
 
 
 # Internationalization
@@ -172,18 +164,21 @@ EMAIL_HOST_PASSWORD = "mjguofihaslzopfa"
 
 #S3 BUCKETS CONFIG
 
-AWS_ACCESS_KEY_ID = 'AKIAW2ECWHV4WILT75MW'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'glatexsignsafrica'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
+#AWS_ACCESS_KEY_ID = 'AKIAW2ECWHV4WILT75MW'
+#AWS_SECRET_ACCESS_KEY = '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'
+#AWS_STORAGE_BUCKET_NAME = 'glatexsignsafrica'
+#AWS_S3_FILE_OVERWRITE = False
+#AWS_DEFAULT_ACL = None
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-
-
+AUTH_USER_MODEL = 'accounts.Account'
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
 '''
 <?xml version="1.0" encoding="UTF-8"?>
 <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">

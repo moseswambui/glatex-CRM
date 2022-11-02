@@ -7,45 +7,66 @@
             <div class="slider-with-banner">
                 <div class="container">
                     <div class="row">
+                        <!-- Begin Category Menu Area -->
+                        <div class="col-lg-3">
+                            <!--Category Menu Start-->
+                            <div class="category-menu category-menu-2">
+                                <div class="category-heading">
+                                    <h2 class="categories-toggle"><span>Categories</span></h2>
+                                </div>
+                                <div id="cate-toggle" class="category-menu-list">
+                                    {%for category in links%}
+                                    <ul>
+                                        <li class="right-menu"><a href="{{category.get_url}}">{{category.name}}</a>
+                                           
+                                        </li>
+                                    
+                                    </ul>
+                                    {%endfor%}
+                                </div>
+                            </div>
+                            <!--Category Menu End-->
+                        </div>
+                        <!-- Category Menu Area End Here -->
                         <!-- Begin Slider Area -->
-                        <div class="col-lg-8 col-md-8">
-                            <div class="slider-area pt-sm-30 pt-xs-30">
+                        <div class="col-lg-6 col-md-8">
+                            <div class="slider-area slider-area-3 pt-sm-30 pt-xs-30 pb-xs-30">
                                 <div class="slider-active owl-carousel">
                                     <!-- Begin Single Slide Area -->
-                                    <div class="single-slide align-center-left animation-style-01 bg-1">
+                                    <div class="single-slide align-center-left animation-style-01 bg-7">
                                         <div class="slider-progress"></div>
                                         <div class="slider-content">
-                                            <h5>Sale Offer <span>-10% Off</span> This Month</h5>
-                                            <h2>Cap Printing | Personal & Campaign</h2>
-                                            <h3>Starting at <span>Ksh.400</span></h3>
+                                            <h5>Sale Offer <span>-20% Off</span> This Week</h5>
+                                            <h2>Chamcham Galaxy S9 | S9+</h2>
+                                            <h3>Starting at <span>$589.00</span></h3>
                                             <div class="default-btn slide-btn">
-                                                <a class="links" href="{%url 'shop'%}">Order Now</a>
+                                                <a class="links" href="shop-left-sidebar.html">Shopping Now</a>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Single Slide Area End Here -->
                                     <!-- Begin Single Slide Area -->
-                                    <div class="single-slide align-center-left animation-style-02 bg-2">
+                                    <div class="single-slide align-center-left animation-style-02 bg-8">
                                         <div class="slider-progress"></div>
                                         <div class="slider-content">
-                                            <h5>Sale Offer <span>Black Friday</span> This Month</h5>
-                                            <h2>Polo Tshirt Printing | Custom Design</h2>
-                                            <h3>Starting at <span>Ksh.950</span></h3>
+                                            <h5>Sale Offer <span>Black Friday</span> This Week</h5>
+                                            <h2>Work Desk Surface Studio 2018</h2>
+                                            <h3>Starting at <span>$1599.00</span></h3>
                                             <div class="default-btn slide-btn">
-                                                <a class="links" href="{%url 'shop'%}">Order Now</a>
+                                                <a class="links" href="shop-left-sidebar.html">Shopping Now</a>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Single Slide Area End Here -->
                                     <!-- Begin Single Slide Area -->
-                                    <div class="single-slide align-center-left animation-style-01 bg-3">
+                                    <div class="single-slide align-center-left animation-style-01 bg-9">
                                         <div class="slider-progress"></div>
                                         <div class="slider-content">
-                                            <h5>Sale Offer <span>-10% Off</span> This Month</h5>
-                                            <h2>Cap Printing</h2>
-                                            <h3>Starting at <span>Ksh.8,500</span></h3>
+                                            <h5>Sale Offer <span>-10% Off</span> This Week</h5>
+                                            <h2>Phantom 4 Pro+ Obsidian</h2>
+                                            <h3>Starting at <span>$809.00</span></h3>
                                             <div class="default-btn slide-btn">
-                                                <a class="links" href="{%url 'shop'%}">Order Now</a>
+                                                <a class="links" href="shop-left-sidebar.html">Shopping Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -55,15 +76,15 @@
                         </div>
                         <!-- Slider Area End Here -->
                         <!-- Begin Li Banner Area -->
-                        <div class="col-lg-4 col-md-4 text-center pt-sm-30 pt-xs-30">
+                        <div class="col-lg-3 col-md-4 text-center pt-sm-30">
                             <div class="li-banner">
                                 <a href="#">
-                                    <img src="{% static 'customerportal/images/banner/black-and-white-t-shirt-2.png' %}" width="10" height="200" alt="glatex signs africa branded tshirts">
+                                    <img src="{% static 'customerportal/images/banner/hoods.jpg' %}" alt="Here">
                                 </a>
                             </div>
-                            <div class="li-banner mt-15 mt-md-30 mt-xs-25 mb-xs-5">
+                            <div class="li-banner mt-15 mt-sm-30 mt-xs-25 mb-xs-5">
                                 <a href="#">
-                                    <img src="{% static 'customerportal/images/banner/hoods.jpg' %}"  width="70" height="200" alt="car branding glatex signs africa">
+                                    <img src="{% static 'customerportal/images/banner/mugs.png' %}" alt="Another">
                                 </a>
                             </div>
                         </div>
@@ -120,7 +141,7 @@
                                                 <div class="product_desc_info">
                                                     <div class="product-review">
                                                         <h5 class="manufacturer">
-                                                            <a href="{{product.get_url}}">{{product.product_name}}</a>
+                                                            <a href="{{product.get_url}}">{{product.name}}</a>
                                                         </h5>
                                                         <div class="rating-box">
                                                             <ul class="rating">

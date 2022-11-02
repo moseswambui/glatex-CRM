@@ -1,4 +1,4 @@
-from django.contrib import admin
+"""from django.contrib import admin
 
 from .models import *
 admin.site.register(GlatexAdmin)
@@ -38,6 +38,6 @@ admin.site.register(Movieexpenses)
 admin.site.register(ScreenprintingExpenses)
 admin.site.register(Town_ClothingExpenses)
 
-
+"""
 
 

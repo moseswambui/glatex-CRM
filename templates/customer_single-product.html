@@ -88,7 +88,7 @@
                                                     <select name="size" class="nice-select form-control">
                                                         <option value=""  disabled selected> Size</option>
                                                         {% for i in single_product.variation_set.size %}
-                                                        <option value="{{ i.variation_value }}" title="S" >{{ i.variation_value | capfirst}}</option>
+                                                        <option value="{{ i.variation_value | capfirst }}" title="S" >{{ i.variation_value | capfirst}}</option>
                                                         {%endfor%}
                                         
                                                         
@@ -99,7 +99,7 @@
                                                     <select name="color" class="nice-select form-control" >
                                                         <option value="" disabled selected>Color</option>
                                                         {% for i in single_product.variation_set.color %}
-                                                        <option value="{{ i.variation_value  }}" >{{ i.variation_value | capfirst}}</option>
+                                                        <option value="{{ i.variation_value | capfirst }}" >{{ i.variation_value | capfirst}}</option>
                                                         {%endfor%}
                                                     
                                                         

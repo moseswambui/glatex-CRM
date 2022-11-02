@@ -268,7 +268,7 @@
                     <div class="category-sub-menu">
                         {% for category in links %}
                         <ul>
-                            <li><a href="{{category.get_url}} ">{{category.category_name}}</a>
+                            <li><a href="{{category.get_url}} ">{{category.name}}</a>
 
                             </li>
 
@@ -281,31 +281,75 @@
                 <!--sidebar-categores-box start  -->
                 <div class="sidebar-categores-box">
                     <div class="sidebar-title">
-                        <h2 style="color: blue;">Filter By</h2>
+                        <h2>Filter By</h2>
                     </div>
-
+                    <!-- btn-clear-all start -->
+                    <button class="btn-clear-all mb-sm-30 mb-xs-30">Clear all</button>
+                    <!-- btn-clear-all end -->
+                    <!-- filter-sub-area start -->
                     <div class="filter-sub-area">
-                        <h5 class="filter-sub-titel" style="color: blue;">Popular Tags</h5>
-                        <div class="category-sub-menu">
-                            {% for tag in taglinks %}
-                            <ul>
-                                <li><a href="{{tag.get_url}} ">{{tag.name}}</a>
-    
-                                </li>
-    
-                            </ul>
-                            {%endfor%}
+                        <h5 class="filter-sub-titel">Brand</h5>
+                        <div class="categori-checkbox">
+                            <form action="#">
+                                <ul>
+                                    <li><input type="checkbox" name="product-categori"><a href="#">Prime Video (13)</a></li>
+                                    <li><input type="checkbox" name="product-categori"><a href="#">Computers (12)</a></li>
+                                    <li><input type="checkbox" name="product-categori"><a href="#">Electronics (11)</a></li>
+                                </ul>
+                            </form>
+                        </div>
+                     </div>
+                    <!-- filter-sub-area end -->
+                    <!-- filter-sub-area start -->
+                    <div class="filter-sub-area pt-sm-10 pt-xs-10">
+                        <h5 class="filter-sub-titel">Categories</h5>
+                        <div class="categori-checkbox">
+                            <form action="#">
+                                <ul>
+                                    <li><input type="checkbox" name="product-categori"><a href="#">Graphic Corner (10)</a></li>
+                                    <li><input type="checkbox" name="product-categori"><a href="#"> Studio Design (6)</a></li>
+                                </ul>
+                            </form>
+                        </div>
+                     </div>
+                    <!-- filter-sub-area end -->
+                    <!-- filter-sub-area start -->
+                    <div class="filter-sub-area pt-sm-10 pt-xs-10">
+                        <h5 class="filter-sub-titel">Size</h5>
+                        <div class="size-checkbox">
+                            <form action="#">
+                                <ul>
+                                    <li><input type="checkbox" name="product-size"><a href="#">S (3)</a></li>
+                                    <li><input type="checkbox" name="product-size"><a href="#">M (3)</a></li>
+                                    <li><input type="checkbox" name="product-size"><a href="#">L (3)</a></li>
+                                    <li><input type="checkbox" name="product-size"><a href="#">XL (3)</a></li>
+                                </ul>
+                            </form>
                         </div>
                     </div>
                     <!-- filter-sub-area end -->
-
+                    <!-- filter-sub-area start -->
+                    <div class="filter-sub-area pt-sm-10 pt-xs-10">
+                        <h5 class="filter-sub-titel">Color</h5>
+                        <div class="color-categoriy">
+                            <form action="#">
+                                <ul>
+                                    <li><span class="white"></span><a href="#">White (1)</a></li>
+                                    <li><span class="black"></span><a href="#">Black (1)</a></li>
+                                    <li><span class="Orange"></span><a href="#">Orange (3) </a></li>
+                                    <li><span class="Blue"></span><a href="#">Blue  (2) </a></li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- filter-sub-area end -->
                     <!-- filter-sub-area start -->
                     <div class="filter-sub-area pt-sm-10 pt-xs-10">
                         <h5 class="filter-sub-titel" style="color: blue;">Product Type</h5>
                         <div class="category-sub-menu">
                             {% for type in typelinks %}
                             <ul>
-                                <li><a href="{{type.get_url}} ">{{type.type_name}}</a>
+                                <li><a href="{{type.get_url}} ">{{type.name}}</a>
     
                                 </li>
     
@@ -313,10 +357,8 @@
                             {%endfor%}
                         </div>
                     </div>
-                    <!-- filter-sub-area end -->
+                    
 
-
-                </div>
 
             </div>
         </div>
