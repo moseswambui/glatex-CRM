@@ -1,6 +1,7 @@
 
 from django import forms
 from .models import Account,ProfileDetails
+from blog.models import Blog
 
 class RegistrationForm(forms.ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
@@ -89,3 +90,44 @@ class ProfileDetailForms(forms.ModelForm):
 
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = "form-control"
+
+class AddBlogForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields = ('title', 'category', 'image', 'blog', 'author')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update({
+            'type':'text',
+
+            'placeholder':'Blog Title',
+            'aria-label':'Recipients username',
+            'aria-describedby':'basic-addon13',
+
+        })
+        self.fields['category'].widget.attrs.update({
+            'type':'select',
+            'name':'category',
+         
+
+        })
+        self.fields['blog'].widget.attrs.update({
+            'type':'textarea',
+            'name':'category',
+            'id':'exampleFormControlTextarea1',
+            'rows':'3',
+            'class':'form-control',
+         
+
+        })
+        self.fields['image'].widget.attrs.update({
+            'type':'file',
+            'name':'image',
+            'id':'inputGroupFile04',
+            'class':'form-control',
+            'aria-label':'Upload',
+            'aria-describedby':'inputGroupFileAddon04',
+         
+
+        })

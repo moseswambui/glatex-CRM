@@ -2,10 +2,11 @@ from django.contrib import messages,auth
 from django.contrib.auth import authenticate,login, logout
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, ProfileDetailForms
+from .forms import RegistrationForm, ProfileDetailForms, AddBlogForm
 from .models import Account, ProfileDetails
 from customerportal.views import _cart_id
 from customerportal.models import CartItem, MyCart
+from blog.models import Blog
 
 def Register(request):
     if request.method == "POST":
@@ -202,3 +203,34 @@ def Notifications(request):
 @login_required(login_url = 'login')
 def Connections(request):
     return render(request, 'accounts/accounts_connection.html')
+@login_required(login_url = 'login')
+def AddBlog(request):
+    author = request.user
+    if request.method == "POST":
+        form = AddBlogForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            category = form.cleaned_data['category']
+            image = form.cleaned_data['image']
+            blog = form.cleaned_data['blog']
+
+            blog_post = Blog.objects.create(
+                author = request.user,
+                category = category,
+                title =title,
+                blog = blog,
+                image = image,
+               
+            )
+
+            blog_post.save()
+            messages.success(request, 'Blog Posted To Public DOmain Successfully')
+            return redirect('add-blog')
+
+    else:
+        form = AddBlogForm
+
+    context = {
+        'form':form,
+    }
+    return render(request, "accounts/blog_add.html",context )
