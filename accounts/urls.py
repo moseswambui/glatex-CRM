@@ -16,4 +16,5 @@ urlpatterns = [
     path("connections/",views.Connections, name="connections"),
     path("notifucations/",views.Notifications, name="notifications"),
     path("add_blog/",views.AddBlog, name="add-blog"),
+    path("blog/<slug:category_slug>/<slug:blog_slug>",views.BlogDetail, name="blog_detail"),
 ] 
