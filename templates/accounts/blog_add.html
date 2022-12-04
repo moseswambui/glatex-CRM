@@ -113,8 +113,39 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
+            
 
             <div class="container-xxl flex-grow-1 container-p-y">
+              <h5 class="pb-1 mb-4">My Blog Posts</h5>
+              <div class="row mb-5">
+                <div class="col-md-6 col-lg-4">
+                  <div class="card text-center mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title">{{blog_post_0.title}}</h5>
+                      <p class="card-text">{{blog_post_0.blog|truncatechars:120}}</p>
+                      <a href="javascript:void(0)" class="btn btn-primary">View Blog</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="card text-center mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title">{{blog_post_1.title}}</h5>
+                      <p class="card-text">{{blog_post_1.blog|truncatechars:120}}</p>
+                      <a href="javascript:void(0)" class="btn btn-primary">View Blog</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <div class="card text-center mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title">{{blog_post_2.title}}</h5>
+                      <p class="card-text">{{blog_post_2.blog|truncatechars:120}}</p>
+                      <a href="javascript:void(0)" class="btn btn-primary">View Blog</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blogs/</span> Add Blog Post</h4>
 
               <div class="row">

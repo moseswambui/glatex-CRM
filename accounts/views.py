@@ -206,6 +206,10 @@ def Connections(request):
 @login_required(login_url = 'login')
 def AddBlog(request):
     author = request.user
+    blog_posts = Blog.objects.filter(author = author)
+    blog_post_0 = Blog.objects.filter(author = author)[0]
+    blog_post_1 = Blog.objects.filter(author = author)[1]
+    blog_post_2 = Blog.objects.filter(author = author)[2]
     if request.method == "POST":
         form = AddBlogForm(request.POST)
         if form.is_valid():
@@ -232,5 +236,14 @@ def AddBlog(request):
 
     context = {
         'form':form,
+        "blog_posts":blog_posts,
+        "blog_post_1":blog_post_1,
+        "blog_post_0":blog_post_0,
+        "blog_post_2":blog_post_2,
+    
+
     }
     return render(request, "accounts/blog_add.html",context )
+
+def BlogDetail(request):
+    return render(request,'accounts/blog_detail.html')

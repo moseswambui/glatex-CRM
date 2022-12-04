@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import Account
+from django.urls import reverse
 class Type(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -9,6 +10,7 @@ class Type(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
+    slug = models.CharField(max_length=50, unique=True,null=True, blank=True)
     type = models.ForeignKey(Type, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -16,6 +18,7 @@ class Category(models.Model):
 class Blog(models.Model):
     author=models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, null=True, blank=True)
+    slug = models.CharField(max_length=50, unique=True,null=True, blank=True)
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True)
     blog = models.TextField(null=True, blank=True)
@@ -23,6 +26,10 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_url(self):
+        return reverse('product_detail',args=[ self.category.slug, self.slug])
+
 
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, blank=True, null=True, on_delete=models.CASCADE)
