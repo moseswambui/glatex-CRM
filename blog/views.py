@@ -27,3 +27,17 @@ def MyBlog(request, category_slug=None):
         'blogs_count':blogs_count,
     }
     return render(request, 'blog/blog.html', context)
+
+def BlogDetail(request,blog_slug, category_slug):
+    try:
+        single_blog = Blog.objects.get(category__slug=category_slug, slug=blog_slug)
+        all_blogs = Blog.objects.all()
+
+    except Exception as e:
+        raise e
+
+    context = {
+        "single_blog":single_blog,
+    }
+
+    return render(request, 'blog/blog_detail.html', context)
