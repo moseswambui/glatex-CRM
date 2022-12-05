@@ -30,6 +30,9 @@ class Blog(models.Model):
     def get_blog_url(self):
         return reverse('blog_detail',args=[ self.category.slug, self.slug])
 
+    def get_blog_url(self):
+        return reverse('blog_detail',args=[ self.category.slug, self.slug])
+
 
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, blank=True, null=True, on_delete=models.CASCADE)
