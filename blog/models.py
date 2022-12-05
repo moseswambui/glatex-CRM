@@ -27,8 +27,11 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
-    def get_url(self):
-        return reverse('product_detail',args=[ self.category.slug, self.slug])
+    def get_blog_url(self):
+        return reverse('blog_detail',args=[ self.category.slug, self.slug])
+
+    def get_blog_category(self):
+        return reverse('blog_detail',args=[ self.category.slug, self.slug])
 
 
 class Comment(models.Model):

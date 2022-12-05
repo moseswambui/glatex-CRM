@@ -115,6 +115,18 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
+                <nav class="navbar navbar-example navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                     
+                      <div class="collapse navbar-collapse" id="navbar-ex-2">
+                        <div class="navbar-nav me-auto">
+                            <center><h3 style="color:MediumSeaGreen;" class="nav-item nav-link active" href="javascript:void(0)">{{single_blog.title}}</h3></center> 
+                          
+                        </div>
+                      </div>
+                    </div>
+                </nav>
+                
               <div class="row">
                
                 <div class="col-xl-6">
@@ -215,16 +227,15 @@
                     <div class="card mb-3">
                       <div class="row g-0">
                         <div class="col-md-4">
-                          <img class="card-img card-img-left" src="../assets/img/elements/12.jpg" alt="Card image" />
+                          <img class="card-img card-img-left" src="{{single_blog.image.url}}" alt="Card image" />
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">
-                            <h5 class="card-title">Blog Title</h5>
+                            <h5 class="card-title" style="color:MediumSeaGreen;">{{single_blog.title}}</h5>
                             <p class="card-text">
-                              This is a wider card with supporting text below as a natural lead-in to additional content.
-                              This content is a little bit longer.
+                                {{single_blog.blog}}
                             </p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <p class="card-text"><small class="text-muted">Date: <b style="color:MediumSeaGreen;"> {{single_blog.created_at}} </b>| Category: <b style="color:MediumSeaGreen;">{{single_blog.category}}</b> </small></p>
                           </div>
                         </div>
                       </div>
@@ -234,40 +245,14 @@
               <!-- Pills -->
             </div>
             <div class="container-xxl flex-grow-1 container-p-y">
-               
-  
-                <!-- Accordion -->
-                <h5 class="mt-4">Your Blogs</h5>
+                
+               <h3 style="color:MediumSeaGreen;"><center>Other Blogs $ Notifications</center> </h3> 
                 <div class="row">
+                   
                   <div class="col-md mb-4 mb-md-0">
                     
                     <div class="accordion mt-3" id="accordionExample">
-                      <div class="card accordion-item active">
-                        <h2 class="accordion-header" id="headingOne">
-                          <button
-                            type="button"
-                            class="accordion-button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#accordionOne"
-                            aria-expanded="true"
-                            aria-controls="accordionOne"
-                          >
-                            Accordion Item 1
-                          </button>
-                        </h2>
-  
-                        <div
-                          id="accordionOne"
-                          class="accordion-collapse collapse show"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div class="accordion-body">
-                            Lemon drops chocolate cake gummies carrot cake chupa chups muffin topping. Sesame snaps icing
-                            marzipan gummi bears macaroon dragée danish caramels powder. Bear claw dragée pastry topping
-                            soufflé. Wafer gummi bears marshmallow pastry pie.
-                          </div>
-                        </div>
-                      </div>
+                     {% for blog in all_blogs%}
                       <div class="card accordion-item">
                         <h2 class="accordion-header" id="headingTwo">
                           <button
@@ -278,7 +263,7 @@
                             aria-expanded="false"
                             aria-controls="accordionTwo"
                           >
-                            Accordion Item 2
+                            {{blog.title}}
                           </button>
                         </h2>
                         <div
@@ -288,123 +273,74 @@
                           data-bs-parent="#accordionExample"
                         >
                           <div class="accordion-body">
-                            Dessert ice cream donut oat cake jelly-o pie sugar plum cheesecake. Bear claw dragée oat cake
-                            dragée ice cream halvah tootsie roll. Danish cake oat cake pie macaroon tart donut gummies.
-                            Jelly beans candy canes carrot cake. Fruitcake chocolate chupa chups.
+                            {{blog.blog}}
                           </div>
                         </div>
                       </div>
-                      <div class="card accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                          <button
-                            type="button"
-                            class="accordion-button collapsed"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#accordionThree"
-                            aria-expanded="false"
-                            aria-controls="accordionThree"
-                          >
-                            Accordion Item 3
-                          </button>
-                        </h2>
-                        <div
-                          id="accordionThree"
-                          class="accordion-collapse collapse"
-                          aria-labelledby="headingThree"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div class="accordion-body">
-                            Oat cake toffee chocolate bar jujubes. Marshmallow brownie lemon drops cheesecake. Bonbon
-                            gingerbread marshmallow sweet jelly beans muffin. Sweet roll bear claw candy canes oat cake
-                            dragée caramels. Ice cream wafer danish cookie caramels muffin.
-                          </div>
-                        </div>
-                      </div>
+                      {%endfor%}
+                      
                     </div>
                     
                   </div>
                   <div class="col-md mb-4 mb-md-0">
                     
-                    <div class="accordion mt-3" id="accordionExample">
-                      <div class="card accordion-item active">
-                        <h2 class="accordion-header" id="headingOne">
-                          <button
-                            type="button"
-                            class="accordion-button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#accordionOne"
-                            aria-expanded="true"
-                            aria-controls="accordionOne"
-                          >
-                            Accordion Item 1
-                          </button>
-                        </h2>
-  
-                        <div
-                          id="accordionOne"
-                          class="accordion-collapse collapse show"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div class="accordion-body">
-                            Lemon drops chocolate cake gummies carrot cake chupa chups muffin topping. Sesame snaps icing
-                            marzipan gummi bears macaroon dragée danish caramels powder. Bear claw dragée pastry topping
-                            soufflé. Wafer gummi bears marshmallow pastry pie.
+                    <div class="toast-container"></br>
+                      <div class="bs-toast toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <i class="bx bx-bell me-2"></i>
+                            <div class="me-auto fw-semibold">Bootstrap</div>
+                            <small>11 mins ago</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                           </div>
+                          <div class="toast-body">
+                            Fruitcake chocolate bar tootsie roll gummies gummies jelly beans cake.
+                          </div>
+                      </div>
+                      <div
+                        class="bs-toast toast fade show bg-danger"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                      >
+                        <div class="toast-header">
+                          <i class="bx bx-bell me-2"></i>
+                          <div class="me-auto fw-semibold">Bootstrap</div>
+                          <small>11 mins ago</small>
+                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                          Fruitcake chocolate bar tootsie roll gummies gummies jelly beans cake.
                         </div>
                       </div>
-                      <div class="card accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                          <button
-                            type="button"
-                            class="accordion-button collapsed"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#accordionTwo"
-                            aria-expanded="false"
-                            aria-controls="accordionTwo"
-                          >
-                            Accordion Item 2
-                          </button>
-                        </h2>
-                        <div
-                          id="accordionTwo"
-                          class="accordion-collapse collapse"
-                          aria-labelledby="headingTwo"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div class="accordion-body">
-                            Dessert ice cream donut oat cake jelly-o pie sugar plum cheesecake. Bear claw dragée oat cake
-                            dragée ice cream halvah tootsie roll. Danish cake oat cake pie macaroon tart donut gummies.
-                            Jelly beans candy canes carrot cake. Fruitcake chocolate chupa chups.
-                          </div>
+
+                      <div
+                        class="bs-toast toast fade show bg-warning"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                      >
+                        <div class="toast-header">
+                          <i class="bx bx-bell me-2"></i>
+                          <div class="me-auto fw-semibold">Bootstrap</div>
+                          <small>11 mins ago</small>
+                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                          Fruitcake chocolate bar tootsie roll gummies gummies jelly beans cake.
                         </div>
                       </div>
-                      <div class="card accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                          <button
-                            type="button"
-                            class="accordion-button collapsed"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#accordionThree"
-                            aria-expanded="false"
-                            aria-controls="accordionThree"
-                          >
-                            Accordion Item 3
-                          </button>
-                        </h2>
-                        <div
-                          id="accordionThree"
-                          class="accordion-collapse collapse"
-                          aria-labelledby="headingThree"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div class="accordion-body">
-                            Oat cake toffee chocolate bar jujubes. Marshmallow brownie lemon drops cheesecake. Bonbon
-                            gingerbread marshmallow sweet jelly beans muffin. Sweet roll bear claw candy canes oat cake
-                            dragée caramels. Ice cream wafer danish cookie caramels muffin.
-                          </div>
-                        </div>
+
+
+                      <div
+                        class="bs-toast toast fade show bg-dark"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                      >
+                       
                       </div>
                     </div>
+                  </div>
                 </div>
 
             {%endblock%}
