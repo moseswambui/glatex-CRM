@@ -245,5 +245,16 @@ def AddBlog(request):
     }
     return render(request, "accounts/blog_add.html",context )
 
-def BlogDetail(request):
-    return render(request,'accounts/blog_detail.html')
+def BlogDetail(request,blog_slug, category_slug):
+    try:
+        single_blog = Blog.objects.get(slug=blog_slug, category__slug=category_slug)
+        all_blogs = Blog.objects.all()
+
+    except Exception as e:
+        raise e
+
+    context = {
+        'single_blog':single_blog,
+        'all_blogs':all_blogs,
+    }
+    return render(request,'accounts/blog_detail.html', context)
