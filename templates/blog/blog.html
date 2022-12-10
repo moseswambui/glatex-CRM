@@ -117,17 +117,27 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="li-blog-single-item pb-25">
                                         <div class="li-blog-banner">
+                                            <h6 style="color:#FFC000;" class="li-blog-heading pt-25"><a href="{{blog.get_blog_url}}">{{blog.title}}</a></h6>
                                             <a href="{{blog.get_blog_category}}"><img class="img-full" src="{{blog.image.url}}" alt="Blog Imag" style="width:400px;height:300px;"></a>
                                         </div>
                                         <div class="li-blog-content">
                                             <div class="li-blog-details">
-                                                <h3 class="li-blog-heading pt-25"><a href="">{{blog.title}}</a></h3>
+                                               
+                                                    <div class="category-tags">
+                                                        <ul>
+                                                            <li style="background-color:#FFFF00;"><a href="# ">{{blog.category}}</a></li>
+                                                            <li style="background-color:#FFAA33;"><a href="# ">{{blog.category.type}}</a></li>
+                                                            <li style="background-color:#FF0000;"><a href="# ">{{blog.created_at}}</a></li>
+                                                        </ul>
+                                                    </div>
+                                                   
+                                               
                                                 <div class="li-blog-meta">
-                                                    <a class="author" href="#"><i class="fa fa-user"></i>{{blog.author}}</a>
+                                                    <a class="author" href="#"><i class="fa fa-user"></i>{{blog.author.username}}</a>
                                                     <a class="comment" href="#"><i class="fa fa-comment-o"></i>3 comments </a>
-                                                    <a class="post-time" href="#"><i class="fa fa-calendar"></i>{{blog.created_at}} </a>
+                                                    <a class="post-time" href="#"><i class="fa fa-calendar"></i>4 Up-votes </a>
                                                 </div>
-                                                <p>{{blog.blog |truncatechars:255 }}</p>                                                
+                                                <p>{{blog.blog |truncatechars:90 }}</p>                                                
                                                 <a class="read-more" href="">Read More...</a>
                                             </div>
                                         </div>
