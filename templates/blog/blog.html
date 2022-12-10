@@ -21,8 +21,9 @@
                             <div class="li-blog-sidebar-wrapper">
                                 <div class="li-blog-sidebar">
                                     <div class="li-sidebar-search-form">
-                                        <form action="#">
-                                            <input type="text" class="li-search-field" placeholder="search here">
+                                        <form action="{% url 'search' %}" method="GET">
+                                            {%csrf_token%}
+                                            <input type="text" class="li-search-field" placeholder="search here" name="keyword">
                                             <button type="submit" class="li-search-btn"><i class="fa fa-search"></i></button>
                                         </form>
                                     </div>
@@ -99,7 +100,19 @@
                         <!-- Li's Blog Sidebar Area End Here -->
                         <!-- Begin Li's Main Content Area -->
                         <div class="col-lg-9 order-lg-2 order-1">
+                            
                             <div class="row li-main-content">
+                                <form action="{% url 'search' %}" method="GET" class="hm-searchbox" style="width:800px; margin:0 auto;">
+                                    {%csrf_token%}
+                                    <select class="nice-select select-search-category">
+                                        {% for category in blog_categories %}
+                                            <option value="">{{category.name}}</option>
+                                        {% endfor  %}
+                                    </select>
+                                    <input type="text" placeholder="Enter your search key ..." name="keyword">
+                                    <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                                </form></br></br></br>
+                            
                                 {% for blog in blogs %}
                                 <div class="col-lg-6 col-md-6">
                                     <div class="li-blog-single-item pb-25">
