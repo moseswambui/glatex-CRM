@@ -10,21 +10,23 @@ def MyBlog(request, category_slug=None):
     if category_slug !=None:
         categories = get_object_or_404(Category, slug=category_slug)
         blogs = Blog.objects.filter(category=categories)
-        paginator = Paginator(blogs, 6)
+        blog_count = blogs.count()
+        paginator = Paginator(blogs, 4)
         page = request.GET.get('page')
         paged_blogs = paginator.get_page(page)
-        blogs_count=blogs.count()
+       
 
     else:
         blogs = Blog.objects.all()
-        paginator = Paginator(blogs, 6)
+        blog_count = blogs.count()
+        paginator = Paginator(blogs, 4)
         page = request.GET.get('page')
         paged_blogs = paginator.get_page(page)
-        blogs_count=blogs.count()
+
+       
     context = {
-        'blogs':blogs,
-        'paged_blogs':paged_blogs,
-        'blogs_count':blogs_count,
+        'blogs':paged_blogs,
+        'blog_count':blog_count,
     }
     return render(request, 'blog/blog.html', context)
 
