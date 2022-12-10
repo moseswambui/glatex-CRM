@@ -1,4 +1,5 @@
 .env
+<<<<<<< HEAD
 .vscode
 .idea
 .coverage * #when you get to posting
@@ -169,3 +170,9 @@ cython_debug/
 #.idea/
 **/*.pyc
 cpython-38.pyc
+=======
+.venv
+venv/
+env
+*/__pycache__/*
+>>>>>>> eb624fcb99c7a78c38b164c657ab0cff57f126dc
