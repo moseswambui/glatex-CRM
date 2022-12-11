@@ -123,7 +123,7 @@
                     <div class="card-body">
                       <h5 class="card-title">{{blog_post_0.title}}</h5>
                       <p class="card-text">{{blog_post_0.blog|truncatechars:120}}</p>
-                      <a href="{{blog_post_0.get_blog_url}}" class="btn btn-primary">View Blog</a>
+                      <a href="{{blog_post_0.get_blog_url}}" class="btn btn-primary">View Blog</a>  <a href="{{blog_post_2.get_blog_mgt}}" class="btn btn-primary">Manage Blog</a>
                     </div>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
                     <div class="card-body">
                       <h5 class="card-title">{{blog_post_1.title}}</h5>
                       <p class="card-text">{{blog_post_1.blog|truncatechars:120}}</p>
-                      <a href="{{blog_post_1.get_blog_url}}" class="btn btn-primary">View Blog</a>
+                      <a href="{{blog_post_1.get_blog_url}}" class="btn btn-primary">View Blog</a>  <a href="{{blog_post_2.get_blog_mgt}}" class="btn btn-primary">Manage Blog</a>
                     </div>
                   </div>
                 </div>
@@ -141,7 +141,7 @@
                     <div class="card-body">
                       <h5 class="card-title">{{blog_post_2.title}}</h5>
                       <p class="card-text">{{blog_post_2.blog|truncatechars:120}}</p>
-                      <a href="{{blog_post_2.get_blog_url}}" class="btn btn-primary">View Blog</a>
+                      <a href="{{blog_post_2.get_blog_url}}" class="btn btn-primary">View Blog</a>  <a href="{{blog_post_2.get_blog_mgt}}" class="btn btn-primary">Manage Blog</a>
                     </div>
                   </div>
                 </div>
@@ -153,7 +153,7 @@
                   <div class="card">
                     <h5 class="card-header">Please Enter The Blog. Choose the Categories well</h5>
                     <div class="card-body">
-                        <form method="POST" action="{% url 'add-blog' %}"  >
+                        <form method="POST" action="{% url 'add-blog' %}" enctype='multipart/form-data'>
                           {%csrf_token %}
                             <div class="card-body demo-vertical-spacing demo-only-element">
                                 <div class="input-group">

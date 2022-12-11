@@ -227,7 +227,7 @@ def AddBlog(request):
     blog_post_1 = Blog.objects.filter(author = author)[1]
     blog_post_2 = Blog.objects.filter(author = author)[2]
     if request.method == "POST":
-        form = AddBlogForm(request.POST)
+        form = AddBlogForm(request.POST, request.FILES)
         if form.is_valid():
             title = form.cleaned_data['title']
             category = form.cleaned_data['category']
