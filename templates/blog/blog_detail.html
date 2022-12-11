@@ -6,7 +6,7 @@
                     <div class="breadcrumb-content">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li class="active"></li>
+                            <li class="active">{{single_blog.title}}</li>
                         </ul>
                     </div>
                 </div>
@@ -105,15 +105,15 @@
                                 <div class="col-lg-12">
                                     <div class="li-blog-single-item pb-30">
                                         <div class="li-blog-banner">
-                                            <a href="blog-details.html"><img class="img-full" src="images/blog-banner/bg-banner.jpg" alt=""></a>
+                                            <a href="blog-details.html"><img class="img-full" src="{{single_blog.image.url}}" alt=""></a>
                                         </div>
                                         <div class="li-blog-content">
                                             <div class="li-blog-details">
                                                 <h3 class="li-blog-heading pt-25"><a href="#">The Biggest Collection For Digital Product</a></h3>
                                                 <div class="li-blog-meta">
-                                                    <a class="author" href="#"><i class="fa fa-user"></i>Admin</a>
+                                                    <a class="author" href="#"><i class="fa fa-user"></i>{{single_blog.author.username}}</a>
                                                     <a class="comment" href="#"><i class="fa fa-comment-o"></i> 3 comment</a>
-                                                    <a class="post-time" href="#"><i class="fa fa-calendar"></i> 25 nov 2018</a>
+                                                    <a class="post-time" href="#"><i class="fa fa-calendar"></i> {{single_blog.created_at}}</a>
                                                 </div>
                                                 <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex.</p>
                                                 <!-- Begin Blog Blockquote Area -->
@@ -123,7 +123,7 @@
                                                     </blockquote>
                                                 </div>
                                                 <!-- Blog Blockquote Area End Here -->
-                                                <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Cras pretium arcu ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum in labore rerum </p>
+                                                <p>{{single_blog.blog}}</p>
                                                 <div class="li-tag-line">
                                                     <h4>tag:</h4>
                                                     <a href="#">Headphones</a>,
