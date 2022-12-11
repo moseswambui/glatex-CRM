@@ -6,7 +6,7 @@ from .forms import RegistrationForm, ProfileDetailForms, AddBlogForm
 from .models import Account, ProfileDetails
 from customerportal.views import _cart_id
 from customerportal.models import CartItem, MyCart
-from blog.models import Blog
+from blog.models import Blog,Type
 
 def Register(request):
     if request.method == "POST":
@@ -125,6 +125,7 @@ def Dashboard(request):
     quantity = 0
     if user.is_authenticated:
         cart_items = CartItem.objects.filter(user=request.user)
+        user_blogs = Blog.objects.filter(author=user)
 
     else:
         pass
@@ -142,6 +143,14 @@ def Dashboard(request):
 
     tax = (2*total)/100
     grand_total = total + tax
+    blog_types = Type.objects.all()
+    science = Blog.objects.filter(category__type__name = "Science").order_by('-created_at').first()
+    politics = Blog.objects.filter(category__type__name = "Politics").order_by('-created_at').first()
+    religion = Blog.objects.filter(category__type__name = "Religion").order_by('-created_at').first()
+    technology = Blog.objects.filter(category__type__name = "Technology").order_by('-created_at').first()
+
+    print(science, politics, religion, technology)
+    
 
     context = {
         "cart_items":cart_items,
@@ -149,6 +158,13 @@ def Dashboard(request):
         'my_items':my_items,
         "string_items":string_items,
         "quantity":quantity,
+
+        "user_blogs":user_blogs,
+        'blog_types':blog_types,
+        "science":science,
+        "politics":politics,
+        'religion':religion,
+        'technology':technology,
     }
         
     return render(request,'accounts/index.html', context)
