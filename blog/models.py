@@ -30,6 +30,9 @@ class Blog(models.Model):
     def get_blog_url(self):
         return reverse('blog_detail',args=[ self.category.slug, self.slug])
 
+    def get_blog_mgt(self):
+        return reverse('blog-detail',args=[ self.category.slug, self.slug])
+
     def get_blog_category(self):
         return reverse('blog_detail',args=[ self.category.slug, self.slug])
 

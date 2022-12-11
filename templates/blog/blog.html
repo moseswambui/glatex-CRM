@@ -21,8 +21,9 @@
                             <div class="li-blog-sidebar-wrapper">
                                 <div class="li-blog-sidebar">
                                     <div class="li-sidebar-search-form">
-                                        <form action="#">
-                                            <input type="text" class="li-search-field" placeholder="search here">
+                                        <form action="{% url 'search' %}" method="GET">
+                                            {%csrf_token%}
+                                            <input type="text" class="li-search-field" placeholder="search here" name="keyword">
                                             <button type="submit" class="li-search-btn"><i class="fa fa-search"></i></button>
                                         </form>
                                     </div>
@@ -99,22 +100,44 @@
                         <!-- Li's Blog Sidebar Area End Here -->
                         <!-- Begin Li's Main Content Area -->
                         <div class="col-lg-9 order-lg-2 order-1">
+                            
                             <div class="row li-main-content">
+                                <form action="{% url 'search' %}" method="GET" class="hm-searchbox" style="width:800px; margin:0 auto;">
+                                    {%csrf_token%}
+                                    <select class="nice-select select-search-category">
+                                        {% for category in blog_categories %}
+                                            <option value="">{{category.name}}</option>
+                                        {% endfor  %}
+                                    </select>
+                                    <input type="text" placeholder="Enter your search key ..." name="keyword">
+                                    <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                                </form></br></br></br>
+                            
                                 {% for blog in blogs %}
                                 <div class="col-lg-6 col-md-6">
                                     <div class="li-blog-single-item pb-25">
                                         <div class="li-blog-banner">
+                                            <h6 style="color:#FFC000;" class="li-blog-heading pt-25"><a href="{{blog.get_blog_url}}">{{blog.title}}</a></h6>
                                             <a href="{{blog.get_blog_category}}"><img class="img-full" src="{{blog.image.url}}" alt="Blog Imag" style="width:400px;height:300px;"></a>
                                         </div>
                                         <div class="li-blog-content">
                                             <div class="li-blog-details">
-                                                <h3 class="li-blog-heading pt-25"><a href="">{{blog.title}}</a></h3>
+                                               
+                                                    <div class="category-tags">
+                                                        <ul>
+                                                            <li style="background-color:#FFFF00;"><a href="# ">{{blog.category}}</a></li>
+                                                            <li style="background-color:#FFAA33;"><a href="# ">{{blog.category.type}}</a></li>
+                                                            <li style="background-color:#FF0000;"><a href="# ">{{blog.created_at}}</a></li>
+                                                        </ul>
+                                                    </div>
+                                                   
+                                               
                                                 <div class="li-blog-meta">
-                                                    <a class="author" href="#"><i class="fa fa-user"></i>{{blog.author}}</a>
+                                                    <a class="author" href="#"><i class="fa fa-user"></i>{{blog.author.username}}</a>
                                                     <a class="comment" href="#"><i class="fa fa-comment-o"></i>3 comments </a>
-                                                    <a class="post-time" href="#"><i class="fa fa-calendar"></i>{{blog.created_at}} </a>
+                                                    <a class="post-time" href="#"><i class="fa fa-calendar"></i>4 Up-votes </a>
                                                 </div>
-                                                <p>{{blog.blog |truncatechars:255 }}</p>                                                
+                                                <p>{{blog.blog |truncatechars:90 }}</p>                                                
                                                 <a class="read-more" href="">Read More...</a>
                                             </div>
                                         </div>
@@ -124,35 +147,35 @@
                                
                                 <!-- Begin Li's Pagination Area -->
                                 <div class="col-lg-12">
+                                    {% if blogs.has_other_pages %}
                                     <div class="li-paginatoin-area text-center pt-25">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                {%if blogs.has_other_pages%}
                                                 <ul class="li-pagination-box">
-                                                    {% if products.has_previous%}
-                                                    <li><a class="Previous" href="?page={{blogs.previous_page_number}}">Previous</a></li>
+                                                    {% if blogs.has_previous %}
+                                                        <li><a class="" href="?page={{blogs.previous_page_number}}">Previous</a></li>
                                                     {% else %}
-                                                    <li><a class="Previous disabled" href="#">Previous</a></li>
-                                                    {%endif%}
+                                                        <li class="disabled"><a class="Previous" role="link" aria-disabled="true" style="pointer-events: none">Previous</a></li>
+                                                    {% endif %}
 
-                                                    {% for i in blogs.paginator.page_range %}
-                                                    {% if blogs.number == i %}
-                                                    <li class="active"><a href="#">{{i}}</a></li>
-                                                    {%else%}
-                                                    <li class=""><a href="?page={{i}}">{{i}}</a></li>
-                                                    {%endif%}
-                                                    {%endfor%}
+                                                    {% for i in blogs.paginator.page_range  %}
+                                                        {% if blogs.number == i %}
+                                                         <li class="active"><a href="#">{{i}}</a></li>
+                                                        {% else %}
+                                                         <li class=""><a href="?page={{i}}">{{i}}</a></li>
+                                                        {%endif%}
+                                                    {% endfor %}
 
                                                     {% if blogs.has_next %}
-                                                    <li><a class="Next" href="?page={{blogs.next_page_number}}">Next</a></li>
-                                                    {%else%}
-                                                    <li><a class="Next disabled" href="">Next</a></li>
-                                                    {%endif%}
+                                                        <li><a class="Next" href="?page={{blogs.next_page_number}}">Next</a></li>
+                                                    {% else %}
+                                                        <li><a class="" role="link" aria-disabled="true" style="pointer-events: none">Next</a></li>
+                                                    {% endif %}
                                                 </ul>
-                                                {%endif%}
                                             </div>
                                         </div>
                                     </div>
+                                    {% endif %}
                                 </div>
                                 <!-- Li's Pagination End Here Area -->
                             </div>
