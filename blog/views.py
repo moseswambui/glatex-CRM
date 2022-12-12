@@ -3,6 +3,11 @@ from .models import Blog,Category
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
 
+def Blog(request):
+    return render(request, 'blog/blog.html')
+
+def Detail_blog(request):
+    return render(request,'blog/single-detail-blog.html')
 def MyBlog(request, category_slug=None):
 
     categories = None
