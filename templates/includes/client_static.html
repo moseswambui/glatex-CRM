@@ -136,12 +136,26 @@
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
-
             <li class="menu-item">
-              <a href="" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Inbox</div>
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">Management</div>
               </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{% url 'profile'%}" class="menu-link">
+                    <div data-i18n="Account">Inbox </div>
+                  </a>
+                </li>
+              </ul>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{% url 'add-blog'%}" class="menu-link">
+                    <div data-i18n="Account">Blog</div>
+                  </a>
+                </li>
+              </ul>
+
             </li>
 
             <li class="menu-header small text-uppercase">
@@ -173,7 +187,7 @@
             <li class="menu-header small text-uppercase"><span class="menu-header-text">E-Commerce</span></li>
             <!-- Cards -->
             <li class="menu-item">
-              <a href="cards-basic.html" class="menu-link">
+              <a href="{% url 'shop' %}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Shop</div>
               </a>
@@ -250,6 +264,8 @@
 
         {%block content%}
         {% endblock%}
+
+        
     
     <script src="{% static 'portal/vendor/libs/jquery/jquery.js' %}"></script>
     <script src="{% static 'portal/vendor/libs/popper/popper.js' %}"></script>

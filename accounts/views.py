@@ -2,10 +2,11 @@ from django.contrib import messages,auth
 from django.contrib.auth import authenticate,login, logout
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, ProfileDetailForms
+from .forms import RegistrationForm, ProfileDetailForms, AddBlogForm
 from .models import Account, ProfileDetails
 from customerportal.views import _cart_id
 from customerportal.models import CartItem, MyCart
+from blog.models import Blog,Type
 
 def Register(request):
     if request.method == "POST":
@@ -124,6 +125,7 @@ def Dashboard(request):
     quantity = 0
     if user.is_authenticated:
         cart_items = CartItem.objects.filter(user=request.user)
+        user_blogs = Blog.objects.filter(author=user)
 
     else:
         pass
@@ -141,6 +143,14 @@ def Dashboard(request):
 
     tax = (2*total)/100
     grand_total = total + tax
+    blog_types = Type.objects.all()
+    science = Blog.objects.filter(category__type__name = "Science").order_by('-created_at').first()
+    politics = Blog.objects.filter(category__type__name = "Politics").order_by('-created_at').first()
+    religion = Blog.objects.filter(category__type__name = "Religion").order_by('-created_at').first()
+    technology = Blog.objects.filter(category__type__name = "Technology").order_by('-created_at').first()
+
+    print(science, politics, religion, technology)
+    
 
     context = {
         "cart_items":cart_items,
@@ -148,6 +158,13 @@ def Dashboard(request):
         'my_items':my_items,
         "string_items":string_items,
         "quantity":quantity,
+
+        "user_blogs":user_blogs,
+        'blog_types':blog_types,
+        "science":science,
+        "politics":politics,
+        'religion':religion,
+        'technology':technology,
     }
         
     return render(request,'accounts/index.html', context)
@@ -202,3 +219,58 @@ def Notifications(request):
 @login_required(login_url = 'login')
 def Connections(request):
     return render(request, 'accounts/accounts_connection.html')
+@login_required(login_url = 'login')
+def AddBlog(request):
+    author = request.user
+    blog_posts = Blog.objects.filter(author = author)
+    blog_post_0 = Blog.objects.filter(author = author)[0]
+    blog_post_1 = Blog.objects.filter(author = author)[1]
+    blog_post_2 = Blog.objects.filter(author = author)[2]
+    if request.method == "POST":
+        form = AddBlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            category = form.cleaned_data['category']
+            image = form.cleaned_data['image']
+            blog = form.cleaned_data['blog']
+
+            blog_post = Blog.objects.create(
+                author = request.user,
+                category = category,
+                title =title,
+                blog = blog,
+                image = image,
+               
+            )
+
+            blog_post.save()
+            messages.success(request, 'Blog Posted To Public DOmain Successfully')
+            return redirect('add-blog')
+
+    else:
+        form = AddBlogForm
+
+    context = {
+        'form':form,
+        "blog_posts":blog_posts,
+        "blog_post_1":blog_post_1,
+        "blog_post_0":blog_post_0,
+        "blog_post_2":blog_post_2,
+    
+
+    }
+    return render(request, "accounts/blog_add.html",context )
+
+def BlogDetail(request,blog_slug, category_slug):
+    try:
+        single_blog = Blog.objects.get(slug=blog_slug, category__slug=category_slug)
+        all_blogs = Blog.objects.all()
+
+    except Exception as e:
+        raise e
+
+    context = {
+        'single_blog':single_blog,
+        'all_blogs':all_blogs,
+    }
+    return render(request,'accounts/blog_detail.html', context)

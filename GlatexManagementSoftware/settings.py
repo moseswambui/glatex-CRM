@@ -20,11 +20,7 @@ SECRET_KEY= config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "glatexsignsafrica.herokuapp.com",
-    "0.0.0.0",
-    "127.0.0.1",
-    ]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +42,7 @@ INSTALLED_APPS = [
     'blog',
     'orders',
     'base',
+    'mpesa',
     
     
 ]
@@ -78,7 +75,7 @@ TEMPLATES = [
                 'customerportal.context_processor.menu_links',
                 'customerportal.context_processor.counter',
                 'customerportal.context_processor.service_links',
-
+                'blog.context_processor.blog_categories_list',
                 'customerportal.context_processor.tag_links',
                 'customerportal.context_processor.type_links',
             ],
@@ -95,7 +92,7 @@ WSGI_APPLICATION = 'GlatexManagementSoftware.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'), 
         
         
     }
