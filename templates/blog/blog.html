@@ -1,34 +1,15 @@
-{%extends "../customer_base.html" %} {% load static %} {% block content %}
-<div class="breadcrumb-area">
-  <div class="container">
-    <div class="breadcrumb-content">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li class="active">Osome Bill</li>
-      </ul>
-    </div>
-  </div>
-</div>
-<!-- Li's Breadcrumb Area End Here -->
-<!-- Begin Li's Main Blog Page Area -->
-<div class="li-main-blog-page pt-60 pb-55">
-  <div class="container">
-    <div class="row">
-      <!-- Begin Li's Blog Sidebar Area -->
-      <div class="col-lg-3 order-lg-1 order-2">
-        <div class="li-blog-sidebar-wrapper">
-          <div class="li-blog-sidebar">
-            <div class="li-sidebar-search-form">
-              <form action="#">
-                <input
-                  type="text"
-                  class="li-search-field"
-                  placeholder="search here"
-                />
-                <button type="submit" class="li-search-btn">
-                  <i class="fa fa-search"></i>
-                </button>
-              </form>
+{%extends 'customer_base.html' %}
+{%load static%}
+{%block content%}
+            <div class="breadcrumb-area">
+                <div class="container">
+                    <div class="breadcrumb-content">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">Blog Left Sidebar</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <!-- Li's Breadcrumb Area End Here -->
             <!-- Begin Li's Main Blog Page Area -->
@@ -40,20 +21,18 @@
                             <div class="li-blog-sidebar-wrapper">
                                 <div class="li-blog-sidebar">
                                     <div class="li-sidebar-search-form">
-                                        <form action="{% url 'search' %}" method="GET">
-                                            {%csrf_token%}
-                                            <input type="text" class="li-search-field" placeholder="search here" name="keyword">
+                                        <form action="#">
+                                            <input type="text" class="li-search-field" placeholder="search here">
                                             <button type="submit" class="li-search-btn"><i class="fa fa-search"></i></button>
                                         </form>
                                     </div>
                                 </div>
                                 <div class="li-blog-sidebar pt-25">
-                                    <h4 class="li-blog-sidebar-title">Blog Categories</h4>
+                                    <h4 class="li-blog-sidebar-title">Categories</h4>
                                     <ul class="li-blog-archive">
-                                        {% for category in blog_categories %}
-                                        <li><a href="#">{{category.name}}</a></li>
-                                        {% endfor %}
-                                        
+                                      {% for category in blog_categories %}
+                                        <li><a href="{{category.get_url}}">{{category.name}}</a></li>
+                                      {%endfor%}
                                     </ul>
                                 </div>
                                 <div class="li-blog-sidebar">
@@ -119,83 +98,80 @@
                         <!-- Li's Blog Sidebar Area End Here -->
                         <!-- Begin Li's Main Content Area -->
                         <div class="col-lg-9 order-lg-2 order-1">
-                            
                             <div class="row li-main-content">
-                                <form action="{% url 'search' %}" method="GET" class="hm-searchbox" style="width:800px; margin:0 auto;">
-                                    {%csrf_token%}
-                                    <select class="nice-select select-search-category">
-                                        {% for category in blog_categories %}
-                                            <option value="">{{category.name}}</option>
-                                        {% endfor  %}
-                                    </select>
-                                    <input type="text" placeholder="Enter your search key ..." name="keyword">
-                                    <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
-                                </form></br></br></br>
-                            
-                                {% for blog in blogs %}
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="li-blog-single-item pb-25">
-                                        <div class="li-blog-banner">
-                                            <h6 style="color:#FFC000;" class="li-blog-heading pt-25"><a href="{{blog.get_blog_url}}">{{blog.title}}</a></h6>
-                                            <a href="{{blog.get_blog_category}}"><img class="img-full" src="{{blog.image.url}}" alt="Blog Imag" style="width:400px;height:300px;"></a>
-                                        </div>
-                                        <div class="li-blog-content">
-                                            <div class="li-blog-details">
-                                               
-                                                    <div class="category-tags">
-                                                        <ul>
-                                                            <li style="background-color:#FFFF00;"><a href="# ">{{blog.category}}</a></li>
-                                                            <li style="background-color:#FFAA33;"><a href="# ">{{blog.category.type}}</a></li>
-                                                            <li style="background-color:#FF0000;"><a href="# ">{{blog.created_at}}</a></li>
-                                                        </ul>
-                                                    </div>
-                                                   
-                                               
-                                                <div class="li-blog-meta">
-                                                    <a class="author" href="#"><i class="fa fa-user"></i>{{blog.author.username}}</a>
-                                                    <a class="comment" href="#"><i class="fa fa-comment-o"></i>3 comments </a>
-                                                    <a class="post-time" href="#"><i class="fa fa-calendar"></i>4 Up-votes </a>
-                                                </div>
-                                                <p>{{blog.blog |truncatechars:90 }}</p>                                                
-                                                <a class="read-more" href="">Read More...</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                               
+                              <form action="{% url 'search' %}" method="GET" class="hm-searchbox" style="width:800px; margin:0 auto;">
+                                {%csrf_token%}
+                                <select class="nice-select select-search-category">
+                                    {% for category in blog_categories %}
+                                        <option value="">{{category.name}}</option>
+                                    {% endfor  %}
+                                </select>
+                                <input type="text" placeholder="Enter your search key ..." name="keyword">
+                                <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                            </form></br></br></br>
+                              {% for blog in blogs %}
+                              <div class="col-lg-6 col-md-6">
+                                  <div class="li-blog-single-item pb-25">
+                                      <div class="li-blog-banner">
+                                          <h6 style="color:#FFC000;" class="li-blog-heading pt-25"><a href="{{blog.get_blog_url}}">{{blog.title}}</a></h6>
+                                          <a href="{{blog.get_blog_category}}"><img class="img-full" src="{{blog.image.url}}" alt="Blog Imag" style="width:400px;height:300px;"></a>
+                                      </div>
+                                      <div class="li-blog-content">
+                                          <div class="li-blog-details">
+                                             
+                                                  <div class="category-tags">
+                                                      <ul>
+                                                          <li style="background-color:#FFFF00;"><a href="# ">{{blog.category}}</a></li>
+                                                          <li style="background-color:#FFAA33;"><a href="# ">{{blog.category.type}}</a></li>
+                                                          <li style="background-color:#FF0000;"><a href="# ">{{blog.created_at}}</a></li>
+                                                      </ul>
+                                                  </div>
+                                                 
+                                             
+                                              <div class="li-blog-meta">
+                                                  <a class="author" href="#"><i class="fa fa-user"></i>{{blog.author.username}}</a>
+                                                  <a class="comment" href="#"><i class="fa fa-comment-o"></i>3 comments </a>
+                                                  <a class="post-time" href="#"><i class="fa fa-calendar"></i>4 Up-votes </a>
+                                              </div>
+                                              <p>{{blog.blog |truncatechars:90 }}</p>                                                
+                                              <a class="read-more" href="">Read More...</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              {% endfor %}
                                 <!-- Begin Li's Pagination Area -->
                                 <div class="col-lg-12">
-                                    {% if blogs.has_other_pages %}
-                                    <div class="li-paginatoin-area text-center pt-25">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <ul class="li-pagination-box">
-                                                    {% if blogs.has_previous %}
-                                                        <li><a class="" href="?page={{blogs.previous_page_number}}">Previous</a></li>
-                                                    {% else %}
-                                                        <li class="disabled"><a class="Previous" role="link" aria-disabled="true" style="pointer-events: none">Previous</a></li>
-                                                    {% endif %}
+                                  {% if blogs.has_other_pages %}
+                                  <div class="li-paginatoin-area text-center pt-25">
+                                      <div class="row">
+                                          <div class="col-lg-12">
+                                              <ul class="li-pagination-box">
+                                                  {% if blogs.has_previous %}
+                                                      <li><a class="" href="?page={{blogs.previous_page_number}}">Previous</a></li>
+                                                  {% else %}
+                                                      <li class="disabled"><a class="Previous" role="link" aria-disabled="true" style="pointer-events: none">Previous</a></li>
+                                                  {% endif %}
 
-                                                    {% for i in blogs.paginator.page_range  %}
-                                                        {% if blogs.number == i %}
-                                                         <li class="active"><a href="#">{{i}}</a></li>
-                                                        {% else %}
-                                                         <li class=""><a href="?page={{i}}">{{i}}</a></li>
-                                                        {%endif%}
-                                                    {% endfor %}
+                                                  {% for i in blogs.paginator.page_range  %}
+                                                      {% if blogs.number == i %}
+                                                       <li class="active"><a href="#">{{i}}</a></li>
+                                                      {% else %}
+                                                       <li class=""><a href="?page={{i}}">{{i}}</a></li>
+                                                      {%endif%}
+                                                  {% endfor %}
 
-                                                    {% if blogs.has_next %}
-                                                        <li><a class="Next" href="?page={{blogs.next_page_number}}">Next</a></li>
-                                                    {% else %}
-                                                        <li><a class="" role="link" aria-disabled="true" style="pointer-events: none">Next</a></li>
-                                                    {% endif %}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endif %}
-                                </div>
+                                                  {% if blogs.has_next %}
+                                                      <li><a class="Next" href="?page={{blogs.next_page_number}}">Next</a></li>
+                                                  {% else %}
+                                                      <li><a class="" role="link" aria-disabled="true" style="pointer-events: none">Next</a></li>
+                                                  {% endif %}
+                                              </ul>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  {% endif %}
+                              </div>
                                 <!-- Li's Pagination End Here Area -->
                             </div>
                         </div>
@@ -203,314 +179,5 @@
                     </div>
                 </div>
             </div>
-            <div class="li-recent-post pb-30">
-              <div class="li-recent-post-thumb">
-                <a href="{%url 'detail-blog'%}">
-                  <img
-                    class="img-full"
-                    src="images/product/small-size/2.jpg"
-                    alt="Li's Product Image"
-                  />
-                </a>
-              </div>
-              <div class="li-recent-post-des">
-                <span><a href="{%url 'detail-blog'%}">First Blog Post</a></span>
-                <span class="li-post-date">25.11.2018</span>
-              </div>
-            </div>
-            <div class="li-recent-post pb-30">
-              <div class="li-recent-post-thumb">
-                <a href="{%url 'detail-blog'%}">
-                  <img
-                    class="img-full"
-                    src="images/product/small-size/5.jpg"
-                    alt="Li's Product Image"
-                  />
-                </a>
-              </div>
-              <div class="li-recent-post-des">
-                <span><a href="{%url 'detail-blog'%}">First Blog Post</a></span>
-                <span class="li-post-date">25.11.2018</span>
-              </div>
-            </div>
-          </div>
-          <div class="li-blog-sidebar">
-            <h4 class="li-blog-sidebar-title">Tags</h4>
-            <ul class="li-blog-tags">
-              <li><a href="#">Gaming</a></li>
-              <li><a href="#">Chromebook</a></li>
-              <li><a href="#">Refurbished</a></li>
-              <li><a href="#">Touchscreen</a></li>
-              <li><a href="#">Ultrabooks</a></li>
-              <li><a href="#">Sound Cards</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!-- Li's Blog Sidebar Area End Here -->
-      <!-- Begin Li's Main Content Area -->
-      <div class="col-lg-9 order-lg-2 order-1">
-        <div class="row li-main-content">
-          <div class="col-lg-6 col-md-6">
-            <div class="li-blog-single-item pb-25">
-              <div class="li-blog-banner">
-                <a href="{%url 'detail-blog'%}"
-                  ><img class="img-full" src="images/blog-banner/2.jpg" alt=""
-                /></a>
-              </div>
-              <div class="li-blog-content">
-                <div class="li-blog-details">
-                  <h3 class="li-blog-heading pt-25">
-                    <a href="{%url 'detail-blog'%}">blog image post</a>
-                  </h3>
-                  <div class="li-blog-meta">
-                    <a class="author" href="#"
-                      ><i class="fa fa-user"></i>Admin</a
-                    >
-                    <a class="comment" href="#"
-                      ><i class="fa fa-comment-o"></i> 3 comment</a
-                    >
-                    <a class="post-time" href="#"
-                      ><i class="fa fa-calendar"></i> 25 nov 2018</a
-                    >
-                  </div>
-                  <p>
-                    Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras
-                    pretium arcu ex. Aenean posuere libero eu augue condimentum
-                    rhoncus. Cras pretium arcu ex.
-                  </p>
-                  <a class="read-more" href="{%url 'detail-blog'%}"
-                    >Read More...</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="li-blog-single-item pb-25">
-              <div class="li-blog-gallery-slider slick-dot-style">
-                <div class="li-blog-banner">
-                  <a href="{%url 'detail-blog'%}"
-                    ><img
-                      class="img-full"
-                      src="images/blog-banner/1.jpg"
-                      alt=""
-                  /></a>
-                </div>
-                <div class="li-blog-banner">
-                  <a href="{%url 'detail-blog'%}"
-                    ><img
-                      class="img-full"
-                      src="images/blog-banner/2.jpg"
-                      alt=""
-                  /></a>
-                </div>
-                <div class="li-blog-banner">
-                  <a href="{%url 'detail-blog'%}"
-                    ><img
-                      class="img-full"
-                      src="images/blog-banner/3.jpg"
-                      alt=""
-                  /></a>
-                </div>
-              </div>
-              <div class="li-blog-content">
-                <div class="li-blog-details">
-                  <h3 class="li-blog-heading pt-25">
-                    <a href="{%url 'detail-blog'%}">blog gallery post</a>
-                  </h3>
-                  <div class="li-blog-meta">
-                    <a class="author" href="#"
-                      ><i class="fa fa-user"></i>Admin</a
-                    >
-                    <a class="comment" href="#"
-                      ><i class="fa fa-comment-o"></i> 3 comment</a
-                    >
-                    <a class="post-time" href="#"
-                      ><i class="fa fa-calendar"></i> 25 nov 2018</a
-                    >
-                  </div>
-                  <p>
-                    Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras
-                    pretium arcu ex. Aenean posuere libero eu augue condimentum
-                    rhoncus. Cras pretium arcu ex.
-                  </p>
-                  <a class="read-more" href="blog-details-left-sidebar.html"
-                    >Read More...</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="li-blog-single-item pb-25">
-              <div
-                class="li-blog-banner embed-responsive embed-responsive-16by9"
-              >
-                <iframe
-                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/300107209&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"
-                ></iframe>
-              </div>
-              <div class="li-blog-content">
-                <div class="li-blog-details">
-                  <h3 class="li-blog-heading pt-25">
-                    <a href="{%url 'detail-blog'%}">blog audio post</a>
-                  </h3>
-                  <div class="li-blog-meta">
-                    <a class="author" href="#"
-                      ><i class="fa fa-user"></i>Admin</a
-                    >
-                    <a class="comment" href="#"
-                      ><i class="fa fa-comment-o"></i> 3 comment</a
-                    >
-                    <a class="post-time" href="#"
-                      ><i class="fa fa-calendar"></i> 25 nov 2018</a
-                    >
-                  </div>
-                  <p>
-                    Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras
-                    pretium arcu ex. Aenean posuere libero eu augue condimentum
-                    rhoncus. Cras pretium arcu ex.
-                  </p>
-                  <a class="read-more" href="{%url 'detail-blog'%}"
-                    >Read More...</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="li-blog-single-item pb-25">
-              <div
-                class="li-blog-banner embed-responsive embed-responsive-16by9"
-              >
-                <iframe
-                  src="https://www.youtube.com/embed/DR2c266yWEA"
-                  allow="autoplay; encrypted-media"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <div class="li-blog-content">
-                <div class="li-blog-details">
-                  <h3 class="li-blog-heading pt-25">
-                    <a href="{%url 'detail-blog'%}">blog video post</a>
-                  </h3>
-                  <div class="li-blog-meta">
-                    <a class="author" href="#"
-                      ><i class="fa fa-user"></i>Admin</a
-                    >
-                    <a class="comment" href="#"
-                      ><i class="fa fa-comment-o"></i> 3 comment</a
-                    >
-                    <a class="post-time" href="#"
-                      ><i class="fa fa-calendar"></i> 25 nov 2018</a
-                    >
-                  </div>
-                  <p>
-                    Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras
-                    pretium arcu ex. Aenean posuere libero eu augue condimentum
-                    rhoncus. Cras pretium arcu ex.
-                  </p>
-                  <a class="read-more" href="{%url 'detail-blog'%}"
-                    >Read More...</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="li-blog-single-item pb-25">
-              <div class="li-blog-banner">
-                <a href="{%url 'detail-blog'%}"
-                  ><img class="img-full" src="images/blog-banner/5.jpg" alt=""
-                /></a>
-              </div>
-              <div class="li-blog-content">
-                <div class="li-blog-details">
-                  <h3 class="li-blog-heading pt-25">
-                    <a href="">blog fifth post</a>
-                  </h3>
-                  <div class="li-blog-meta">
-                    <a class="author" href="#"
-                      ><i class="fa fa-user"></i>Admin</a
-                    >
-                    <a class="comment" href="#"
-                      ><i class="fa fa-comment-o"></i> 3 comment</a
-                    >
-                    <a class="post-time" href="#"
-                      ><i class="fa fa-calendar"></i> 25 nov 2018</a
-                    >
-                  </div>
-                  <p>
-                    Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras
-                    pretium arcu ex. Aenean posuere libero eu augue condimentum
-                    rhoncus. Cras pretium arcu ex.
-                  </p>
-                  <a class="read-more" href="{%url 'detail-blog'%}"
-                    >Read More...</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="li-blog-single-item pb-35">
-              <div class="li-blog-banner">
-                <a href="{%url 'detail-blog'%}"
-                  ><img class="img-full" src="images/blog-banner/6.jpg" alt=""
-                /></a>
-              </div>
-              <div class="li-blog-content">
-                <div class="li-blog-details">
-                  <h3 class="li-blog-heading pt-25">
-                    <a href="{%url 'detail-blog'%}">blog second post</a>
-                  </h3>
-                  <div class="li-blog-meta">
-                    <a class="author" href="#"
-                      ><i class="fa fa-user"></i>Admin</a
-                    >
-                    <a class="comment" href="#"
-                      ><i class="fa fa-comment-o"></i> 3 comment</a
-                    >
-                    <a class="post-time" href="#"
-                      ><i class="fa fa-calendar"></i> 25 nov 2018</a
-                    >
-                  </div>
-                  <p>
-                    Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras
-                    pretium arcu ex. Aenean posuere libero eu augue condimentum
-                    rhoncus. Cras pretium arcu ex.
-                  </p>
-                  <a class="read-more" href="{%url 'detail-blog'%}"
-                    >Read More...</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Begin Li's Pagination Area -->
-          <div class="col-lg-12">
-            <div class="li-paginatoin-area text-center pt-25">
-              <div class="row">
-                <div class="col-lg-12">
-                  <ul class="li-pagination-box">
-                    <li><a class="Previous" href="#">Previous</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a class="Next" href="#">Next</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Li's Pagination End Here Area -->
-        </div>
-      </div>
-      <!-- Li's Main Content Area End Here -->
-    </div>
-  </div>
-</div>
-<!-- Li's Main Blog Page Area End Here -->
-<!-- Begin Footer Area -->
-{%endblock%}
+            <!-- Li's Main Blog Page Area End Here -->
+           {%endblock%}

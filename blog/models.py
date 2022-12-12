@@ -15,6 +15,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_url(self):
+        return reverse('blog_by_category',args=[self.slug])
 class Blog(models.Model):
     author=models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, null=True, blank=True)
