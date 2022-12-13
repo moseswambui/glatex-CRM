@@ -156,7 +156,7 @@
                           aria-controls="navs-pills-justified-profile"
                           aria-selected="false"
                         >
-                          <i class="tf-icons bx bx-user"></i> Blog Post
+                          <i class="tf-icons bx bx-user"></i> Edit Blog Post
                         </button>
                       </li>
                       <li class="nav-item">
@@ -169,7 +169,7 @@
                           aria-controls="navs-pills-justified-messages"
                           aria-selected="false"
                         >
-                          <i class="tf-icons bx bx-message-square"></i> Edit Blog
+                          <i class="tf-icons bx bx-message-square"></i> Edit Blog Images
                         </button>
                       </li>
                     </ul>
@@ -177,72 +177,46 @@
                       <div class="tab-pane fade show active" id="navs-pills-justified-home" role="tabpanel">
                         <div class="demo-inline-spacing mt-3">
                             <ul class="list-group">
-                              <li class="list-group-item d-flex align-items-center">
-                                <i class="bx bx-tv me-2"></i>
-                                Comments
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <i class="bx bx-tv me-2">   Comments</i>
+                                
+                                <span class="badge bg-primary rounded-pill">3</span>
                               </li>
-                              <li class="list-group-item d-flex align-items-center">
-                                <i class="bx bx-bell me-2"></i>
-                                Likes
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <i class="bx bx-bell me-2">  Likes</i>
+                                <span class="badge bg-success rounded-pill">3</span>
                               </li>
-                              <li class="list-group-item d-flex align-items-center">
-                                <i class="bx bx-support me-2"></i>
-                                Replies
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <i class="bx bx-support me-2">  Replies</i>
+                                <span class="badge bg-secondary rounded-pill">3</span>
                               </li>
-                              <li class="list-group-item d-flex align-items-center">
-                                <i class="bx bx-purchase-tag-alt me-2"></i>
-                                Rating
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <i class="bx bx-purchase-tag-alt me-2">   Rating</i>
+                                <span class="badge bg-danger rounded-pill">3</span>
                               </li>
+                             
                               
                             </ul>
                           </div>
                       </div>
                       <div class="tab-pane fade" id="navs-pills-justified-profile" role="tabpanel">
-                        <p>
-                          Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
-                          cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream
-                          cheesecake fruitcake.
-                        </p>
-                        <p class="mb-0">
-                          Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah
-                          cotton candy liquorice caramels.
-                        </p>
+                        {{single_blog.blog | truncatechars:650}}
                       </div>
                       <div class="tab-pane fade" id="navs-pills-justified-messages" role="tabpanel">
-                        <p>
-                          Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies
-                          cupcake gummi bears cake chocolate.
-                        </p>
-                        <p class="mb-0">
-                          Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet
-                          roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly
-                          jelly-o tart brownie jelly.
-                        </p>
+                        {{single_blog.blog | truncatechars:650}}
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-xl-6">
-                    <div class="nav-align-top mb-4">
-                    <div class="card mb-3">
-                      <div class="row g-0">
-                        <div class="col-md-4">
-                          <img class="card-img card-img-left" src="{{single_blog.image.url}}" alt="Card image" />
-                        </div>
-                        <div class="col-md-8">
-                          <div class="card-body">
-                            <h5 class="card-title" style="color:MediumSeaGreen;">{{single_blog.title}}</h5>
-                            <p class="card-text">
-                                {{single_blog.blog}}
-                            </p>
-                            <p class="card-text"><small class="text-muted">Date: <b style="color:MediumSeaGreen;"> {{single_blog.created_at}} </b>| Category: <b style="color:MediumSeaGreen;">{{single_blog.category}}</b> </small></p>
-                          </div>
-                        </div>
-                      </div>
+                <div class="col-md-6 col-sm-12">
+                  <div class="card overflow-hidden mb-4" style="height: 300px">
+                    <h5 class="card-header">{{single_blog.title}}</h5>
+                    <div class="card-body" id="vertical-example">
+                      {{single_blog.blog | linebreaks }}
+                      
                     </div>
                   </div>
-              </div>
-              <!-- Pills -->
+                </div>
             </div>
             <div class="container-xxl flex-grow-1 container-p-y">
                 
@@ -343,4 +317,9 @@
                   </div>
                 </div>
 
-            {%endblock%}
+                <script src="{% static 'portal/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+
+                <script src="{% static 'portal/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+            
+                <script src="{% static 'portal/js/extended-ui-perfect-scrollbar.js' %}"></script>
+{%endblock%}
