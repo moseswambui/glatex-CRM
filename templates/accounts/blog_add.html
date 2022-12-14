@@ -123,7 +123,7 @@
                 {% for blog in blog_posts %}
                 <div class="col">
                   <div class="card h-100">
-                    <img class="card-img-top" src="../assets/img/elements/2.jpg" alt="Card image cap" />
+                    <img class="card-img-top" src="{{blog.image.url}}" alt="Card image cap" height="250" />
                     <div class="card-body">
                       <h5 class="card-title">{{blog.title}}</h5>
                       {{blog.blog | truncatechars:100 }}
@@ -132,7 +132,7 @@
                 </div>
                {%endfor%}
               </div>
-              
+
               <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
                   <li class="page-item prev">
