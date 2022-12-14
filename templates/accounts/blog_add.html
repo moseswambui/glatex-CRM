@@ -133,25 +133,52 @@
                {%endfor%}
               </div>
 
-              <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item prev">
-                    <a class="page-link" href="javascript:void(0);"
-                      ><i class="tf-icon bx bx-chevrons-left"></i
-                    ></a>
-                  </li>
+              {%if blog_posts.has_other_pages %}
+                <nav aria-label="Page navigation">
+                  <ul class="pagination justify-content-center">
+                    {% if blog_posts.has_previous %}
+                      <li class="page-item prev">
+                        <a class="page-link" href="?page={{blog_posts.previous_page_number}}" 
+                          ><i class="tf-icon bx bx-chevrons-left"></i
+                        ></a>
+                      </li>
+                    {% else %}
+                      <li class="page-item prev">
+                        <a class="page-link disabled" href="#"
+                          ><i class="tf-icon bx bx-chevrons-left"></i
+                        ></a>
+                      </li>
+                    {%endif%}
 
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);">1</a>
-                  </li>
-              
-                  <li class="page-item next">
-                    <a class="page-link" href="javascript:void(0);"
-                      ><i class="tf-icon bx bx-chevrons-right"></i
-                    ></a>
-                  </li>
-                </ul>
-              </nav>
+                    {% for i in blog_posts.paginator.page_range %}
+                      {% if blog_posts.number == i %}
+                        <li class="page-item active">
+                          <a class="page-link" href="#">{{i}}</a>
+                        </li>
+                      {% else %}
+                        <li class="page-item">
+                          <a class="page-link" href="?page={{i}}">{{i}}</a>
+                        </li>
+                      {%endif%}
+                    {%endfor%}
+                    
+                    {% if blog_posts.has_next %}
+                      <li class="page-item next">
+                        <a class="page-link" href="javascript:void(0);"
+                          ><i class="tf-icon bx bx-chevrons-right"></i
+                        ></a>
+                      </li>
+                    {% else %}
+                      <li class="page-item next">
+                        <a class="page-link" href="javascript:void(0);"
+                          ><i class="tf-icon bx bx-chevrons-right"></i
+                        ></a>
+                      </li>
+                    {%endif%}
+
+                  </ul>
+                </nav>
+              {%endif%}
               <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blogs/</span> Add Blog Post</h4>
               <div class="row">
                 <div class="col-12">
