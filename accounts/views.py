@@ -7,6 +7,7 @@ from .models import Account, ProfileDetails
 from customerportal.views import _cart_id
 from customerportal.models import CartItem, MyCart
 from blog.models import Blog,Type
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 def Register(request):
     if request.method == "POST":
@@ -222,10 +223,12 @@ def Connections(request):
 @login_required(login_url = 'login')
 def AddBlog(request):
     author = request.user
-    blog_posts = Blog.objects.filter(author = author)
-    blog_post_0 = Blog.objects.filter(author = author)[0]
-    blog_post_1 = Blog.objects.filter(author = author)[1]
-    blog_post_2 = Blog.objects.filter(author = author)[2]
+    blog_posts = Blog.objects.filter(author = author).order_by("-created_at")
+    blog_count = blog_posts.count()
+    paginator = Paginator(blog_posts, 3)
+    page = request.GET.get('page')
+    paged_blogs = paginator.get_page(page)
+
     if request.method == "POST":
         form = AddBlogForm(request.POST, request.FILES)
         if form.is_valid():
@@ -252,10 +255,8 @@ def AddBlog(request):
 
     context = {
         'form':form,
-        "blog_posts":blog_posts,
-        "blog_post_1":blog_post_1,
-        "blog_post_0":blog_post_0,
-        "blog_post_2":blog_post_2,
+        "blog_posts":paged_blogs,
+        'blog_count':blog_count,
     
 
     }

@@ -117,37 +117,42 @@
 
             <div class="container-xxl flex-grow-1 container-p-y">
               <h5 class="pb-1 mb-4">My Recent Blog Posts</h5>
-              <div class="row mb-5">
-                <div class="col-md-6 col-lg-4">
-                  <div class="card text-center mb-3">
+              
+              
+              <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+                {% for blog in blog_posts %}
+                <div class="col">
+                  <div class="card h-100">
+                    <img class="card-img-top" src="../assets/img/elements/2.jpg" alt="Card image cap" />
                     <div class="card-body">
-                      <h5 class="card-title">{{blog_post_0.title}}</h5>
-                      <p class="card-text">{{blog_post_0.blog|truncatechars:120}}</p>
-                      <a href="{{blog_post_0.get_blog_mgt}}" class="btn btn-primary">View Blog</a>  <a href="{{blog_post_2.get_blog_mgt}}" class="btn btn-primary">Manage Blog</a>
+                      <h5 class="card-title">{{blog.title}}</h5>
+                      {{blog.blog | truncatechars:100 }}
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                  <div class="card text-center mb-3">
-                    <div class="card-body">
-                      <h5 class="card-title">{{blog_post_1.title}}</h5>
-                      <p class="card-text">{{blog_post_1.blog|truncatechars:120}}</p>
-                      <a href="{{blog_post_1.get_blog_mgt}}" class="btn btn-primary">View Blog</a>  <a href="{{blog_post_2.get_blog_mgt}}" class="btn btn-primary">Manage Blog</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                  <div class="card text-center mb-3">
-                    <div class="card-body">
-                      <h5 class="card-title">{{blog_post_2.title}}</h5>
-                      <p class="card-text">{{blog_post_2.blog|truncatechars:120}}</p>
-                      <a href="{{blog_post_2.get_blog_mgt}}" class="btn btn-primary">View Blog</a>  <a href="{{blog_post_2.get_blog_mgt}}" class="btn btn-primary">Manage Blog</a>
-                    </div>
-                  </div>
-                </div>
+               {%endfor%}
               </div>
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blogs/</span> Add Blog Post</h4>
+              
+              <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item prev">
+                    <a class="page-link" href="javascript:void(0);"
+                      ><i class="tf-icon bx bx-chevrons-left"></i
+                    ></a>
+                  </li>
 
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);">1</a>
+                  </li>
+              
+                  <li class="page-item next">
+                    <a class="page-link" href="javascript:void(0);"
+                      ><i class="tf-icon bx bx-chevrons-right"></i
+                    ></a>
+                  </li>
+                </ul>
+              </nav>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blogs/</span> Add Blog Post</h4>
               <div class="row">
                 <div class="col-12">
                   <div class="card">
