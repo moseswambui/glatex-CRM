@@ -126,8 +126,15 @@
                     <img class="card-img-top" src="{{blog.image.url}}" alt="Card image cap" height="250" />
                     <div class="card-body">
                       <h5 class="card-title">{{blog.title}}</h5>
-                      {{blog.blog | truncatechars:100 }}
+                      {{blog.blog | truncatechars:90 }}
+
+                     <center><div class="demo-inline-spacing align-items-center">
+                        <a href="{{blog.get_blog_mgt}}" class="btn btn-outline-primary">Manage Blog</a>
+                        <a href="{{blog.get_blog_url}}" class="btn btn-outline-primary">View Blog</a>
+                       
+                      </div></center> 
                     </div>
+                    
                   </div>
                 </div>
                {%endfor%}
@@ -164,13 +171,13 @@
                     
                     {% if blog_posts.has_next %}
                       <li class="page-item next">
-                        <a class="page-link" href="javascript:void(0);"
+                        <a class="page-link" href="?page={{blog_posts.next_page_number}}"
                           ><i class="tf-icon bx bx-chevrons-right"></i
                         ></a>
                       </li>
                     {% else %}
                       <li class="page-item next">
-                        <a class="page-link" href="javascript:void(0);"
+                        <a class="page-link" href="#"
                           ><i class="tf-icon bx bx-chevrons-right"></i
                         ></a>
                       </li>
