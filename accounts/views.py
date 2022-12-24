@@ -2,7 +2,7 @@ from django.contrib import messages,auth
 from django.contrib.auth import authenticate,login, logout
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, ProfileDetailForms, AddBlogForm
+from .forms import RegistrationForm, ProfileDetailForms, AddBlogForm, BlogCommentaryForm
 from .models import Account, ProfileDetails
 from customerportal.views import _cart_id
 from customerportal.models import CartItem, MyCart
@@ -234,15 +234,18 @@ def AddBlog(request):
         if form.is_valid():
             title = form.cleaned_data['title']
             category = form.cleaned_data['category']
+            type = form.cleaned_data['type']
             image = form.cleaned_data['image']
             blog = form.cleaned_data['blog']
 
             blog_post = Blog.objects.create(
                 author = request.user,
                 category = category,
+                type = type,
                 title =title,
                 blog = blog,
                 image = image,
+
                
             )
 
@@ -252,7 +255,7 @@ def AddBlog(request):
 
     else:
         form = AddBlogForm
-
+        
     context = {
         'form':form,
         "blog_posts":paged_blogs,
@@ -261,8 +264,12 @@ def AddBlog(request):
 
     }
     return render(request, "accounts/blog_add.html",context )
-
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 def BlogDetail(request,blog_slug, category_slug):
+    form = BlogCommentaryForm(request.POST or None)
+    user = request.user
+
     try:
         single_blog = Blog.objects.get(slug=blog_slug, category__slug=category_slug)
         all_blogs = Blog.objects.all()
@@ -270,8 +277,55 @@ def BlogDetail(request,blog_slug, category_slug):
     except Exception as e:
         raise e
 
+    if is_ajax(request):
+        print('is ajax')
+        if form.is_valid():
+            author = user
+            instance = form.save(commit=False)
+            instance.author = author
+            instance.blog = single_blog
+            instance.save()
+            print(instance)
+
+    else:
+        pass
+
     context = {
         'single_blog':single_blog,
         'all_blogs':all_blogs,
+        'form': form,
     }
     return render(request,'accounts/blog_detail.html', context)
+
+def load_categories(request):
+    type_id = request.GET.get('type')
+    print(type_id)
+    categories = Blog.objects.filter(type_id=type_id).order_by('name')
+
+    context = {
+        "categories":categories,
+    }
+
+    return render(request, 'ajax/category_dropdown_list.html', context)
+
+def post_commentary(request):
+    form = BlogCommentaryForm(request.POST or None)
+    user = request.user
+
+    if is_ajax(request):
+        print('is ajax')
+        
+        if form.is_valid():
+            print("is valid")
+            author = user
+            instance = form.save(commit=False)
+            instance.author = author
+            instance.save()
+            print(instance)
+
+    context = {
+        'form':form,
+
+    }
+
+    return render(request, "accounts/blog_detail.html",context )

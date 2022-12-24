@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 
+
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
@@ -128,11 +129,14 @@
                       <h5 class="card-title">{{blog.title}}</h5>
                       {{blog.blog | truncatechars:90 }}
 
-                     <center><div class="demo-inline-spacing align-items-center">
-                        <a href="{{blog.get_blog_mgt}}" class="btn btn-outline-primary">Manage Blog</a>
-                        <a href="{{blog.get_blog_url}}" class="btn btn-outline-primary">View Blog</a>
-                       
-                      </div></center> 
+                     <center>
+                        <div class="demo-inline-spacing align-items-center">
+                          <a href="{{blog.get_blog_mgt}}" class="btn btn-outline-primary">Manage Blog</a>
+                          <a href="{{blog.get_blog_url}}" class="btn btn-outline-primary">View Blog</a>
+                        
+                        </div>
+                        
+                      </center> 
                     </div>
                     
                   </div>
@@ -192,33 +196,41 @@
                   <div class="card">
                     <h5 class="card-header">Please Enter The Blog. Choose the Categories well</h5>
                     <div class="card-body">
-                        <form method="POST" action="{% url 'add-blog' %}" enctype='multipart/form-data'>
+                        <form method="POST" id="blog-form"
+                          action="{% url 'add-blog' %}"
+                          enctype='multipart/form-data'
+                          data-categories-url="{% url 'ajax_load_categories' %}"
+                          >
                           {%csrf_token %}
-                            <div class="card-body demo-vertical-spacing demo-only-element">
-                                <div class="input-group">
-                                  {{form.title}}
-                                    
-                                </div>
-
-                                <div class="mb-3">
-                                    
-                                    {{form.category}}
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="exampleFormControlTextarea1" class="form-label">Enter Blog Content</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-
-                            <div class="input-group">
-                               {{form.image}}
+                          <div class="row">
+                            <div class="mb-3 col-md-6">
+                              <label for="title" class="form-label"> Title</label>
+                              {{form.title}}
+                            </div>
+                            <div class="mb-3 col-md-6">
+                              <label for="type" class="form-label">Type</label>
+                              {{form.type}}
+                            </div>
+                            <div class="mb-3 col-md-6">
+                              <label for="category" class="form-label">Category</label>
+                              {{form.category}}
+                            </div>
+                            <div class="mb-3 col-md-6">
+                              <label for="image" class="form-label">Image</label>
+                              {{form.image}}
+                            </div>
+  
+                            <div>
+                              <label for="blog" class="form-label">Example textarea</label>
+                              {{form.blog}}
+                            </div>
                             
-                            </div>
-                            </div>
-                            <div class="mt-2">
-                              <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                              <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                            </div>
+                            
+                          </div>
+                          <div class="mt-2">
+                            <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                            <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                          </div>
                         </form>
                         
                     </div>
@@ -227,6 +239,24 @@
                 </div>
               </div>
             </div>
-            <!-- / Content -->
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script>
+              $("#category").change(function() {
+                  var url = $("#blog-form").attr("data-categories-url");
+                  var typeId = $(this).val();
+                  console.log(typeId)
+
+                  $.ajax({
+                      url : url,
+                      data:{
+                          "type":typeId
+                      },
+                      success:function(data){
+                          $("#category").html(data);
+                      }
+                  });
+              });
+
+            </script>
 
 {%endblock%}

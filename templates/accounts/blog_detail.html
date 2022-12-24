@@ -1,7 +1,7 @@
 {% extends '../includes/client_static.html' %}
 {% load static %}
 {% block content %}
-
+<script src="{% static 'portal/function.js' %}"></script>
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
@@ -126,7 +126,7 @@
                       </div>
                     </div>
                 </nav>
-                
+                <div class="alert-box"></div>
               <div class="row">
                
                 <div class="col-xl-6">
@@ -199,8 +199,61 @@
                             </ul>
                           </div>
                       </div>
+                     
                       <div class="tab-pane fade" id="navs-pills-justified-profile" role="tabpanel">
-                        {{single_blog.blog | truncatechars:650}}
+                        <div class="mt-3">
+                          <!-- Button trigger modal -->
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalCenter"
+                          >
+                            Add Commentary
+                          </button>
+  
+                          <!-- Modal -->
+                          <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="modalCenterTitle">Add Blog Commentary</h5>
+                                  <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
+                                </div>
+                                <div class="modal-body" id="add-commentary">
+                                  <form id="commentary-form" commentary-url="{% url 'post-commentary' %}">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                      <div class="col mb-3">
+                                        <label for="nameWithTitle" class="form-label">Title</label>
+                                        {{form.title}}
+                                      </div>
+                                    </div>
+                                    <div class="row g-2">
+                                      <div class="col mb-0">
+                                        <label  class="form-label">Commentary</label>
+                                        {{form.commentary}}
+                                      </div>
+                                      
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                        Close
+                                      </button>
+                                      <button type="submit" class="btn btn-primary">Add Commentary</button>
+                                    </div>
+                                  </form>
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
 
                       <div class="tab-pane fade" id="navs-pills-justified-messages" role="tabpanel">
@@ -226,11 +279,11 @@
                   </div>
                 </div>
             </div>
-           
-
+            <script src="{% static 'portal/main.js' %}"></script>
             <script src="{% static 'portal/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
 
             <script src="{% static 'portal/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
             
             <script src="{% static 'portal/js/extended-ui-perfect-scrollbar.js' %}"></script>
+            
 {%endblock%}

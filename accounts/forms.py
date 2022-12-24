@@ -1,7 +1,7 @@
 
 from django import forms
 from .models import Account,ProfileDetails
-from blog.models import Blog
+from blog.models import Blog, BlogCommentary
 
 class RegistrationForm(forms.ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
@@ -91,43 +91,46 @@ class ProfileDetailForms(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = "form-control"
 
+        
+
 class AddBlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ('title', 'category', 'image', 'blog', 'author')
+        fields = ('title', 'category','type', 'image', 'blog', 'author')
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['title'].widget.attrs.update({
-            'type':'text',
+        super(AddBlogForm, self).__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs['id'] = 'title'
+        self.fields['category'].widget.attrs['id'] = 'category'
+        self.fields['type'].widget.attrs['id'] = 'type'
+        self.fields['image'].widget.attrs['id'] = 'image'
+        self.fields['blog'].widget.attrs['id'] = 'blog'
+        
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
 
-            'placeholder':'Blog Title',
-            'aria-label':'Recipients username',
-            'aria-describedby':'basic-addon13',
+        self.fields['category'].queryset = Blog.objects.none()
 
-        })
-        self.fields['category'].widget.attrs.update({
-            'type':'select',
-            'name':'category',
-         
+        if "type" in self.data:
+            try:
+                type_id = int(self.data.get('type'))
+                print(type_id)
+                self.fields['category'].queryset = Blog.objects.filter(type_id=type_id).order_by('name')
+            except(ValueError, TypeError):
+                pass
 
-        })
-        self.fields['blog'].widget.attrs.update({
-            'type':'textarea',
-            'name':'category',
-            'id':'exampleFormControlTextarea1',
-            'rows':'3',
-            'class':'form-control',
-         
+        elif self.instance.id:
+            self.fields['category'].queryset = self.instance.type.category_set.order_by('name')
 
-        })
-        self.fields['image'].widget.attrs.update({
-            'type':'file',
-            'name':'image',
-            'id':'inputGroupFile04',
-            'class':'form-control',
-            'aria-label':'Upload',
-            'aria-describedby':'inputGroupFileAddon04',
-         
-
-        })
+class BlogCommentaryForm(forms.ModelForm):
+    title = forms.CharField(widget=forms.TextInput(attrs = {
+        'class':'form-control',
+        'id':"title",
+        }))
+    commentary = forms.CharField(widget=forms.Textarea(attrs = {
+        'class':'form-control',
+        "id":"commentary",
+        }))
+    class Meta:
+        model = BlogCommentary
+        fields = ('title', 'commentary', 'blog','author')

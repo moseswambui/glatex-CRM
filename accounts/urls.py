@@ -16,5 +16,7 @@ urlpatterns = [
     path("connections/",views.Connections, name="connections"),
     path("notifucations/",views.Notifications, name="notifications"),
     path("add_blog/",views.AddBlog, name="add-blog"),
+    path("post_commentary/",views.post_commentary, name="post-commentary"),
     path("blog/<slug:category_slug>/<slug:blog_slug>",views.BlogDetail, name="blogdetail"),
+    path('ajax/load-categories/', views.load_categories, name='ajax_load_categories'),
 ] 
